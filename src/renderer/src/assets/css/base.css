@@ -6,6 +6,17 @@
   font-weight: normal;
 }
 
+:root {
+  --very-dark-blue: #0e2a47;
+  --dark-blue: #1174ba;
+  --light-blue: #5acbe9;
+}
+
+a {
+  text-decoration: none;
+  line-height: 0;
+}
+
 ul {
   list-style: none;
 }

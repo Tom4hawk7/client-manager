@@ -21,6 +21,9 @@ function createWindow() {
     mainWindow.show()
   })
 
+  // TODO delete this later when you have no need for it
+  mainWindow.webContents.openDevTools()
+
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }

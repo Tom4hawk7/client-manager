@@ -1,0 +1,29 @@
+:root {
+  --very-dark-blue: #0e2a47;
+  --dark-blue: #1174ba;
+  --light-blue: #5acbe9;
+}
+
+nav {
+  display: flex;
+  background-color: darkcyan;
+  flex-direction: column;
+  height: 100vh;
+}
+
+section {
+  display: flex;
+  flex-grow: 1;
+  padding: 10px;
+  background-color: gainsboro;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.icon {
+  fill: white;
+  transition: all 0.3s ease-in-out;
+  margin: 8px;
+}
