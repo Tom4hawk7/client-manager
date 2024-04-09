@@ -6,7 +6,7 @@
 
 nav {
   display: flex;
-  background-color: darkcyan;
+  background-color: var(--dark-blue);
   flex-direction: column;
   height: 100vh;
 }
