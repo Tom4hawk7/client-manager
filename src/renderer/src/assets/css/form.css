@@ -1,0 +1,9 @@
+form,
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  border: 0;
+}
