@@ -9,6 +9,7 @@ export default function ClientView() {
         <Link to="/client-form">
           <img src={addClient} width="36" height="36" />
         </Link>
+        <p className="otherText">Some text</p>
       </Card>
     </>
   )
