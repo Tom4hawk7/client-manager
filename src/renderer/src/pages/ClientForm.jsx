@@ -18,8 +18,7 @@ export default function ClientForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // next line is just for testing
-    console.log(formData)
+    window.database.submitClient(formData)
   }
 
   return (

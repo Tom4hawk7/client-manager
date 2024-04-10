@@ -59,3 +59,7 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+ipcMain.on('submit-client', (_event, client) => {
+  console.log(client)
+})
