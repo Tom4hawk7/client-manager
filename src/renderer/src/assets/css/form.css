@@ -1,3 +1,8 @@
+:root {
+  --dark-blue: #1174ba;
+  --light-blue: #5acbe9;
+}
+
 form,
 fieldset {
   display: flex;
@@ -6,4 +11,70 @@ fieldset {
 
 fieldset {
   border: 0;
+  padding: 0;
 }
+
+input {
+  /* margin: 10px; */
+  margin: 10px 0;
+  padding: 5px;
+}
+
+/* form,
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--dark-blue);
+  padding: 30px;
+}
+
+fieldset {
+  border: 0;
+}
+
+.form-input {
+  border: 0;
+  color: #999999;
+  background: #f0f1f2;
+  outline: 0;
+  transition:
+    border 0.15s,
+    box-shadow 0.15s;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 10px 1px #f0f1f2;
+}
+
+.form-input,
+.submit {
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  padding: 15px;
+  width: 90%;
+}
+
+.submit {
+  align-self: center;
+  background: var(--dark-blue);
+  outline: 0;
+  border: 0;
+  border-radius: 30px;
+  width: 80%;
+  margin: 25px 0;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submit:hover {
+  background: #0e2a47;
+} */
