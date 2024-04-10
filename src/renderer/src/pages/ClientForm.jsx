@@ -1,45 +1,35 @@
-import { useState } from 'react'
 import Card from '../components/Card'
 import '../assets/css/form.css'
 
 export default function ClientForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    dob: '',
-    participantNumber: ''
-  })
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value
-    }))
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    window.database.submitClient(formData)
+
+    const formData = new FormData(event.target)
+    const clientData = Object.fromEntries(formData)
+
+    window.database.submitClient(clientData)
   }
 
   return (
     <>
       <Card>
-        <form onSubmit={handleSubmit}>
-          <fieldset>
-            <label htmlFor="name">Name</label>
-            <input name="name" type="text" value={formData.name} onChange={handleInputChange} />
+        <form className="form-container" onSubmit={handleSubmit}>
+          <fieldset className="form-container">
+            <label>Name</label>
+            <input name="name" type="text" />
 
-            <label htmlFor="dob">Date of birth</label>
-            <input name="dob" type="date" value={formData.dob} onChange={handleInputChange} />
+            <label>Date of birth</label>
+            <input name="dob" type="date" />
 
-            <label htmlFor="participantNumber">participantNumber</label>
-            <input
-              name="participantNumber"
-              type="text"
-              value={formData.participantNumber}
-              onChange={handleInputChange}
-            />
+            <label>Participant Number</label>
+            <input name="participantNumber" type="text" />
+          </fieldset>
+          <fieldset id="new" disabled className="form container">
+            <label>Address</label>
+            <input name="street" type="text" />
+
+            <label></label>
           </fieldset>
           <button type="submit">Submit</button>
         </form>

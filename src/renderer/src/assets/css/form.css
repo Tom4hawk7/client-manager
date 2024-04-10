@@ -3,10 +3,10 @@
   --light-blue: #5acbe9;
 }
 
-form,
-fieldset {
-  display: flex;
-  flex-direction: column;
+form {
+  flex-grow: 1;
+  /* padding: 10px; */
+  margin: 10px;
 }
 
 fieldset {
@@ -14,11 +14,44 @@ fieldset {
   padding: 0;
 }
 
-input {
+form,
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  line-height: 1.4rem;
+}
+
+input,
+button {
   /* margin: 10px; */
   margin: 10px 0;
-  padding: 5px;
+  padding: 10px;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
 }
+
+input {
+  color: #999999;
+  background: #f0f1f2;
+}
+
+button {
+  color: white;
+  background-color: var(--dark-blue);
+  border-radius: 20px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Have this include the submit button as well as the other inputs */
+/* .interactables {
+} */
 
 /* form,
 fieldset {
