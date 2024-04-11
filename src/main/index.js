@@ -60,6 +60,7 @@ app.on('window-all-closed', () => {
   }
 })
 
-ipcMain.on('submit-client', (_event, client) => {
-  console.log(client)
-})
+// Define all event handles and emitters here
+import { createClient } from './database'
+
+ipcMain.on('submit-client', createClient)
