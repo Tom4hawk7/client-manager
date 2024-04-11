@@ -5,11 +5,5 @@ export default function CreateClient() {
     window.database.submitClient(input)
   }
 
-  const clientData = {
-    name: 'Thomas',
-    dob: '2005-07-07',
-    participant_number: '123456'
-  }
-
-  return <ClientForm databaseOperation={createClient} clientData={clientData} />
+  return <ClientForm databaseOperation={createClient} />
 }

@@ -34,52 +34,56 @@ export default function ClientForm({ databaseOperation, clientData = '' }) {
           <legend>Address</legend>
 
           <label>Street</label>
-          <input name="street" />
+          <input name="street" defaultValue={clientData.street} />
 
           <label>Suburb</label>
-          <input name="suburb" />
+          <input name="suburb" defaultValue={clientData.suburb} />
 
           <label>State</label>
-          <input name="state" />
+          <input name="state" defaultValue={clientData.state} />
 
           <label>Code</label>
-          <input name="code" />
+          <input name="code" defaultValue={clientData.code} />
         </fieldset>
 
         <fieldset>
           <legend>Parent</legend>
 
           <label>Name</label>
-          <input name="parent_name" />
+          <input name="parent_name" defaultValue={clientData.parent_name} />
 
           <label>Email</label>
-          <input name="parent_email" />
+          <input name="parent_email" defaultValue={clientData.parent_email} />
 
           <label>Phone number</label>
-          <input name="phone" type="tel" />
+          <input name="phone" type="tel" defaultValue={clientData.phone} />
         </fieldset>
 
         <fieldset>
           <legend>Plan</legend>
 
           <label>Start Date</label>
-          <input name="start_date" type="date" />
+          <input name="start_date" type="date" defaultValue={clientData.start_date} />
 
           <label>End Date</label>
-          <input name="end_date" type="date" />
+          <input name="end_date" type="date" defaultValue={clientData.end_date} />
 
           <label>Budget</label>
-          <input name="budget" type="number" />
+          <input name="budget" type="number" defaultValue={clientData.budget} />
         </fieldset>
 
         <fieldset>
           <legend>Plan Manager</legend>
 
           <label>Name</label>
-          <input name="plan_manager_name" />
+          <input name="plan_manager_name" defaultValue={clientData.plan_manager_name} />
 
           <label>Email</label>
-          <input name="plan_manager_email" type="email" />
+          <input
+            name="plan_manager_email"
+            type="email"
+            defaultValue={clientData.plan_manager_email}
+          />
         </fieldset>
 
         <button type="submit">Submit</button>
