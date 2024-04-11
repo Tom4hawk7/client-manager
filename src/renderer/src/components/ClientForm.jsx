@@ -1,16 +1,18 @@
 import Card from './Card'
 import '../assets/css/form.css'
 
+// TODO clientData will have an attribute of client_id from the backend
+// Make sure to append it to the clienData object
+// Or figure out another way to store it in the backend so that the changes save through
+// This edge case would be for updating or viewing a client
 export default function ClientForm({ databaseOperation, clientData = '' }) {
-  // TODO clientData will have an attribute of client_id from the backend
-  // Make sure to append it to the clienData object
-  // Or figure out another way to store it in the backend so that the changes save through
-  // This edge case would be for updating or viewing a client
   const handleSubmit = (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
     const clientData = Object.fromEntries(formData)
+
+    clientData['budget'] = parseFloat(clientData['budget'])
 
     databaseOperation(clientData)
   }
