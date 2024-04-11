@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom'
 export default function ClientView() {
   return (
     <>
-      <Card>
-        <Link to="/client-form">
+      <Card className="small">
+        <Link to="/create-client">
           <img src={addClient} width="36" height="36" />
         </Link>
-        <p className="otherText">Some text</p>
       </Card>
     </>
   )

@@ -4,8 +4,8 @@
 }
 
 form {
+  width: 60vw;
   flex-grow: 1;
-  /* padding: 10px; */
   margin: 10px;
 }
 
