@@ -8,7 +8,7 @@ function appendLastInsertID(object, property) {
   object[property] = id['LAST_INSERT_ROWID()']
 }
 
-function createClient(_event, clientData) {
+export function createClient(_event, clientData) {
   db.prepare(insert.client).run(clientData)
   appendLastInsertID(clientData, 'client_id')
 
@@ -19,4 +19,3 @@ function createClient(_event, clientData) {
   db.prepare(insert.parent).run(clientData)
   db.prepare(insert.plan).run(clientData)
 }
-export { createClient }
