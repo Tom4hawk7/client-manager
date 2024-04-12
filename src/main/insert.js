@@ -1,10 +1,6 @@
 const client =
-  'INSERT INTO Client (name, dob, participant_number) ' +
-  'VALUES (@client_name, @dob, @participant_number)'
-
-const address =
-  'INSERT INTO Address (street, suburb, state, code, client_id) ' +
-  'VALUES (@street, @suburb, @state, @code, @client_id)'
+  'INSERT INTO Client (name, dob, address, school, participant_number) ' +
+  'VALUES (@client_name, @dob, @address, @school, @participant_number)'
 
 const parent =
   'INSERT INTO Parent (name, email, phone, client_id) ' +
@@ -17,5 +13,5 @@ const plan =
   'INSERT INTO Plan (start_date, end_date, budget, plan_manager_id, client_id) ' +
   'VALUES (@start_date, @end_date, @budget, @plan_manager_id, @client_id)'
 
-export const insertOperations = [address, parent, plan]
+export const insertOperations = [parent, plan]
 export const insertOperationsKeys = { client_id: client, plan_manager_id: plan_manager }

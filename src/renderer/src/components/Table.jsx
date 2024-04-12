@@ -1,40 +1,31 @@
 import { useEffect, useState } from 'react'
 import '../assets/css/table.css'
 
-export default function Table() {
-  const data = [
-    {
-      id: 1,
-      name: 'Thomas',
-      address: '15 John Street',
-      contact: '123498012',
-      school: 'Big school'
-    },
-    { id: 2, name: 'Dave', address: 'haymet avenue', contact: '098431298', school: 'Small school' }
-  ]
+export default function Table({ operation }) {
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState([])
 
-  // Object.keys(data[0]).map((value) => {
-  //   console.log(value)
-  // })
+  useEffect(() => {
+    operation.then(setData)
+    setLoading(false)
+  }, [])
 
-  // data.map((value) => {
-  //   console.log(value)
-  // })
-
+  if (loading) return <p>Loading</p>
+  if (data === 0) return <p>No clients</p>
   return (
     <table className="hero">
       <thead>
         <tr>
-          {Object.keys(data[0]).map((item) => (
-            <th>{item}</th>
+          {Object.keys(data[0] || {}).map((item, key) => (
+            <th key={key}>{item}</th>
           ))}
         </tr>
       </thead>
       <tbody>
         {data.map((item) => (
           <tr key={item.id}>
-            {Object.values(item).map((value) => (
-              <td>{value}</td>
+            {Object.values(item).map((value, key) => (
+              <td key={key}>{value}</td>
             ))}
           </tr>
         ))}

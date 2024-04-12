@@ -1,4 +1,5 @@
 import { insertOperations, insertOperationsKeys } from './insert'
+import { clientViewEntries } from './select'
 import Database from 'better-sqlite3'
 
 const db = new Database('src\\client-manager.db')
@@ -30,5 +31,5 @@ export function createClient(_event, clientData) {
 }
 
 export function retrieveClients(_event) {
-  return db.prepare('SELECT * FROM Client').all()
+  return db.prepare(clientViewEntries).all()
 }

@@ -11,6 +11,7 @@ td {
 th {
   color: white;
   background-color: #1174ba;
+  text-transform: capitalize;
 }
 
 tr {

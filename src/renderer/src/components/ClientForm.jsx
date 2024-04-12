@@ -1,10 +1,6 @@
-import Card from './Card'
 import '../assets/css/form.css'
+import Card from '../Components/Card'
 
-// TODO clientData will have an attribute of client_id from the backend
-// Make sure to append it to the clienData object
-// Or figure out another way to store it in the backend so that the changes save through
-// This edge case would be for updating or viewing a client
 export default function ClientForm({ databaseOperation, clientData = '' }) {
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -12,6 +8,7 @@ export default function ClientForm({ databaseOperation, clientData = '' }) {
     const formData = new FormData(event.target)
     const clientData = Object.fromEntries(formData)
 
+    // might move these validations to the backend temporarily to make this a more general component
     clientData['budget'] = parseFloat(clientData['budget'])
 
     databaseOperation(clientData)
@@ -28,24 +25,14 @@ export default function ClientForm({ databaseOperation, clientData = '' }) {
           <label>Date of birth</label>
           <input name="dob" type="date" defaultValue={clientData.dob} />
 
+          <label>School</label>
+          <input name="school" defaultValue={clientData.school} />
+
+          <label>Address</label>
+          <input name="address" defaultValue={clientData.address} />
+
           <label>Participant Number</label>
           <input name="participant_number" defaultValue={clientData.participant_number} />
-        </fieldset>
-
-        <fieldset>
-          <legend>Address</legend>
-
-          <label>Street</label>
-          <input name="street" defaultValue={clientData.street} />
-
-          <label>Suburb</label>
-          <input name="suburb" defaultValue={clientData.suburb} />
-
-          <label>State</label>
-          <input name="state" defaultValue={clientData.state} />
-
-          <label>Code</label>
-          <input name="code" defaultValue={clientData.code} />
         </fieldset>
 
         <fieldset>
