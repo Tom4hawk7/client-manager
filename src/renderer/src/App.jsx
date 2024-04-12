@@ -3,7 +3,7 @@ import NavBar from './components/NavBar'
 import './assets/css/app.css'
 
 import ClientView from './pages/ClientView'
-import SessionView from './pages/SessionView'
+import ServiceView from './pages/ServiceView'
 import CreateClient from './pages/CreateClient'
 
 export default function App() {
@@ -13,9 +13,9 @@ export default function App() {
         <NavBar />
         <section>
           <Routes>
-            <Route path="/" element={<ClientView />} />
-            <Route path="/create-client" element={<CreateClient />} />
-            <Route path="/session" element={<SessionView />} />
+            <Route path="/client" element={<ClientView />} />
+            <Route path="/client-create" element={<CreateClient />} />
+            <Route path="/" element={<ServiceView />} />
           </Routes>
         </section>
       </HashRouter>

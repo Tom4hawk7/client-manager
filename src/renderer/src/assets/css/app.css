@@ -23,7 +23,23 @@ section {
 }
 
 .icon {
-  margin: 8px;
+  font-size: 32px;
+  padding: 5px;
+  color: var(--very-dark-blue);
+  transition: all 0.3s ease-in-out;
+}
+
+.icon:hover {
+  color: var(--dark-blue);
+}
+
+.nav {
+  padding: 12px;
+  color: gainsboro;
+}
+
+.nav:hover {
+  color: white;
 }
 
 .card.small {
