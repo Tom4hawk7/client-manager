@@ -12,9 +12,6 @@ export default function ClientView() {
     tableData.then(setClients)
   }, [])
 
-  // console.log(clients)
-  console.log(clients)
-
   return (
     <>
       <Card className="small">
@@ -22,17 +19,6 @@ export default function ClientView() {
           <BsPersonFillAdd />
         </Link>
       </Card>
-      <div className="card">
-        {clients.map((value, key) => (
-          <li key={key}>{value.name}</li>
-        ))}
-      </div>
-
-      {/* <div className="card">
-        {clients.map((value) => (
-          <div>{value}</div>
-        ))}
-      </div> */}
       <table className="hero">
         <thead>
           <tr>
@@ -42,16 +28,13 @@ export default function ClientView() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Thomas Mcgrath</td>
-            <td>2005-07-07</td>
-            <td>123456789</td>
-          </tr>
-          <tr>
-            <td>Another one</td>
-            <td>Another one</td>
-            <td>Another one</td>
-          </tr>
+          {clients.map((client) => (
+            <tr key={client.client_id}>
+              <td>{client.name}</td>
+              <td>{client.dob}</td>
+              <td>{client.participant_number}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>
