@@ -52,3 +52,10 @@ section {
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
   margin: auto;
 }
+
+.bottom-right {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: white;
+}
