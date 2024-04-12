@@ -2,16 +2,13 @@ import { useEffect, useState } from 'react'
 import '../assets/css/table.css'
 
 export default function Table({ operation }) {
-  const [loading, setLoading] = useState(true)
   const [data, setData] = useState([])
 
   useEffect(() => {
     operation.then(setData)
-    setLoading(false)
   }, [])
 
-  if (loading) return <p>Loading</p>
-  if (data === 0) return <p>No clients</p>
+  if (data === 0) return
   return (
     <table className="hero">
       <thead>
