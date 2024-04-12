@@ -1,6 +1,5 @@
 import { insertOperations, insertOperationsKeys } from './insert'
 import Database from 'better-sqlite3'
-import * as insert from './insert'
 
 const db = new Database('src\\client-manager.db')
 
