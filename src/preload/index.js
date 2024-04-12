@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('database', {
-  submitClient: (client) => ipcRenderer.send('submit-client', client)
+  submitClient: (client) => ipcRenderer.send('submit-client', client),
+  retrieveClients: () => ipcRenderer.invoke('retrieve-clients')
 })

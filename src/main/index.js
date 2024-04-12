@@ -61,6 +61,7 @@ app.on('window-all-closed', () => {
 })
 
 // Define all event handles and emitters here
-import { createClient } from './database'
+import { createClient, retrieveClients } from './database'
 
 ipcMain.on('submit-client', createClient)
+ipcMain.handle('retrieve-clients', retrieveClients)

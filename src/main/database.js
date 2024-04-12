@@ -28,3 +28,7 @@ export function createClient(_event, clientData) {
   executeOperationKeys(clientData, insertOperationsKeys)
   executeOperations(clientData, insertOperations)
 }
+
+export function retrieveClients(_event) {
+  return db.prepare('SELECT * FROM Client').all()
+}
