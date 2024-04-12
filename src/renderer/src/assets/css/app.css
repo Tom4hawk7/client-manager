@@ -42,9 +42,15 @@ section {
   color: white;
 }
 
-.card.small {
+.card {
+  display: flex;
+  align-items: center;
   width: max-content;
   margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+  line-height: 0;
 }
 
 .hero {
@@ -55,7 +61,7 @@ section {
 
 .bottom-right {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 20px;
   background: white;
 }
