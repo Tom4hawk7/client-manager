@@ -10,7 +10,7 @@ export const clientViewEntries =
   'ON Client.client_id = Parent.client_id'
 
 export const clientFormEntries =
-  'SELECT Client.client_id, ' +
+  'SELECT Client.client_id AS id, ' +
   'Client.name AS client_name, ' +
   'Client.dob, ' +
   'Client.school, ' +

@@ -1,6 +1,6 @@
 import '../assets/css/form.css'
 
-export function Form({ databaseOperation, id, children }) {
+export function Form({ create, update, id, children }) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -9,9 +9,10 @@ export function Form({ databaseOperation, id, children }) {
 
     if (id) {
       data['id'] = id
+      update(data)
+    } else {
+      create(data)
     }
-
-    databaseOperation(data)
   }
 
   return (

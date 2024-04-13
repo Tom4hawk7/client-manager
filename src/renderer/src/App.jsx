@@ -4,7 +4,7 @@ import './assets/css/app.css'
 
 import ServiceView from './pages/ServiceView'
 import ClientView from './pages/ClientView'
-import ClientCreate from './pages/ClientCreate'
+import ClientForm from './pages/ClientForm'
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<ServiceView />} />
             <Route path="/client" element={<ClientView />} />
-            <Route path="/client-form" element={<ClientCreate />} />
+            <Route path="/client-form" element={<ClientForm />} />
           </Routes>
         </section>
       </HashRouter>

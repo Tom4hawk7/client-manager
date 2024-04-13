@@ -16,10 +16,11 @@ export function createClient(_event, clientData) {
   db.prepare(insert.client).run(clientData)
   appendLastInsertId(clientData, 'client_id')
 
-  db.prepare(insert.plan_manager).run()
+  db.prepare(insert.parent).run(clientData)
 }
 
 export function updateClient(_event, client) {
+  // console.log(client)
   db.prepare(update.updateClientInfo).run(client)
   db.prepare(update.updateParentInfo).run(client)
 }

@@ -4,7 +4,7 @@ export const client =
 
 export const parent =
   'INSERT INTO Parent (name, email, phone, client_id) ' +
-  'VALUES (@parent_name, @parent_email, @phone, @client_id)'
+  'VALUES (@parent_name, @parent_email, @parent_phone, @client_id)'
 
 const plan_manager =
   'INSERT INTO PlanManager (name, email) ' + 'VALUES (@plan_manager_name, @plan_manager_email)'
