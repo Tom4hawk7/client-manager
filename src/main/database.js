@@ -26,6 +26,7 @@ function executeOperationKeys(clientData, operations) {
 
 // main database operations
 export function createClient(_event, clientData) {
+  clientData['budget'] = parseFloat(clientData['budget'])
   executeOperationKeys(clientData, insertOperationsKeys)
   executeOperations(clientData, insertOperations)
 }
