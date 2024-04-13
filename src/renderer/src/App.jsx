@@ -1,5 +1,5 @@
 import { HashRouter, Route, Routes, Link } from 'react-router-dom'
-import NavBar from './Components/NavBar'
+import NavBar from './components/NavBar'
 import './assets/css/app.css'
 
 import ClientView from './pages/ClientView'

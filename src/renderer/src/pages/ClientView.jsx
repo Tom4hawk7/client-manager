@@ -1,4 +1,4 @@
-import Table from '../Components/Table'
+import Table from '../components/Table'
 import { Link } from 'react-router-dom'
 import { BsPersonFillAdd } from 'react-icons/bs'
 

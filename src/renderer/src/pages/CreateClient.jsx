@@ -1,4 +1,4 @@
-import ClientForm from '../Components/ClientForm'
+import ClientForm from '../components/ClientForm'
 
 export default function CreateClient() {
   const createClient = (input) => {

@@ -1,6 +1,5 @@
 import '../assets/css/form.css'
-
-import { Form, Fieldset, Input } from '../Components/Form'
+import { Form, Fieldset, Input } from './Form'
 
 export default function ClientForm({ databaseOperation, clientData = '' }) {
   return (
