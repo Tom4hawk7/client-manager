@@ -1,8 +1,8 @@
-const client =
+export const client =
   'INSERT INTO Client (name, dob, address, school, participant_number) ' +
   'VALUES (@client_name, @dob, @address, @school, @participant_number)'
 
-const parent =
+export const parent =
   'INSERT INTO Parent (name, email, phone, client_id) ' +
   'VALUES (@parent_name, @parent_email, @phone, @client_id)'
 
@@ -13,5 +13,5 @@ const plan =
   'INSERT INTO Plan (start_date, end_date, budget, plan_manager_id, client_id) ' +
   'VALUES (@start_date, @end_date, @budget, @plan_manager_id, @client_id)'
 
-export const insertOperations = [parent, plan]
-export const insertOperationsKeys = { client_id: client, plan_manager_id: plan_manager }
+// export const insertOperations = [parent, plan]
+// export const insertOperationsKeys = { client_id: client, plan_manager_id: plan_manager }
