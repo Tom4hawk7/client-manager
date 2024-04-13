@@ -13,9 +13,9 @@ export default function App() {
         <NavBar />
         <section>
           <Routes>
+            <Route path="/" element={<ServiceView />} />
             <Route path="/client" element={<ClientView />} />
             <Route path="/client-create" element={<CreateClient />} />
-            <Route path="/" element={<ServiceView />} />
           </Routes>
         </section>
       </HashRouter>
