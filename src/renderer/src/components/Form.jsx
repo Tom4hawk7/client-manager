@@ -1,6 +1,6 @@
 import '../assets/css/form.css'
 
-export default function Form({ databaseOperation, children }) {
+export function Form({ databaseOperation, children }) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -15,5 +15,25 @@ export default function Form({ databaseOperation, children }) {
       {children}
       <button type="submit">Submit</button>
     </form>
+  )
+}
+
+export function Fieldset({ legend, children }) {
+  return (
+    <>
+      <fieldset>
+        <legend>{legend}</legend>
+        {children}
+      </fieldset>
+    </>
+  )
+}
+
+export function Input({ label, name, type = 'text', defaultValue }) {
+  return (
+    <>
+      <label>{label}</label>
+      <input name={name} type={type} defaultValue={defaultValue} />
+    </>
   )
 }
