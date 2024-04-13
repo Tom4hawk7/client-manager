@@ -1,4 +1,5 @@
 import { clientFormEntries, clientViewEntries } from './select'
+import * as update from './update'
 import * as insert from './insert'
 import Database from 'better-sqlite3'
 
@@ -12,12 +13,15 @@ function appendLastInsertId(clientData, property) {
 
 // main database operations
 export function createClient(_event, clientData) {
-  clientData['budget'] = parseFloat(clientData['budget'])
-
   db.prepare(insert.client).run(clientData)
   appendLastInsertId(clientData, 'client_id')
 
   db.prepare(insert.plan_manager).run()
+}
+
+export function updateClient(_event, client) {
+  db.prepare(update.updateClientInfo).run(client)
+  db.prepare(update.updateParentInfo).run(client)
 }
 
 export function getClients(_event) {
@@ -26,5 +30,4 @@ export function getClients(_event) {
 
 export function getClient(_event, id) {
   return db.prepare(clientFormEntries).get(id)
-  // return 7
 }

@@ -65,6 +65,7 @@ app.on('window-all-closed', () => {
 // Define all event handles and emitters here
 import * as database from './database'
 
-ipcMain.on('submit-client', database.createClient)
+ipcMain.on('create-client', database.createClient)
+ipcMain.on('update-client', database.updateClient)
 ipcMain.handle('get-clients', database.getClients)
 ipcMain.handle('get-client', database.getClient)

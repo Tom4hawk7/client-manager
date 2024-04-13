@@ -1,11 +1,15 @@
 import '../assets/css/form.css'
 
-export function Form({ databaseOperation, children }) {
+export function Form({ databaseOperation, id, children }) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.target)
     const data = Object.fromEntries(formData)
+
+    if (id) {
+      data['id'] = id
+    }
 
     databaseOperation(data)
   }

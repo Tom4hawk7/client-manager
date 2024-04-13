@@ -11,13 +11,13 @@ export const clientViewEntries =
 
 export const clientFormEntries =
   'SELECT Client.client_id, ' +
-  'Client.name, ' +
+  'Client.name AS client_name, ' +
   'Client.dob, ' +
   'Client.school, ' +
   'Client.address, ' +
   'Client.participant_number, ' +
-  'Parent.name AS parent, ' +
-  'Parent.email AS email, ' +
+  'Parent.name AS parent_name, ' +
+  'Parent.email AS parent_email, ' +
   'Parent.phone ' +
   'FROM Client ' +
   'JOIN Parent ' +
