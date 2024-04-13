@@ -17,6 +17,8 @@ function createWindow() {
     }
   })
 
+  mainWindow.maximize()
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -61,7 +63,8 @@ app.on('window-all-closed', () => {
 })
 
 // Define all event handles and emitters here
-import { createClient, retrieveClients } from './database'
+import * as database from './database'
 
-ipcMain.on('submit-client', createClient)
-ipcMain.handle('retrieve-clients', retrieveClients)
+ipcMain.on('submit-client', database.createClient)
+ipcMain.handle('get-clients', database.getClients)
+ipcMain.handle('get-client', database.getClient)

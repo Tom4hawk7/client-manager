@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
+import { MdEdit, MdDelete } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 import '../assets/css/table.css'
 
-export default function Table({ operation }) {
+// Maybe using useContext() would be better here
+export default function Table({ operation, formlink }) {
   const [data, setData] = useState([])
 
   useEffect(() => {
@@ -24,9 +27,26 @@ export default function Table({ operation }) {
             {Object.values(item).map((value, key) => (
               <td key={key}>{value}</td>
             ))}
+            <td key="utilities">
+              <Edit formlink={formlink} id={item.id} />
+              <Delete />
+            </td>
           </tr>
         ))}
       </tbody>
     </table>
   )
+}
+
+function Edit({ formlink, id }) {
+  return (
+    <Link to={formlink} state={{ id: id }}>
+      <MdEdit className="icon" />
+    </Link>
+  )
+}
+
+// TODO implement functionality
+function Delete() {
+  return <MdDelete className="icon bin" />
 }

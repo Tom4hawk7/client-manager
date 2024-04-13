@@ -1,10 +1,10 @@
-import { HashRouter, Route, Routes, Link } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import './assets/css/app.css'
 
-import ClientView from './pages/ClientView'
 import ServiceView from './pages/ServiceView'
-import CreateClient from './pages/CreateClient'
+import ClientView from './pages/ClientView'
+import ClientCreate from './pages/ClientCreate'
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<ServiceView />} />
             <Route path="/client" element={<ClientView />} />
-            <Route path="/client-create" element={<CreateClient />} />
+            <Route path="/client-form" element={<ClientCreate />} />
           </Routes>
         </section>
       </HashRouter>

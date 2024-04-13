@@ -1,17 +1,18 @@
 table {
   border-collapse: collapse;
+  background-color: #1174ba;
   overflow: hidden;
-}
-
-th,
-td {
-  padding: 15px;
 }
 
 th {
   color: white;
-  background-color: #1174ba;
   text-transform: capitalize;
+  padding: 15px;
+}
+
+td {
+  background-color: white;
+  padding: 10px;
 }
 
 tr {
