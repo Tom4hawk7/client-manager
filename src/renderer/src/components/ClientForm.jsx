@@ -13,7 +13,6 @@ export default function ClientForm({ databaseOperation, clientData = '' }) {
     databaseOperation(clientData)
   }
   return (
-    // <Card>
     <form onSubmit={handleSubmit} className="hero">
       <fieldset>
         <legend>Client</legend>
@@ -76,6 +75,5 @@ export default function ClientForm({ databaseOperation, clientData = '' }) {
 
       <button type="submit">Submit</button>
     </form>
-    // </Card>
   )
 }

@@ -8,7 +8,7 @@ export default function Table({ operation }) {
     operation.then(setData)
   }, [])
 
-  if (data === 0) return
+  if (data.length === 0) return
   return (
     <table className="hero">
       <thead>
