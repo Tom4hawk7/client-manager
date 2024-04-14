@@ -1,3 +1,11 @@
 export default function ServiceView() {
-  return <h1>Services</h1>
+  return (
+    <>
+      <header>
+        <h1>Page header</h1>
+        <p>Something else</p>
+      </header>
+      <p>Some content</p>
+    </>
+  )
 }
