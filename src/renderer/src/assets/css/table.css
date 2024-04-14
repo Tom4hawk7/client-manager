@@ -1,7 +1,6 @@
 table {
   border-collapse: collapse;
-  /* margin: 25px 0; */
-  background-color: #0e2a47;
+  background-color: #1174ba;
   overflow: hidden;
 }
 
@@ -23,10 +22,4 @@ tr {
 
 .table-icon {
   font-size: 28px;
-}
-
-@media (max-width: 768px) {
-  table.hero {
-    border-radius: 0;
-  }
 }

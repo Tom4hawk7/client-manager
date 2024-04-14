@@ -13,29 +13,31 @@ export default function Table({ operation, formlink }) {
 
   if (data.length === 0) return
   return (
-    <table className="hero">
-      <thead>
-        <tr>
-          {Object.keys(data[0] || {}).map((item, key) => (
-            <th key={key}>{item}</th>
-          ))}
-          <th key={'actions'}>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr className="data-row" key={item.id}>
-            {Object.values(item).map((value, key) => (
-              <td key={key}>{value}</td>
+    <div className="hero">
+      <table className="card">
+        <thead>
+          <tr>
+            {Object.keys(data[0] || {}).map((item, key) => (
+              <th key={key}>{item}</th>
             ))}
-            <td key={'actions'}>
-              <Edit formlink={formlink} id={item.id} />
-              <Delete />
-            </td>
+            <th key={'actions'}>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr className="data-row" key={item.id}>
+              {Object.values(item).map((value, key) => (
+                <td key={key}>{value}</td>
+              ))}
+              <td key={'actions'}>
+                <Edit formlink={formlink} id={item.id} />
+                <Delete />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

@@ -16,10 +16,12 @@ export function Form({ create, update, id, children }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="hero">
-      {children}
-      <button type="submit">Submit</button>
-    </form>
+    <div className="hero">
+      <form onSubmit={handleSubmit} className="card">
+        {children}
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   )
 }
 
