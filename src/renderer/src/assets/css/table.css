@@ -1,7 +1,7 @@
 table {
   border-collapse: collapse;
   /* margin: 25px 0; */
-  background-color: #1174ba;
+  background-color: #0e2a47;
   overflow: hidden;
 }
 
@@ -9,12 +9,11 @@ th {
   color: white;
   text-align: left;
   text-transform: capitalize;
-  padding: 10px;
+  padding: 15px;
 }
 
 td {
   background-color: white;
-  line-height: 0;
   padding: 8px;
 }
 
@@ -24,4 +23,10 @@ tr {
 
 .table-icon {
   font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  table.hero {
+    border-radius: 0;
+  }
 }

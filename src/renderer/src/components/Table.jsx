@@ -19,6 +19,7 @@ export default function Table({ operation, formlink }) {
           {Object.keys(data[0] || {}).map((item, key) => (
             <th key={key}>{item}</th>
           ))}
+          <th key={'actions'}>Actions</th>
         </tr>
       </thead>
       <tbody>
