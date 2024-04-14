@@ -5,24 +5,6 @@
   --red: #ee204b;
 }
 
-nav {
-  display: flex;
-  background-color: var(--dark-blue);
-  flex-direction: column;
-  position: sticky;
-  height: 100vh;
-  top: 0px;
-}
-
-section {
-  padding: 40px;
-  flex-grow: 1;
-}
-
-.wrapper {
-  display: flex;
-}
-
 .icon {
   font-size: 32px;
   padding: 5px;
@@ -39,26 +21,6 @@ section {
   color: var(--red);
 }
 
-.nav {
-  padding: 12px;
-  color: gainsboro;
-}
-
-.nav:hover {
-  color: white;
-}
-
-.card {
-  display: flex;
-  align-items: center;
-  width: max-content;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
-  line-height: 0;
-}
-
 .hero {
   border-radius: 10px;
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
@@ -67,7 +29,7 @@ section {
 
 .bottom-right {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 50px;
+  right: 30px;
   background: white;
 }

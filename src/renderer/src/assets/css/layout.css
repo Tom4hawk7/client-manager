@@ -1,0 +1,42 @@
+:root {
+  --very-dark-blue: #0e2a47;
+  --dark-blue: #1174ba;
+  --light-blue: #5acbe9;
+  --red: #ee204b;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+/* padding: 12px;
+  color: gainsboro; */
+nav {
+  background-color: var(--dark-blue);
+  width: min-content;
+  flex-direction: column;
+  position: sticky;
+  height: 100vh;
+  top: 0px;
+}
+
+a {
+  line-height: 0;
+  height: 0;
+}
+
+.nav-item {
+  display: inline-block;
+  font-size: 32px;
+  margin: 8px;
+  color: gainsboro;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-item:hover {
+  color: white;
+}
