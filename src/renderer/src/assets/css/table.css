@@ -7,15 +7,21 @@ table {
 
 th {
   color: white;
+  text-align: left;
   text-transform: capitalize;
-  padding: 15px;
+  padding: 10px;
 }
 
 td {
   background-color: white;
-  padding: 10px;
+  line-height: 0;
+  padding: 8px;
 }
 
 tr {
   border-bottom: 1px solid #ddd;
+}
+
+.table-icon {
+  font-size: 28px;
 }

@@ -1,20 +1,15 @@
 import { useEffect, useState } from 'react'
 import { MdEdit, MdDelete } from 'react-icons/md'
-import { Link, redirect, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../assets/css/table.css'
 
 // Maybe using useContext() would be better here
 export default function Table({ operation, formlink }) {
   const [data, setData] = useState([])
-  const navigate = useNavigate()
 
   useEffect(() => {
     operation.then(setData)
   }, [])
-
-  const handleRowSelect = (itemid) => {
-    navigate(formlink, { state: { id: itemid } })
-  }
 
   if (data.length === 0) return
   return (
@@ -28,13 +23,30 @@ export default function Table({ operation, formlink }) {
       </thead>
       <tbody>
         {data.map((item) => (
-          <tr key={item.id} onClick={() => handleRowSelect(item.id)}>
+          <tr className="data-row" key={item.id}>
             {Object.values(item).map((value, key) => (
               <td key={key}>{value}</td>
             ))}
+            <td key={'actions'}>
+              <Edit formlink={formlink} id={item.id} />
+              <Delete />
+            </td>
           </tr>
         ))}
       </tbody>
     </table>
   )
+}
+
+function Edit({ formlink, id }) {
+  return (
+    <Link to={formlink} state={{ id: id }}>
+      <MdEdit className="icon table-icon" />
+    </Link>
+  )
+}
+
+// TODO implement functionality
+function Delete() {
+  return <MdDelete className="icon bin table-icon" />
 }
