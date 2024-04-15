@@ -9,6 +9,7 @@
   font-size: 32px;
   color: var(--very-dark-blue);
   transition: all 0.3s ease-in-out;
+  display: block;
 }
 
 .icon:hover {

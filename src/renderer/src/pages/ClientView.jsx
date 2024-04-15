@@ -10,7 +10,7 @@ export default function ClientView() {
       <Table operation={getClients} formlink="/client-form" />
       <div className="card bottom-right small">
         <Link to="/client-form">
-          <BsPersonFillAdd className=" icon" />
+          <BsPersonFillAdd className=" icon icon-svg" />
         </Link>
       </div>
     </>
