@@ -39,5 +39,6 @@
 }
 
 .small {
-  padding: 7px;
+  padding: 10px;
+  border-radius: 50px;
 }

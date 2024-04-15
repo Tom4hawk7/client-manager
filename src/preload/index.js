@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 // make these context bridges dataTable specific depending on how big this gets
-contextBridge.exposeInMainWorld('database', {
+contextBridge.exposeInMainWorld('databaseClient', {
   createClient: (client) => ipcRenderer.send('create-client', client),
   updateClient: (client) => ipcRenderer.send('update-client', client),
   getClients: () => ipcRenderer.invoke('get-clients'),

@@ -48,11 +48,12 @@ ul {
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 2.6rem;
 }
 
 header {
-  display: flex;
-  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid black;
+  padding: 5px 10px;
 }

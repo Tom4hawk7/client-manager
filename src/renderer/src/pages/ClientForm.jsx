@@ -5,11 +5,11 @@ import '../assets/css/form.css'
 
 // define create and update functions
 const create = (client) => {
-  window.database.createClient(client)
+  window.databaseClient.createClient(client)
 }
 
 const update = (client) => {
-  window.database.updateClient(client)
+  window.databaseClient.updateClient(client)
 }
 
 export default function ClientForm() {
@@ -17,7 +17,7 @@ export default function ClientForm() {
   const { id } = useLocation().state || ''
 
   useEffect(() => {
-    if (id) window.database.getClient(id).then(setClientData)
+    if (id) window.databaseClient.getClient(id).then(setClientData)
   }, [])
 
   return (
