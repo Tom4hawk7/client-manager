@@ -8,9 +8,11 @@ export default function ClientView() {
   return (
     <>
       <Table operation={getClients} formlink="/client-form" />
-      <Link className="bottom-right icon" to="/client-form">
-        <BsPersonFillAdd />
-      </Link>
+      <div className="card bottom-right small">
+        <Link to="/client-form">
+          <BsPersonFillAdd className=" icon" />
+        </Link>
+      </div>
     </>
   )
 }
