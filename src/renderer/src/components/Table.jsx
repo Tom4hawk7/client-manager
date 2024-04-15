@@ -10,6 +10,8 @@ export default function Table({ getOperation, removeOperation, formlink }) {
     getOperation.then(setData)
   }, [])
 
+  const headers = Object.keys(data[0] || {}).filter((header) => header != 'id')
+
   const handleDelete = (id, name) => {
     const deleteDialog = confirm(`Are you sure you want to delete ${name}`)
 
@@ -25,11 +27,9 @@ export default function Table({ getOperation, removeOperation, formlink }) {
       <table className="card">
         <thead>
           <tr>
-            {Object.keys(data[0] || {})
-              .filter((header) => header !== 'id')
-              .map((header, key) => (
-                <th key={key}>{header}</th>
-              ))}
+            {headers.map((header, key) => (
+              <th key={key}>{header}</th>
+            ))}
             <th key={'actions'}>Actions</th>
           </tr>
         </thead>
