@@ -2,6 +2,7 @@ table {
   border-collapse: collapse;
   background-color: #1174ba;
   overflow: hidden;
+  min-width: 760px;
 }
 
 th {
