@@ -1,6 +1,7 @@
 import { clientFormEntries, clientViewEntries } from './select'
 import * as update from './update'
 import * as insert from './insert'
+import * as remove from './remove'
 import Database from 'better-sqlite3'
 
 const db = new Database('src\\client-manager.db')
@@ -20,7 +21,6 @@ export function createClient(_event, clientData) {
 }
 
 export function updateClient(_event, client) {
-  // console.log(client)
   db.prepare(update.updateClientInfo).run(client)
   db.prepare(update.updateParentInfo).run(client)
 }
@@ -31,4 +31,8 @@ export function getClients(_event) {
 
 export function getClient(_event, id) {
   return db.prepare(clientFormEntries).get(id)
+}
+
+export function removeClient(_event, id) {
+  return db.prepare(remove.client).run(id)
 }
