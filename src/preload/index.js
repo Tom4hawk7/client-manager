@@ -8,3 +8,11 @@ contextBridge.exposeInMainWorld('databaseClient', {
   getClient: (id) => ipcRenderer.invoke('get-client', id),
   removeClient: (id) => ipcRenderer.send('remove-client', id)
 })
+
+contextBridge.exposeInMainWorld('databasePlan', {
+  createPlan: (plan) => ipcRenderer.send('create-plan', plan),
+  updatePlan: (plan) => ipcRenderer.send('update-plan', plan),
+  getPlans: () => ipcRenderer.invoke('get-plan'),
+  getPlan: (id) => ipcRenderer.invoke('get-client', id),
+  removePlan: (id) => ipcRenderer.send('remove-client', id)
+})

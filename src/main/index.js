@@ -63,10 +63,11 @@ app.on('window-all-closed', () => {
 })
 
 // Define all event handles and emitters here
-import * as database from './database'
+import * as client from './operations/client'
 
-ipcMain.on('create-client', database.createClient)
-ipcMain.on('update-client', database.updateClient)
-ipcMain.handle('get-clients', database.getClients)
-ipcMain.handle('get-client', database.getClient)
-ipcMain.on('remove-client', database.removeClient)
+// clients
+ipcMain.on('create-client', client.create)
+ipcMain.handle('get-client', client.get)
+ipcMain.handle('get-clients', client.getAll)
+ipcMain.on('update-client', client.update)
+ipcMain.on('remove-client', client.remove)
