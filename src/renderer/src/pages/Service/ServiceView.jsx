@@ -1,5 +1,5 @@
 import { IoAddCircle } from 'react-icons/io5'
-import IconLink from '../components/IconLink'
+import IconLink from '../../components/IconLink'
 // import { IconLink } from '../components/IconLink'
 
 export default function ServiceView() {
@@ -8,9 +8,10 @@ export default function ServiceView() {
       <header>
         <h1>Services</h1>
       </header>
-      <IconLink link="/service-form">
+      {/* change the link to service-create */}
+      {/* <IconLink link="/service-form">
         <IoAddCircle className="icon icon-svg" />
-      </IconLink>
+      </IconLink> */}
     </>
   )
 }

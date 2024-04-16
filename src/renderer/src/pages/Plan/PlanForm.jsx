@@ -1,4 +1,4 @@
-import { Fieldset, Form, Input } from '../components/Form'
+import { Fieldset, Form, Input } from '../../components/Form'
 
 // define create and update functions later
 

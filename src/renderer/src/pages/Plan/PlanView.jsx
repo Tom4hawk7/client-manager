@@ -1,4 +1,4 @@
-import IconLink from '../components/IconLink'
+import IconLink from '../../components/IconLink'
 import { AiFillFileAdd } from 'react-icons/ai'
 
 export default function PlanView() {
@@ -7,9 +7,10 @@ export default function PlanView() {
       <header>
         <h1>Plans</h1>
       </header>
-      <IconLink link="/plan-form">
+      {/* change the link to plan-create */}
+      {/* <IconLink link="/plan-form">
         <AiFillFileAdd className="icon icon-svg" />
-      </IconLink>
+      </IconLink> */}
     </>
   )
 }

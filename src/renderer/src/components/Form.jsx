@@ -1,19 +1,35 @@
+import { useContext, createContext } from 'react'
 import '../assets/css/form.css'
 
-export function Form({ create, update, id, children }) {
-  const handleSubmit = (event) => {
-    event.preventDefault()
+const FormContext = createContext(null)
 
-    const formData = new FormData(event.target)
-    const data = Object.fromEntries(formData)
+export function FormContextProvider({ value, children }) {
+  return <FormContext.Provider value={value}>{children}</FormContext.Provider>
+}
 
-    if (id) {
-      data['id'] = id
-      update(data)
-    } else {
-      create(data)
-    }
-  }
+export function getFormData(event) {
+  const formData = new FormData(event.target)
+  return Object.fromEntries(formData)
+}
+
+export function Form({ children }) {
+  const handleSubmit = useContext(FormContext)
+  // create, update, id
+
+  //   const formData = new FormData(event.target)
+  //   const data = Object.fromEntries(formData)
+
+  //   if (id) {
+  //     data['id'] = id
+  //     update(data)
+  //   } else {
+  //     create(data)
+  //   }
+  // }
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+  // }
 
   return (
     <div className="hero">
@@ -36,7 +52,7 @@ export function Fieldset({ legend, children }) {
   )
 }
 
-export function Input({ label, name, type = 'text', defaultValue }) {
+export function Input({ label, name, type = 'text', defaultValue = '' }) {
   return (
     <>
       <label>{label}</label>
