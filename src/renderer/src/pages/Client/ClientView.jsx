@@ -1,4 +1,4 @@
-import Table from '../../components/Table'
+import ClientTable from '../../components/tables/ClientTable'
 import IconLink from '../../components/IconLink'
 import { BsPersonFillAdd } from 'react-icons/bs'
 
@@ -14,11 +14,7 @@ export default function ClientView() {
       <header>
         <h1>Clients</h1>
       </header>
-      <Table
-        getOperation={getClients}
-        removeOperation={removeOperation}
-        formlink="/client-update"
-      />
+      <ClientTable />
       <IconLink link="/client-create">
         <BsPersonFillAdd className="icon icon-svg" />
       </IconLink>

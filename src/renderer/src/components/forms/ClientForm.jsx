@@ -1,7 +1,4 @@
-import { Form, Fieldset, Input } from '../../components/Form'
-import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import '../../assets/css/form.css'
+import { Form, Fieldset, Input } from './Form'
 
 // export const form =
 //   'SELECT Client.client_id AS id, ' +

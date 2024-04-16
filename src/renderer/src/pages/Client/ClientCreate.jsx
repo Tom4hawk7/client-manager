@@ -1,11 +1,11 @@
-import { getFormData, FormContextProvider } from '../../components/Form'
-import ClientForm from './ClientForm'
+import { getFormData, FormContextProvider } from '../../components/forms/Form'
+import ClientForm from '../../components/forms/ClientForm'
 
 const handleSubmit = (event) => {
   event.preventDefault()
 
-  const clientData = getFormData(event)
-  window.client.create(clientData)
+  const data = getFormData(event)
+  window.client.create(data)
 }
 
 export default function ClientCreate() {
