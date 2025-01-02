@@ -1,0 +1,85 @@
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  src: url('../fonts/Inter-VariableFont_slnt,wght.woff2') format('woff2');
+}
+
+html {
+  overflow: hidden;
+}
+
+:root {
+  --very-dark-blue: #0e2a47;
+  --dark-blue: #1174ba;
+  --light-blue: #5acbe9;
+  /* --shadow: rgba(0, 0, 0, 0.25); */
+  --shadow: rgba(0, 0, 0, 0.25);
+  --placeholder: rgb(100, 100, 100);
+  --border-radius: 10px;
+  --border-color: rgba(0, 0, 0, 0.5);
+  /* --border-color: rgb(230, 230, 230); */
+  --hover: rgb(230, 230, 230);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+*:focus {
+  outline: 2px solid var(--dark-blue);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-family: 'Inter';
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--hover);
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  border-radius: 0px 20px 20px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--shadow);
+  border-radius: 0px 20px 20px 0;
+}
+
+h1 {
+  color: var(--dark-blue);
+}
+
+a {
+  color: black;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+li {
+  display: contents;
+}
+
+button {
+  cursor: pointer;
+}
