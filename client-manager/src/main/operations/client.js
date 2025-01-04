@@ -20,6 +20,9 @@ export function create(_event, clientData) {
 
 // read
 export function getTable(_event) {
+  //   test = db.prepare(client.viewTable).all()
+  //   console.log(test)
+  //   return test
   return db.prepare(client.viewTable).all()
 }
 

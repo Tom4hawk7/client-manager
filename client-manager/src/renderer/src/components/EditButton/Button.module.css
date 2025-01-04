@@ -1,0 +1,23 @@
+.icon {
+  padding: 4px;
+  border: 0;
+  line-height: 0;
+  position: absolute;
+  top: 8px;
+  background-color: inherit;
+  transition: all 0.1s ease-in;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.icon:hover {
+  background-color: var(--other-shadow);
+}
+
+.iconcontent {
+  width: inherit;
+  height: inherit;
+  width: 16px;
+  height: 16px;
+  line-height: 0;
+}

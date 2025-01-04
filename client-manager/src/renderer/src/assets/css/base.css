@@ -10,6 +10,8 @@ html {
 }
 
 :root {
+  /* --other-shadow: #dcdcdc; */
+  --other-shadow: rgb(220, 220, 220);
   --very-dark-blue: #0e2a47;
   --dark-blue: #1174ba;
   --light-blue: #5acbe9;
