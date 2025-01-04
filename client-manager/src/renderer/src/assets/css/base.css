@@ -1,9 +1,10 @@
-@font-face {
+@import url('./fonts.css');
+
+/* @font-face {
   font-family: 'Inter';
   font-weight: 100 900;
-  src: url('../fonts/Inter-VariableFont_slnt,wght.woff2') format('woff2');
-}
-
+  src: url('../fonts/Inter-VariableFont_slnt,wght.woff2') format('woff2-variations');
+} */
 html {
   overflow: hidden;
 }
@@ -35,7 +36,7 @@ html {
 html {
   font-size: 62.5%;
 }
-
+/* 
 body {
   min-height: 100vh;
   font-size: 1.6rem;
@@ -43,9 +44,21 @@ body {
   font-family: 'Inter';
   font-weight: 400;
   /* text-rendering: optimizeLegibility; */
+/* text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+  */
+
+body {
+  min-height: 100vh;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-family: 'IBM Plex Sans';
+  font-weight: 400;
+  /* text-rendering: optimizeLegibility; */
   text-rendering: geometricPrecision;
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {

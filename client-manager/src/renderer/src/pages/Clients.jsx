@@ -1,13 +1,25 @@
+import ClientForm from './ClientForm'
+
 export default function Clients() {
   return (
     <>
       <section>
         <div className="toolbar">
           <input className="searchbar" type="search" />
+          <input className="dateinput" type="month" />
+          <button className="button">
+            <span className="button-content">Generate Invoice</span>
+          </button>
           <button className="button">Create Client</button>
         </div>
       </section>
       <section>
+        <div style={{ height: '500px' }}>
+          <ClientForm />
+        </div>
+      </section>
+
+      {/* <section>
         <table>
           <thead>
             <tr>
@@ -26,7 +38,7 @@ export default function Clients() {
             </tr>
           </tbody>
         </table>
-      </section>
+      </section> */}
     </>
   )
 }

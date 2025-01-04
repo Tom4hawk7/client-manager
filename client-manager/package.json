@@ -20,6 +20,8 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
+    "ag-grid-react": "^33.0.3",
+    "better-sqlite3": "^11.7.0",
     "electron-updater": "^6.1.7",
     "router": "^2.0.0"
   },

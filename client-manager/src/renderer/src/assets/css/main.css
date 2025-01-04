@@ -1,20 +1,8 @@
+/* page components */
+
 section {
   margin: 40px;
   /* padding: 20px 10px; */
-}
-
-.button {
-  font-size: 1.5rem;
-  background-color: var(--dark-blue);
-  border: 0;
-  padding: 1rem 1.5rem;
-  font-weight: 100;
-  font-weight: bold;
-  border-radius: 10px;
-  letter-spacing: 0.2px;
-  box-shadow: 0px 0px 3px 1px var(--shadow);
-
-  color: white;
 }
 
 .toolbar {
@@ -23,10 +11,42 @@ section {
   gap: 30px;
 }
 
+/* inputs */
+
+.button {
+  font-family: 'IBM Plex Sans';
+  font-weight: 500;
+  font-size: 1.4rem;
+  background-color: white;
+  color: var(--very-dark-blue);
+  border: 0;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  color: rgb(24, 29, 31);
+  box-shadow: 0px 0px 1px 1px var(--shadow);
+}
+
+/* .button:hover {
+  background-color: var(--very-dark-blue);
+  transition: all 0.5s;
+} */
+
 .searchbar {
   border: 0;
   padding: 0 10px;
-  box-shadow: 0px 0px 3px 1px var(--shadow);
+  box-shadow: 0px 0px 1px 1px var(--shadow);
   /* outline:; */
   border-radius: 20px;
+}
+
+.dateinput {
+  box-shadow: 0px 0px 1px 1px var(--shadow);
+  border-radius: 6px;
+  padding: 0 10px;
+  border: 0;
+  outline: 0;
+}
+
+.dateinput:hover {
+  cursor: pointer;
 }
