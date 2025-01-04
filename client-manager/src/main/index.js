@@ -74,3 +74,21 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+// Define all event handles and emitters here
+import * as client from './operations/client'
+import * as service from './operations/service'
+
+// client operations
+ipcMain.handle('client-create', client.create)
+ipcMain.handle('client-get-table', client.getTable)
+ipcMain.handle('client-get-form', client.getForm)
+ipcMain.on('client-update', client.update)
+ipcMain.on('client-remove', client.remove)
+
+// service operations
+// ipcMain.handle('service-create')
+ipcMain.handle('service-get-table', service.getTable)
+// ipcMain.handle('service-get-form')
+// ipcMain.on('service-update')
+// ipcMain.on('service-remove')

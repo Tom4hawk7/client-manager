@@ -6,16 +6,40 @@ ModuleRegistry.registerModules([AllCommunityModule])
 
 export default function ClientForm() {
   const [rowData, setRowData] = useState([
-    { make: 'Tesla', model: 'Model Y', price: 64950, electric: true },
-    { make: 'Ford', model: 'F-Series', price: 33850, electric: false },
-    { make: 'Toyota', model: 'Corolla', price: 29600, electric: false }
+    {
+      name: 'Tom',
+      parent: 'Dave',
+      address: '56 Oxford Road',
+      //   contact: '058219',
+      school: 'Big Boy School',
+      somethingelse: {
+        contact: '058219'
+      }
+    },
+    {
+      name: 'Alex',
+      parent: 'Sue',
+      address: '32 Joyce Road',
+      contact: '043215',
+      school: 'Small Boy School',
+      somethingelse: 'reter'
+    },
+    {
+      name: 'Sunny',
+      parent: 'Jarod',
+      address: '25 Turnt Road',
+      contact: '076123',
+      school: 'Kindergarten',
+      somethingelse: 'beef'
+    }
   ])
 
   const [colDefs, setColDefs] = useState([
-    { field: 'make' },
-    { field: 'model' },
-    { field: 'price' },
-    { field: 'electric' }
+    { field: 'name' },
+    { field: 'parent' },
+    { field: 'address' },
+    { field: 'contact' },
+    { field: 'school' }
   ])
 
   const defaultColDef = {
