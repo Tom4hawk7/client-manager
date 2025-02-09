@@ -16,7 +16,7 @@ html {
   --dark-blue: #1174ba;
   --light-blue: #5acbe9;
   /* --shadow: rgba(0, 0, 0, 0.25); */
-  --shadow: rgba(0, 0, 0, 0.25);
+  --shadow: rgba(0, 0, 0, 0.2);
   --placeholder: rgb(100, 100, 100);
   --border-radius: 10px;
   --border-color: rgba(0, 0, 0, 0.5);
