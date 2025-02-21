@@ -51,9 +51,13 @@
   box-shadow: 0px 0px 0px 1px var(--shadow);
   border-radius: 6px;
   padding: 0 10px;
+  min-width: 168px;
   border: 0;
 }
 
-.dateinput:hover {
+.checkbox {
+}
+
+input:hover {
   cursor: pointer;
 }

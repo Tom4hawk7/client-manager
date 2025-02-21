@@ -1,43 +1,69 @@
+import { useState } from 'react'
 import ClientForm from './ClientForm'
 
 export default function Clients() {
+  const [checked, setChecked] = useState([])
+
+  // checkbox functionality
+  function initCheckboxes(res) {
+    const tempCheckboxes = []
+
+    for (let i = 0; i < res.length; i++) {
+      tempCheckboxes.push({ id: res[i].id, ticked: false })
+    }
+    setChecked(tempCheckboxes)
+  }
+
+  function handleCheckboxClick(id) {
+    const nextChecked = checked.map((row) => {
+      if (row.id === id) {
+        return {
+          ...row,
+          ticked: !row.ticked
+        }
+      } else {
+        return row
+      }
+    })
+
+    setChecked(nextChecked)
+  }
+
+  // find a way to update the UI
+  function handleMasterCheckboxClick() {
+    // const nextChecked = checked.map((row) => {
+    //   return {
+    //     ...row,
+    //     ticked: true
+    //   }
+    // })
+    // setChecked(nextChecked)
+  }
+
+  function handleInvoiceClick() {
+    console.log(checked)
+  }
+
   return (
     <>
       <section className="compartment">
         <div className="toolbar widget">
           <input className="searchbar" type="search" />
           <input className="dateinput" type="month" />
-          <button className="button">
-            <span className="button-content">Generate Invoice</span>
+          <button className="button" onClick={handleInvoiceClick}>
+            Generate Invoice
           </button>
           <button className="button">Create Client</button>
         </div>
 
-        <div style={{ height: '500px' }} className="widget">
-          <ClientForm />
+        <div className="widget">
+          <ClientForm
+            initCheck={initCheckboxes}
+            clickCheck={handleCheckboxClick}
+            clickMasterCheck={handleMasterCheckboxClick}
+          />
         </div>
       </section>
-
-      {/* <section>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Tom</td>
-              <td>tomrossmcgrath@gmail.com</td>
-            </tr>
-            <tr>
-              <td>mum</td>
-              <td>idk</td>
-            </tr>
-          </tbody>
-        </table>
-      </section> */}
     </>
   )
 }
