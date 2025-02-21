@@ -1,5 +1,6 @@
 import './assets/css/base.css'
 import './assets/css/main.css'
+import './assets/css/table.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'

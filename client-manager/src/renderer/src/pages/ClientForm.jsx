@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react'
+import { use, useState, useEffect } from 'react'
 import EditButton from '../components/EditButton/EditButton'
 
 export default function ClientForm() {
-  const [rowData, setRowData] = useState({})
+  const [rowData, setRowData] = useState([])
 
   useEffect(() => {
     const data = async () => window.client.getTable()
-    data().then(setRowData)
+    data()
+      .then(setRowData)
+      .catch((err) => console.log(err))
   }, [])
-
-  // const thingo = rowData.map((client) => client.client_name)
-  // console.log(thingo)
 
   return (
     <table>
@@ -21,15 +20,14 @@ export default function ClientForm() {
           <th>Address</th>
           <th>Contact</th>
           <th>School</th>
-          <th>Edit</th>
         </tr>
       </thead>
       <tbody>
         {/* {rowData.map((client) => console.log(client))} */}
         {rowData.map((client) => (
-          <tr>
+          <tr key={client.id}>
             <td>{client.client_name}</td>
-            <td>{client.client_parent}</td>
+            <td>{client.parent_name}</td>
             <td>{client.client_address}</td>
             <td>{client.parent_phone}</td>
             <td>{client.client_school}</td>

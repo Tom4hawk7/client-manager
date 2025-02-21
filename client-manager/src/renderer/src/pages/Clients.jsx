@@ -3,8 +3,8 @@ import ClientForm from './ClientForm'
 export default function Clients() {
   return (
     <>
-      <section>
-        <div className="toolbar">
+      <section className="compartment">
+        <div className="toolbar widget">
           <input className="searchbar" type="search" />
           <input className="dateinput" type="month" />
           <button className="button">
@@ -12,9 +12,8 @@ export default function Clients() {
           </button>
           <button className="button">Create Client</button>
         </div>
-      </section>
-      <section>
-        <div style={{ height: '500px' }}>
+
+        <div style={{ height: '500px' }} className="widget">
           <ClientForm />
         </div>
       </section>

@@ -1,0 +1,32 @@
+table {
+  border-radius: 20px;
+  width: 100%;
+  box-shadow: 0px 0px 5px 2px var(--shadow);
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+thead {
+  text-align: left;
+  background-color: var(--dark-blue);
+}
+
+th {
+  color: white;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px 15px;
+}
+
+/* body styling */
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
