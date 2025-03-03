@@ -1,43 +1,55 @@
-import { use, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import EditButton from '../components/EditButton/EditButton'
 
 export default function ClientForm({ initCheck, clickCheck, clickMasterCheck }) {
   const [rowData, setRowData] = useState([])
+  const [checkValues, setCheckValues] = useState([])
 
   useEffect(() => {
     const data = async () => window.client.getTable()
     data()
       .then((res) => {
         setRowData(res)
-        initCheck(res)
+        initCheckboxState(res)
       })
       .catch((err) => console.log(err))
   }, [])
 
-  // checkbox functionality
-  // function initCheckboxes(res) {
-  //   const tempCheckboxes = []
+  // checkbox functions
 
-  //   for (let i = 0; i < res.length; i++) {
-  //     tempCheckboxes.push({ id: res[i].id, ticked: false })
-  //   }
-  //   setChecked(tempCheckboxes)
-  // }
+  function initCheckboxState(res) {
+    const initCheckboxState = []
+    for (let i = 0; i < res.length; i++) {
+      initCheckboxState.push({ id: res[i].id, checked: false })
+    }
 
-  // function handleCheckboxClick(id) {
-  //   const nextChecked = checked.map((row) => {
-  //     if (row.id === id) {
-  //       return {
-  //         ...row,
-  //         ticked: !row.ticked
-  //       }
-  //     } else {
-  //       return row
-  //     }
-  //   })
+    setCheckValues(initCheckboxState)
+  }
 
-  //   setChecked(nextChecked)
-  // }
+  function handleCheckboxChange(client_id) {
+    const updatedCheckValues = checkValues.map((row) => {
+      if (row.id === client_id) {
+        const newChecked = !row.checked // might be a bug here
+        return { ...row, checked: newChecked }
+      } else {
+        return row
+      }
+    })
+
+    setCheckValues(updatedCheckValues)
+  }
+
+  // impromptu solution
+  function findCheckValue(client_id) {
+    let result = {}
+    for (let i = 0; i < checkValues.length; i++) {
+      if (client_id === checkValues[i].id) {
+        result = checkValues[i].checked
+      }
+    }
+
+    return result
+  }
 
   return (
     <table>
@@ -62,8 +74,8 @@ export default function ClientForm({ initCheck, clickCheck, clickMasterCheck }) 
                 className="checkbox"
                 type="checkbox"
                 name=""
-                onClick={() => clickCheck(client.id)}
-                // onClick={() => handleCheckboxClick(client.id)}
+                checked={findCheckValue(client.id)}
+                onChange={() => handleCheckboxChange(client.id)}
               />
             </td>
             <td>{client.client_name}</td>

@@ -14,12 +14,12 @@ export default function Clients() {
     setChecked(tempCheckboxes)
   }
 
-  function handleCheckboxClick(id) {
+  function handleCheckboxClick(target_value, id) {
     const nextChecked = checked.map((row) => {
       if (row.id === id) {
         return {
           ...row,
-          ticked: !row.ticked
+          ticked: target_value
         }
       } else {
         return row
