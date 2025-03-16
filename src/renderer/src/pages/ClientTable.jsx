@@ -1,54 +1,64 @@
 import { useState, useEffect } from 'react'
-import EditButton from '../components/EditButton/EditButton'
+import IconButton from '../components/IconButton'
 
-export default function ClientForm({ initCheck, clickCheck, clickMasterCheck }) {
+export default function ClientTable({ selected, setSelected }) {
   const [rowData, setRowData] = useState([])
-  const [checkValues, setCheckValues] = useState([])
+  const [services, setServices] = useState([])
 
   useEffect(() => {
     const data = async () => window.client.getTable()
     data()
       .then((res) => {
         setRowData(res)
-        initCheckboxState(res)
+        initSelected(res)
       })
       .catch((err) => console.log(err))
   }, [])
 
   // checkbox functions
 
-  function initCheckboxState(res) {
-    const initCheckboxState = []
+  function initSelected(res) {
+    const checkBoxes = []
     for (let i = 0; i < res.length; i++) {
-      initCheckboxState.push({ id: res[i].id, checked: false })
+      checkBoxes.push({ id: res[i].id, checked: false })
     }
 
-    setCheckValues(initCheckboxState)
+    setSelected(checkBoxes)
   }
 
-  function handleCheckboxChange(client_id) {
-    const updatedCheckValues = checkValues.map((row) => {
+  function handleSelectionChange(client_id) {
+    const updatedSelection = selected.map((row) => {
       if (row.id === client_id) {
-        const newChecked = !row.checked // might be a bug here
-        return { ...row, checked: newChecked }
+        const newSelection = !row.checked // might be a bug here
+        return { ...row, checked: newSelection }
       } else {
         return row
       }
     })
 
-    setCheckValues(updatedCheckValues)
+    setSelected(updatedSelection)
   }
 
   // impromptu solution
-  function findCheckValue(client_id) {
+  function findSelection(client_id) {
     let result = {}
-    for (let i = 0; i < checkValues.length; i++) {
-      if (client_id === checkValues[i].id) {
-        result = checkValues[i].checked
+    for (let i = 0; i < selected.length; i++) {
+      if (client_id === selected[i].id) {
+        result = selected[i].checked
       }
     }
 
     return result
+  }
+
+  function handleMasterSelection(event) {
+    const masterSelection = event.target.checked
+
+    const updatedSelection = selected.map((row) => {
+      return { ...row, checked: masterSelection }
+    })
+
+    setSelected(updatedSelection)
   }
 
   return (
@@ -56,7 +66,7 @@ export default function ClientForm({ initCheck, clickCheck, clickMasterCheck }) 
       <thead>
         <tr>
           <th>
-            <input type="checkbox" onClick={clickMasterCheck} />
+            <input type="checkbox" onClick={handleMasterSelection} />
           </th>
           <th>Name</th>
           <th>Parent</th>
@@ -74,8 +84,8 @@ export default function ClientForm({ initCheck, clickCheck, clickMasterCheck }) 
                 className="checkbox"
                 type="checkbox"
                 name=""
-                checked={findCheckValue(client.id)}
-                onChange={() => handleCheckboxChange(client.id)}
+                checked={findSelection(client.id)}
+                onChange={() => handleSelectionChange(client.id)}
               />
             </td>
             <td>{client.client_name}</td>
