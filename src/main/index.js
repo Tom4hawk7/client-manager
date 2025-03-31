@@ -88,7 +88,7 @@ ipcMain.on('client-remove', client.remove)
 
 // service operations
 // ipcMain.handle('service-create')
-ipcMain.handle('service-get-table', service.getTable)
+ipcMain.handle('services.get')
 // ipcMain.handle('service-get-form')
 // ipcMain.on('service-update')
 // ipcMain.on('service-remove')

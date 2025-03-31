@@ -6,8 +6,8 @@ import * as service from '../queries/service'
 // export function create
 
 // read
-export function getTable() {
-  return db.prepare(service.viewTable).all()
-}
+// export function getTable() {
+//   return db.prepare(service.viewTable).all()
+// }
 
 // export function getForm() {}

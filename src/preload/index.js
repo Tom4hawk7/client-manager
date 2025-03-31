@@ -11,7 +11,8 @@ contextBridge.exposeInMainWorld('client', {
 // have to specify a clientId with getTable later
 contextBridge.exposeInMainWorld('service', {
   // create: (serviceData) => ipcRenderer.invoke('service-create', serviceData),
-  getTable: () => ipcRenderer.invoke('service-get-table')
+  getService: () => ipcRenderer.invoke('service-get', id),
+  getServices: () => ipcRenderer.invoke('services-get', dateMonth)
   // getForm: (serviceId) => ipcRenderer.invoke('client-get-form', serviceId),
   // update: (serviceData) => ipcRenderer.send('service-update', serviceData),
   // remove: (serviceId) => ipcRenderer.send('service-remove', serviceId)
