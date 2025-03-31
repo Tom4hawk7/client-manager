@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react'
 import ClientTable from './ClientTable'
 
-const currentDate = new Date()
-const dateMonthIso = currentDate.toISOString().substring(0, 7)
-// YYYY-MM
-// Need to somehow set the text to the current
-// Perhaps you have two different dates since you can use the toFunction() to get different outputs
-// Perhaps you could just have it be the default input that if it is undefined then it is the current date
+const currentDate = new Date().toISOString()
 
 export default function Clients() {
   const [selected, setSelected] = useState([])
   const [services, setServices] = useState([])
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    handleDateChange(currentDate)
+  }, [])
 
-  // console.log(currentDate.toISOString())
-  console.log(dateMonthIso)
+  function handleDateChange(date) {
+    console.log(date)
+    const serviceData = async () => window.service.getAll(date)
+    serviceData().then((res) => setServices(res))
+  }
 
   function handleInvoiceClick() {
-    console.log(selected)
+    console.log('selected: ', selected)
+    console.log('services: ', services)
   }
 
   return (
@@ -26,7 +27,11 @@ export default function Clients() {
       <section className="compartment">
         <div className="toolbar widget">
           <input className="searchbar" type="search" />
-          <input onChange={(e) => console.log(e.target.value)} className="dateinput" type="month" />
+          <input
+            onChange={(e) => handleDateChange(e.target.value)}
+            className="dateinput"
+            type="month"
+          />
           <button className="button" onClick={handleInvoiceClick}>
             Generate Invoice
           </button>
@@ -34,7 +39,7 @@ export default function Clients() {
         </div>
 
         <div className="widget">
-          <ClientTable selected={selected} setSelected={setSelected} />
+          <ClientTable selected={selected} setSelected={setSelected} services={services} />
         </div>
       </section>
     </>

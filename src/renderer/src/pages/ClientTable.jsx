@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import IconButton from '../components/IconButton'
 
-export default function ClientTable({ selected, setSelected }) {
+export default function ClientTable({ selected, setSelected, services }) {
   const [rowData, setRowData] = useState([])
-  const [services, setServices] = useState([])
+
+  console.log('services: ', services)
+
+  // selected checkboxes should probably be a dictionary instead of an array
 
   useEffect(() => {
-    const data = async () => window.client.getTable()
+    const data = async () => window.client.getAll()
     data()
       .then((res) => {
         setRowData(res)
@@ -61,6 +64,12 @@ export default function ClientTable({ selected, setSelected }) {
     setSelected(updatedSelection)
   }
 
+  function test() {
+    for (const client of rowData) {
+      return <p>{client.name}</p>
+    }
+  }
+
   return (
     <table>
       <thead>
@@ -76,7 +85,6 @@ export default function ClientTable({ selected, setSelected }) {
         </tr>
       </thead>
       <tbody>
-        {/* {rowData.map((client) => console.log(client))} */}
         {rowData.map((client) => (
           <tr key={client.id}>
             <td>
@@ -88,11 +96,11 @@ export default function ClientTable({ selected, setSelected }) {
                 onChange={() => handleSelectionChange(client.id)}
               />
             </td>
-            <td>{client.client_name}</td>
-            <td>{client.parent_name}</td>
-            <td>{client.client_address}</td>
-            <td>{client.parent_phone}</td>
-            <td>{client.client_school}</td>
+            <td>{client.name}</td>
+            <td>{client.p_name}</td>
+            <td>{client.address}</td>
+            <td>{client.p_phone}</td>
+            <td>{client.school}</td>
           </tr>
         ))}
       </tbody>

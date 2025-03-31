@@ -1,13 +1,6 @@
 import { db } from '../database'
 
-import * as service from '../queries/service'
-// create
-
-// export function create
-
-// read
-// export function getTable() {
-//   return db.prepare(service.viewTable).all()
-// }
-
-// export function getForm() {}
+export function getAll(date) {
+  const dateMonth = date.substring(0, 7)
+  return db.prepare('SELECT * FROM Service WHERE SUBSTRING(Service.date, 1, 7) = ?').all(dateMonth)
+}

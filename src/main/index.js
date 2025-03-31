@@ -80,15 +80,26 @@ import * as client from './operations/client'
 import * as service from './operations/service'
 
 // client operations
-ipcMain.handle('client-create', client.create)
-ipcMain.handle('client-get-table', client.getTable)
-ipcMain.handle('client-get-form', client.getForm)
-ipcMain.on('client-update', client.update)
-ipcMain.on('client-remove', client.remove)
+ipcMain.handle('client-get-all', client.getAll)
+
+// plan operations
 
 // service operations
-// ipcMain.handle('service-create')
-ipcMain.handle('services.get')
-// ipcMain.handle('service-get-form')
-// ipcMain.on('service-update')
-// ipcMain.on('service-remove')
+ipcMain.handle('service-get-all', async (event, date) => service.getAll(date))
+// ipcMain.handle('service-get-all', async (event, dateMonth) => {
+//   return await service.getAll(dateMonth)
+// })
+
+// client operations
+// ipcMain.handle('client-create', client.create)
+// ipcMain.handle('client-get-table', client.getTable)
+// ipcMain.handle('client-get-form', client.getForm)
+// ipcMain.on('client-update', client.update)
+// ipcMain.on('client-remove', client.remove)
+
+// // service operations
+// // ipcMain.handle('service-create')
+// ipcMain.handle('services-get')
+// // ipcMain.handle('service-get-form')
+// // ipcMain.on('service-update')
+// // ipcMain.on('service-remove')
