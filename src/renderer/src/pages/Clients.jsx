@@ -19,7 +19,6 @@ export default function Clients() {
 
   function handleInvoiceClick() {
     console.log('selected: ', selected)
-    console.log('services: ', services)
   }
 
   return (

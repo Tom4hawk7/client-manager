@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react'
-import IconButton from '../components/IconButton'
 
 export default function ClientTable({ selected, setSelected, services }) {
   const [rowData, setRowData] = useState([])
 
   console.log('services: ', services)
-
-  // selected checkboxes should probably be a dictionary instead of an array
 
   useEffect(() => {
     const data = async () => window.client.getAll()

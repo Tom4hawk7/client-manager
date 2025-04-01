@@ -1,3 +1,12 @@
 import { db } from '../database'
 
-export function getAll() {}
+// create
+
+// read
+export function getAll() {
+  return db.prepare('SELECT * FROM VPlan').all()
+}
+
+// update
+
+// delete
