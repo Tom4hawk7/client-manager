@@ -1,18 +1,39 @@
 import { useState } from 'react'
 
-// look into implementing a reducer instead because you are about to add another functionality
-
 export default function useChecked(data) {
-  const [selected, setSelected] = useState(() => createChecked(data))
-
-  function createChecked(data) {
+  const [selected, setSelected] = useState(() => {
     return new Map(data.map((data) => [data.id, false]))
+  })
+
+  return new Checked(selected, setSelected)
+}
+
+class Checked {
+  constructor(selected, setSelected) {
+    this.selected = selected
+    this.setSelected = setSelected
   }
 
-  function setChecked(id) {
-    const check = selected.get(id)
-    setSelected(new Map(selected.set(id, !check)))
+  getAll() {
+    return this.selected
   }
 
-  return [selected, setChecked]
+  get(id) {
+    return this.selected.get(id)
+  }
+
+  toggleAll(event) {
+    this.setSelected(
+      new Map(
+        this.selected.keys().map((key) => {
+          return [key, event.target.checked]
+        })
+      )
+    )
+  }
+
+  toggle(id) {
+    const check = this.get(id)
+    this.setSelected(new Map(this.selected.set(id, !check)))
+  }
 }
