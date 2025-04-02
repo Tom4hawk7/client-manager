@@ -44,15 +44,11 @@ const testData = [
 ]
 
 import useChecked from '../assets/hooks/useChecked'
+import { useLoaderData } from 'react-router'
 
 export default function Test() {
-  // const data = async () => window.client.getAll()
-  const data = testData
-
-  // const data = use(window.client.getAll())
-
+  const data = useLoaderData()
   const check = useChecked(data)
-  // const check = useChecked(testData)
 
   return (
     <>

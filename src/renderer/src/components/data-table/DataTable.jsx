@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import styles from './DataTable.module.css'
 
 // todo
@@ -14,32 +14,6 @@ import styles from './DataTable.module.css'
     <Column field="quantity" header="Quantity"></Column>
 </DataTable> */
 }
-{
-  /* <tr>
-          {columns.map((heading) => (
-            <td>{heading}</td>
-          ))} */
-}
-
-//   children.map((child) => console.log(child))
-//   children.map((child) => console.log(child.props))
-//   children.map((child) => console.log(child.props.header))
-//   console.log(children)
-
-//   columns.map((data) => console.log(data))
-{
-  /* {children.map((column) => (
-  <td>{column.props.header}</td>
-))} */
-}
-
-// initialiser functions
-// function createSelected(data) {
-//   const checkRows = []
-
-//   data.map((data) => checkRows.push({ id: data.id, selected: false }))
-//   return checkRows
-// }
 
 // perhaps add an handleChecked event handler
 
@@ -52,39 +26,36 @@ export function DataTable({ data, check, children }) {
   // going to add checkboxes by default but later use conditional rendering
 
   return (
-    <Suspense fallback={<p>loading</p>}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
+    <table className={styles.table}>
+      <thead>
+        <tr>
+          {/* Make top part conditionally rendered later */}
+          <td>
+            <input type="checkbox" defaultChecked={false} />
+          </td>
+
+          {children}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((data) => (
+          <tr key={data.id}>
             {/* Make top part conditionally rendered later */}
-            <td>
-              <button onClick={() => console.log(checked)}>Test</button>
-              <input type="checkbox" defaultChecked={false} />
+            <td key={data.id}>
+              <input
+                type="checkbox"
+                checked={checked.get(data.id)}
+                onChange={() => setChecked(data.id)}
+              />
             </td>
 
-            {children}
+            {children.map((column) => (
+              <td key={column.props.field}>{data[column.props.field]}</td>
+            ))}
           </tr>
-        </thead>
-        <tbody>
-          {data.map((data) => (
-            <tr key={data.id}>
-              {/* Make top part conditionally rendered later */}
-              <td key={data.id}>
-                <input
-                  type="checkbox"
-                  checked={checked.get(data.id)}
-                  onChange={() => setChecked(data.id)}
-                />
-              </td>
-
-              {children.map((column) => (
-                <td key={column.props.field}>{data[column.props.field]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Suspense>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
