@@ -1,5 +1,6 @@
 // import DataTable from '../components/data-table/DataTable'
 import { DataTable, Column } from '../components/data-table/DataTable'
+import { useState, use } from 'react'
 
 {
   /* <td>{client.name}</td>
@@ -14,7 +15,7 @@ import { DataTable, Column } from '../components/data-table/DataTable'
 //     {}
 // ]
 
-const data = [
+const testData = [
   {
     id: '1',
     name: 'Tom',
@@ -42,10 +43,28 @@ const data = [
   { id: '4', name: 'Josh', p_name: 'Cam', address: 'Farm', p_phone: '780329803', school: 'Coogee' }
 ]
 
+import useChecked from '../assets/hooks/useChecked'
+
 export default function Test() {
+  // const data = async () => window.client.getAll()
+  const data = testData
+
+  // const data = use(window.client.getAll())
+
+  const check = useChecked(data)
+  // const check = useChecked(testData)
+
   return (
     <>
-      <DataTable data={data}>
+      <div className="toolbar widget">
+        <input className="searchbar" type="search" />
+        <input className="dateinput" type="month" />
+        <button className="button" onClick={() => console.log(check[0])}>
+          Generate Invoice
+        </button>
+        <button className="button">Create Client</button>
+      </div>
+      <DataTable data={data} check={check}>
         <Column field="name" header="Name" />
         <Column field="p_name" header="Parent" />
         <Column field="address" header="Address" />
