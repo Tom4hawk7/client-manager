@@ -27,6 +27,6 @@ tbody tr {
   border-bottom: 1px solid #ddd;
 }
 
-tbody tr:nth-of-type(even) {
+/* tbody tr:nth-of-type(even) {
   background-color: #f3f3f3;
-}
+} */

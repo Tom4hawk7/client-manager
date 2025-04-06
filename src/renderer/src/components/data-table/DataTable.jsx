@@ -1,6 +1,6 @@
 import styles from './DataTable.module.css'
 
-export function DataTable({ data, checked = '', children }) {
+export function DataTable({ data, checked = '', action = '', children }) {
   return (
     <table className={styles.table}>
       <thead className={styles.tableHead}>
@@ -19,6 +19,8 @@ export function DataTable({ data, checked = '', children }) {
             {children.map((column) => (
               <td key={column.props.field}>{data[column.props.field]}</td>
             ))}
+
+            {/* {action && } */}
           </tr>
         ))}
       </tbody>
@@ -30,7 +32,11 @@ export function Column({ field, header }) {
   return <th key={field}>{header}</th>
 }
 
-export function CheckBox({ checked, onChange }) {
+export function Action() {
+  return <td></td>
+}
+
+function CheckBox({ checked, onChange }) {
   return (
     <td>
       <input type="checkbox" checked={checked} onChange={onChange} />

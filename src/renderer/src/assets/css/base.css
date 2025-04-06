@@ -11,12 +11,13 @@ html {
 
 :root {
   /* --other-shadow: #dcdcdc; */
-  --other-shadow: rgb(220, 220, 220);
   --very-dark-blue: #0e2a47;
   --dark-blue: #1174ba;
   --light-blue: #5acbe9;
   /* --shadow: rgba(0, 0, 0, 0.25); */
   --shadow: rgba(0, 0, 0, 0.2);
+  --shadow-light: rgb(229, 231, 235);
+  /* --shadow: rgb(229, 231, 235); */
   --placeholder: rgb(100, 100, 100);
   --border-radius: 10px;
   --border-color: rgba(0, 0, 0, 0.5);
