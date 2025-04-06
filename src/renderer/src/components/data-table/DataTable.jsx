@@ -1,4 +1,6 @@
+import { Link1Icon, Link2Icon, PersonIcon } from '@radix-ui/react-icons'
 import styles from './DataTable.module.css'
+import { Link } from 'react-router'
 
 export function DataTable({ data, checked = '', action = '', children }) {
   return (
@@ -7,6 +9,7 @@ export function DataTable({ data, checked = '', action = '', children }) {
         <tr>
           {checked && <CheckBox onChange={(e) => checked.toggleAll(e)} />}
           {children}
+          {action && <th key="action"></th>}
         </tr>
       </thead>
       <tbody className={styles.tableBody}>
@@ -21,6 +24,13 @@ export function DataTable({ data, checked = '', action = '', children }) {
             ))}
 
             {/* {action && } */}
+            {action && (
+              <td>
+                <Link to={'/services/1'} state={data}>
+                  <PersonIcon />
+                </Link>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

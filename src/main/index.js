@@ -85,7 +85,9 @@ ipcMain.handle('client-get-all', client.getAll)
 // plan operations
 
 // service operations
-ipcMain.handle('service-get-all', async (event, date) => service.getAll(date))
+// ipcMain.handle('service-get-all', (id, date) => service.getAll(id, date))
+// ipcMain.handle('service-get-all', (e, id, date) => service.getAll(e, id))
+ipcMain.handle('service-get-all', service.getAll)
 // ipcMain.handle('service-get-all', async (event, dateMonth) => {
 //   return await service.getAll(dateMonth)
 // })

@@ -7,8 +7,7 @@ contextBridge.exposeInMainWorld('client', {
 
 // have to specify a clientId with getTable later
 contextBridge.exposeInMainWorld('service', {
-  getAll: (date) => ipcRenderer.invoke('service-get-all', date)
-  // get: () => ipcRenderer.invoke('service-get', id),
+  getAll: (id, date) => ipcRenderer.invoke('service-get-all', id, date)
 })
 
 // contextBridge.exposeInMainWorld('client', {
