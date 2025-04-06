@@ -3,13 +3,13 @@ import styles from './DataTable.module.css'
 export function DataTable({ data, checked = '', children }) {
   return (
     <table className={styles.table}>
-      <thead>
+      <thead className={styles.tableHead}>
         <tr>
           {checked && <CheckBox onChange={(e) => checked.toggleAll(e)} />}
           {children}
         </tr>
       </thead>
-      <tbody>
+      <tbody className={styles.tableBody}>
         {data.map((data) => (
           <tr key={data.id}>
             {checked && (

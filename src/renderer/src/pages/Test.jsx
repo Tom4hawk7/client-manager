@@ -18,13 +18,15 @@ export default function Test() {
         </button>
         <button className="button">Create Client</button>
       </div>
-      <DataTable data={data} checked={checked}>
-        <Column field="name" header="Name" />
-        <Column field="p_name" header="Parent" />
-        <Column field="address" header="Address" />
-        <Column field="p_phone" header="Contact" />
-        <Column field="school" header="School" />
-      </DataTable>
+      <div className="compartment">
+        <DataTable data={data} checked={checked}>
+          <Column field="name" header="Name" />
+          <Column field="p_name" header="Parent" />
+          <Column field="address" header="Address" />
+          <Column field="p_phone" header="Contact" />
+          <Column field="school" header="School" />
+        </DataTable>
+      </div>
     </>
   )
 }
