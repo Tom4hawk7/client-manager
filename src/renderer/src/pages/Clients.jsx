@@ -4,12 +4,12 @@ import { useLoaderData } from 'react-router'
 import useChecked from '../assets/hooks/useChecked'
 import { useState } from 'react'
 import { PersonIcon } from '@radix-ui/react-icons'
+import currentDate from '../assets/functions/currentDate'
 
 // May need to add a breadcrumb to get back to the clients page
 // Outlet component will be good for having the client edit section
 // Look into ViewTransition aswell
-
-const currentDate = new Date().toISOString().substring(0, 7)
+// Perhaps client data should be stored locally in session storage for faster retrieval mayhaps
 
 export default function Test() {
   const [date, setDate] = useState(currentDate)
@@ -29,7 +29,12 @@ export default function Test() {
     <>
       <div className="toolbar widget">
         <input className="searchbar" type="search" />
-        <input className="dateinput" type="month" onChange={(e) => setDate(e)} />
+        <input
+          className="dateinput"
+          type="month"
+          defaultValue={currentDate}
+          onChange={(e) => setDate(e)}
+        />
         <button className="button" onClick={handleInvoice}>
           Generate Invoice
         </button>
