@@ -5,13 +5,9 @@ import useChecked from '../assets/hooks/useChecked'
 import { useState } from 'react'
 import { PersonIcon } from '@radix-ui/react-icons'
 import currentDate from '../assets/functions/currentDate'
+// import { Icon } from '../components/button/Icon'
 
-// May need to add a breadcrumb to get back to the clients page
-// Outlet component will be good for having the client edit section
-// Look into ViewTransition aswell
-// Perhaps client data should be stored locally in session storage for faster retrieval mayhaps
-
-export default function Test() {
+export default function Clients() {
   const [date, setDate] = useState(currentDate)
 
   // dataTable state
@@ -41,7 +37,11 @@ export default function Test() {
         <button className="button">Create Client</button>
       </div>
       <div className="compartment">
-        <DataTable data={data} checked={checked} action={true}>
+        <DataTable
+          data={data}
+          checked={checked}
+          action={{ to: '/services', icon: <PersonIcon className="icon" /> }}
+        >
           <Column field="name" header="Name" />
           <Column field="p_name" header="Parent" />
           <Column field="address" header="Address" />

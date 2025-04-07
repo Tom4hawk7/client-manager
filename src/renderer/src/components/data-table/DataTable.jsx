@@ -19,6 +19,17 @@ perhaps just have className for an Icon or something
 */
 
 export function DataTable({ data, checked = '', action = '', children }) {
+  // console.log('Action: ', action)
+  // console.log('New Action:', <newAction />)
+
+  // should probably copy the action since mutating state outside a component can cause bugs and glitches
+  // you could have it assume an id
+  // console.log('Action.props: ', action.props)
+
+  // could have if statements up here for defining constants
+  // these constants would return an object containing two parts
+  // these parts would either have stuff in them or not
+
   return (
     <table className={styles.table}>
       <thead className={styles.tableHead}>
@@ -41,10 +52,11 @@ export function DataTable({ data, checked = '', action = '', children }) {
               ))}
 
               {/* {action && } */}
+              {/* I'm pretty sure I can use outlet here so to="" need to be defined higher up in the hierachy */}
               {action && (
                 <td>
-                  <Link to={'/services/1'} state={data}>
-                    <PersonIcon />
+                  <Link to={`${action.to}/${data.id}`} state={data}>
+                    {action.icon}
                   </Link>
                 </td>
               )}
@@ -66,10 +78,6 @@ export function DataTable({ data, checked = '', action = '', children }) {
 
 export function Column({ field, header }) {
   return <th key={field}>{header}</th>
-}
-
-export function Action() {
-  return <td></td>
 }
 
 function CheckBox({ checked, onChange }) {

@@ -63,3 +63,18 @@
 input:hover {
   cursor: pointer;
 }
+
+/* Icon */
+
+.icon {
+  width: 18px;
+  height: 18px;
+  line-height: 0;
+  transition: all 0.1s ease-in;
+}
+
+.icon:hover {
+  background-color: var(--shadow-light);
+  box-shadow: 0 0 0px 5px var(--shadow-light);
+  border-radius: 5px;
+}
