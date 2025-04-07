@@ -1,12 +1,10 @@
 import styles from './DataTable.module.css'
 import { Link } from 'react-router'
 
-// you can send state as data and then just not retrieve it
-// you would need to be able to specify to to={} before
-// the state would identified after
-// look into contentEditable in the td property
-// probably should have it save the data on refresh
-// would have to look into saving front side data in electron-store or something
+// <td/> look into contentEditable property and an proppable event handler for it
+
+// the action thingo should be able to change between a button or a link
+// think about passing the prop as a function that returns as component
 
 export function DataTable({ data, checked = '', action = '', children }) {
   return (

@@ -78,3 +78,41 @@ input:hover {
   box-shadow: 0 0 0px 5px var(--shadow-light);
   border-radius: 5px;
 }
+
+/* popup */
+/* 
+.popup {
+  position: absolute;
+  z-index: 50;
+  top: 0px; */
+/* background-color: white;
+  width: 1000px; */
+/* } */
+
+/* .panel-container {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+
+/* .right-panel {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 50%;
+} */
+
+/* .right-panel { */
+/* width: 200px; */
+/* background-color: white; */
+/* position: absolute; */
+/* top: 50px; */
+/* left: inherit; */
+/* background-color: green; */
+/* color: green; */
+/* font-size: 100px; */
+/* }
+
+.flex {
+  display: flex;
+} */
