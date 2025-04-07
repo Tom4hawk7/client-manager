@@ -1,5 +1,5 @@
 .table {
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   border-spacing: 0;
   overflow: hidden;
   width: 100%;
@@ -17,6 +17,14 @@ td {
   color: #374151;
   background-color: rgb(249, 250, 251);
   /* border-bottom: 1px solid rgb(229, 231, 235); */
+}
+
+/* specific content */
+
+.action {
+  padding: 0px;
+  /* width: 20px; */
+  width: 40px;
 }
 
 /* .tableHead:first-child,

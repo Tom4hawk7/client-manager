@@ -2,10 +2,7 @@ import { useLoaderData, useLocation } from 'react-router'
 import { Link } from 'react-router'
 import { DataTable, Column } from '../components/data-table/DataTable'
 import { useState } from 'react'
-
-// might need to add a clients home page button
-const currentDate = new Date().toISOString().substring(0, 7)
-// const currentDate = new Date()
+import currentDate from '../assets/functions/currentDate'
 
 export default function Services() {
   const [services, setServices] = useState(useLoaderData())
