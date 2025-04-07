@@ -15,13 +15,15 @@ const router = createHashRouter([
   {
     path: 'services/:id',
     Component: Services,
-    loader: ({ params }) => window.service.getAll(params.id, currentDate),
-    children: [
-      {
-        path: 'client',
-        Component: ClientForm
-      }
-    ]
+    loader: ({ params }) => {
+      return window.service.getAll(params.id, currentDate)
+    }
+    // children: [
+    //   {
+    //     path: 'client',
+    //     Component: ClientForm
+    //   }
+    // ]
   }
   // {
   //   path: '/services/:id',

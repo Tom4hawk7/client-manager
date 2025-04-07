@@ -5,6 +5,7 @@ import { useState } from 'react'
 import currentDate from '../assets/functions/currentDate'
 import useModal from '../assets/hooks/useModal'
 import { useRef } from 'react'
+import ClientForm from './ClientForm'
 
 // look into the prime react sidebar
 // look into the prime react overlay components
@@ -21,47 +22,44 @@ import { useRef } from 'react'
 // need to open modal as a showModal()
 // look into using electron dialogs
 
-// look into using useRef()
-
-// perhaps wrap the dialog in a form
-
 export default function Services() {
   const [services, setServices] = useState(useLoaderData())
-  const [modalRef, toggleModal] = useModal()
+  const [client] = useState(useLocation().state)
 
-  const client = useLocation().state
+  const [modalRef, toggleModal] = useModal()
 
   // input event handlers
   async function handleMonthChange(e) {
-    const services = await window.service.getAll(client.id, e.target.value)
-    setServices(services)
+    setServices(await window.service.getAll(client.id, e.target.value))
   }
 
   return (
     <>
-      <dialog ref={modalRef}>
-        <p>This is a dialog</p>
-        <button className="button" onClick={toggleModal}>
-          Close
-        </button>
+      <dialog className="modal right" ref={modalRef}>
+        <ClientForm toggleModal={toggleModal} />
       </dialog>
 
       <div className="toolbar widget">
         <Link to="/">
           <button className="button">Clients</button>
         </Link>
+
         <button className="button">Add Service</button>
+
         <input
           className="dateinput"
           type="month"
           defaultValue={currentDate}
-          onChange={(e) => handleMonthChange(e)}
+          onChange={handleMonthChange}
         />
+
         <button className="button" onClick={toggleModal}>
           Edit Client
         </button>
+
         <button className="button">Delete Client</button>
       </div>
+
       <div className="compartment">
         <DataTable data={services}>
           <Column field="description" header="Description" />

@@ -1,11 +1,12 @@
 // import DataTable from '../components/data-table/DataTable'
 import { DataTable, Column } from '../components/data-table/DataTable'
 import { useLoaderData } from 'react-router'
-import useChecked from '../assets/hooks/useChecked'
-import { useState } from 'react'
 import { PersonIcon } from '@radix-ui/react-icons'
+import { useState } from 'react'
+import useChecked from '../assets/hooks/useChecked'
 import currentDate from '../assets/functions/currentDate'
 // import { Icon } from '../components/button/Icon'
+// import ClientForm from './ClientForm'
 
 export default function Clients() {
   const [date, setDate] = useState(currentDate)
