@@ -69,12 +69,10 @@ body {
   width: 8px;
   height: 8px;
   cursor: pointer;
-  border-radius: 0px 20px 20px 0;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--shadow);
-  border-radius: 0px 20px 20px 0;
 }
 
 h1 {

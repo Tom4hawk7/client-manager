@@ -1,14 +1,35 @@
+form {
+  margin: 20px;
+}
+
 fieldset {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  border: 2px solid var(--shadow);
+  margin: 20px 0;
+  padding: 5px 15px 15px;
+}
+
+fieldset input {
+  font-family: 'IBM Plex Sans';
+  font-size: 1.4rem;
+  padding: 1rem 1.2rem;
+  margin: 5px 0;
+  border: 1px solid var(--shadow);
+  /* box-shadow: 0 0 1px 1px var(--shadow); */
+  /* border-radius: 10px; */
+}
+
+fieldset label {
+  margin-top: 10px;
 }
 
 /* modal */
 
 .modal {
-  /* max-height: 100vh; */
-  /* width: 500px; */
-  /* max-height: none; */
+  border: 0px;
+  outline: 0px;
 }
 
 .right {

@@ -60,7 +60,7 @@ export default function ClientForm({ toggleModal }) {
 
         {/* plan manager */}
         <fieldset>
-          <legend>Plan Manager Informatio</legend>
+          <legend>Plan Manager Information</legend>
 
           <label htmlFor="plan_manager_name">Name</label>
           <input id="plan_manager_name" type="text" />
@@ -69,9 +69,13 @@ export default function ClientForm({ toggleModal }) {
           <input id="plan_manager_email" type="text" />
         </fieldset>
 
-        <button className="button" onClick={toggleModal}>
-          Cancel
-        </button>
+        <div className="toolbar">
+          <input className="button" type="button" value="Edit" />
+          <input className="button" type="button" value="Delete" />
+          <button className="button" onClick={toggleModal}>
+            Cancel
+          </button>
+        </div>
       </form>
     </section>
   )
