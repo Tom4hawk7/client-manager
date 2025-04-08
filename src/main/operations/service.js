@@ -12,7 +12,6 @@ export function getAll(e, id, date) {
     )
     .all(id, date)
 
-  if (data.length === 0) return undefined
   return data
 }
 
