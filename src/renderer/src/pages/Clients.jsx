@@ -5,6 +5,7 @@ import { PersonIcon } from '@radix-ui/react-icons'
 import { useState } from 'react'
 import useChecked from '../assets/hooks/useChecked'
 import currentDate from '../assets/functions/currentDate'
+import useFilter from '../assets/hooks/useFilter'
 // import { Icon } from '../components/button/Icon'
 // import ClientForm from './ClientForm'
 
@@ -13,32 +14,7 @@ export default function Clients() {
   const checked = useChecked(data)
 
   const [date, setDate] = useState(currentDate)
-  const [filteredData, setFilteredData] = useState(data)
-  // const [search, setSearch] = useState() not sure if need this
-
-  // dataTable state
-
-  // console.log(data)
-
-  function handleSearch(e) {
-    setFilteredData(
-      data.filter((data) => {
-        const name = data.name.toLowerCase()
-        const search = e.target.value.toLowerCase()
-
-        return name.includes(search)
-      })
-    )
-
-    // const filteredData = data.filter((data) => {
-    //   const name = data.name.toLowerCase()
-    //   const search = e.target.value.toLowerCase()
-
-    //   return name.includes(search)
-    // })
-    // data.name.includes(e.target.value))
-    // console.log(filteredData)
-  }
+  const [filter, filterData] = useFilter(data, 'name')
 
   function handleInvoice() {
     console.log('Checked: ', checked.getAll())
@@ -48,7 +24,7 @@ export default function Clients() {
   return (
     <>
       <div className="toolbar widget">
-        <input className="searchbar" type="search" onChange={handleSearch} />
+        <input className="searchbar" type="search" onChange={filterData} />
         <input
           className="dateinput"
           type="month"
@@ -62,7 +38,7 @@ export default function Clients() {
       </div>
       <div className="compartment">
         <DataTable
-          data={filteredData}
+          data={filter}
           checked={checked}
           action={{ to: '/services', icon: <PersonIcon className="icon" /> }}
         >
