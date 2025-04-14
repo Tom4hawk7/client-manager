@@ -78,16 +78,20 @@ app.on('window-all-closed', () => {
 // Define all event handles and emitters here
 import * as client from './operations/client'
 import * as service from './operations/service'
+import * as plan from './operations/plan'
+import Client from './models/client'
+import { db } from './database'
 
-// client operations
-ipcMain.handle('client-get-all', client.getAll)
+ipcMain.handle('clientTable', () => {
+  return db.prepare('SELECT * FROM VClientTable').all()
+})
 
 // plan operations
+ipcMain.handle('plan-get', plan.get)
 
 // service operations
-// ipcMain.handle('service-get-all', (id, date) => service.getAll(id, date))
-// ipcMain.handle('service-get-all', (e, id, date) => service.getAll(e, id))
 ipcMain.handle('service-get-all', service.getAll)
+
 // ipcMain.handle('service-get-all', async (event, dateMonth) => {
 //   return await service.getAll(dateMonth)
 // })

@@ -1,82 +1,72 @@
 import { useLoaderData, useLocation } from 'react-router'
+import { Suspense } from 'react'
+import { Input } from '../components/form/Form'
 
-// Look into what <label htmlFor=""/> is for
-// figure out how you give a fieldset a title
+// import { FormInput } from '../components/form/Form'
+
+// perhaps have an additional edit button and/or clear for each fieldset
+// that way specific data can be edited
 
 // need to figure out which inputs should be labelled as required
 // deleting a client might need to be put in the edit client thingo
 
-export default function ClientForm({ toggleModal }) {
+export default function ClientForm({ toggleModal, id }) {
+  if (id) {
+  }
+  // function get() {
+  //   try {
+  //     initialData[]
+  //   }
+  // }
+
+  function handleSubmit(formData) {
+    console.log('initial data: ', initialData)
+
+    toggleModal()
+  }
+
   return (
-    <section>
-      <form action="" method="dialog">
-        {/* client */}
-        <fieldset>
-          <legend>Client Information</legend>
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" />
+    <Suspense fallback={<p>Loading..</p>}>
+      <section>
+        <form id="edit" action={handleSubmit}>
+          <fieldset>
+            <legend>Client Information</legend>
+            <Input name="name" label="Name" />
+            <Input name="dob" label="Date of birth" type="date" />
+            <Input name="address" label="Address" />
+            <Input name="school" label="School" />
+            <Input name="p_number" label="Participation number" />
+          </fieldset>
 
-          <label htmlFor="dob">Date of birth</label>
-          <input id="dob" type="date" />
+          <fieldset>
+            <legend>Parent Information</legend>
+            <Input name="parent_name" label="Name" />
+            <Input name="parent_email" label="Email" />
+            <Input name="parent_phone" label="Phone" type="tel" />
+          </fieldset>
 
-          <label htmlFor="address">Address</label>
-          <input id="address" type="text" />
+          <fieldset>
+            <legend>Plan Information</legend>
+            <Input name="plan_start_date" label="Start date" type="date" />
+            <Input name="plan_end_date" label="End date" type="date" />
+            <Input name="plan_end_date" label="Budget" type="number" />
+          </fieldset>
 
-          <label htmlFor="school">School</label>
-          <input id="school" type="text" />
+          <fieldset>
+            <legend>Plan Manager Information</legend>
+            <Input name="plan_manager_name" label="Name" />
+            <Input name="plan_manager_email" label="Email" />
+          </fieldset>
 
-          {/* might have to leave this input disabled as it should be calculated on the fly */}
-          <label htmlFor="p_number">Participation number</label>
-          <input id="p_number" type="text" />
-        </fieldset>
-
-        {/* parent */}
-        <fieldset>
-          <legend>Parent Information</legend>
-
-          <label htmlFor="parent_name">Name</label>
-          <input id="parent_name" type="text" />
-
-          <label htmlFor="parent_email">Email</label>
-          <input id="parent_email" type="text" />
-
-          <label htmlFor="parent_phone">Phone</label>
-          <input id="parent_phone" type="text" />
-        </fieldset>
-
-        {/* plan */}
-        <fieldset>
-          <legend>Plan Information</legend>
-
-          <label htmlFor="plan_start_date">Start date</label>
-          <input id="plan_start_date" type="date" />
-
-          <label htmlFor="plan_end_date">End date</label>
-          <input id="plan_end_date" type="date" />
-
-          <label htmlFor="plan_budget">Budget</label>
-          <input id="plan_budget" type="text" />
-        </fieldset>
-
-        {/* plan manager */}
-        <fieldset>
-          <legend>Plan Manager Information</legend>
-
-          <label htmlFor="plan_manager_name">Name</label>
-          <input id="plan_manager_name" type="text" />
-
-          <label htmlFor="plan_manager_email">Email</label>
-          <input id="plan_manager_email" type="text" />
-        </fieldset>
-
-        <div className="toolbar">
-          <input className="button" type="button" value="Edit" />
-          <input className="button" type="button" value="Delete" />
-          <button className="button" onClick={toggleModal}>
-            Cancel
-          </button>
-        </div>
-      </form>
-    </section>
+          <div className="toolbar">
+            <input className="button" type="submit" value="Edit" />
+            <input className="button" type="button" value="Delete" />
+            <button className="button" onClick={() => toggleModal()}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+    </Suspense>
   )
 }

@@ -1,4 +1,4 @@
-import { useLoaderData, useLocation } from 'react-router'
+import { data, useLoaderData, useLocation } from 'react-router'
 import { Link } from 'react-router'
 import { DataTable, Column } from '../components/data-table/DataTable'
 import { useState } from 'react'
@@ -26,6 +26,7 @@ export default function Services() {
   const [services, setServices] = useState(useLoaderData())
   const [client] = useState(useLocation().state)
 
+  // const [formData, setFormData] = useState({})
   const [modalRef, toggleModal] = useModal()
 
   // input event handlers
@@ -33,10 +34,26 @@ export default function Services() {
     setServices(await window.service.getAll(client.id, e.target.value))
   }
 
+  async function handleEditClient() {
+    const plan = await window.plan.get(client.id)
+    // setFormData(new Map(['client', client], ['plan', plan]))
+    // const formState = { client: client, plan: plan }
+    // setFormData({ client: client, plan: plan })
+
+    toggleModal()
+  }
+
+  // async function handleEditClient() {
+  //   const plan = await window.plan.get(client.id)
+  //   setFormData({ client: client, plan: plan })
+
+  //   toggleModal()
+  // }
+
   return (
     <>
       <dialog className="modal right" ref={modalRef}>
-        <ClientForm toggleModal={toggleModal} />
+        <ClientForm toggleModal={toggleModal} id={client.id} />
       </dialog>
 
       <div className="toolbar widget">
@@ -53,7 +70,7 @@ export default function Services() {
           onChange={handleMonthChange}
         />
 
-        <button className="button" onClick={toggleModal}>
+        <button className="button" onClick={handleEditClient}>
           Edit Client
         </button>
 

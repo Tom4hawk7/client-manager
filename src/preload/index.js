@@ -1,8 +1,16 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
+contextBridge.exposeInMainWorld('view', {
+  clientTable: () => ipcRenderer.invoke('clientTable')
+})
+
 contextBridge.exposeInMainWorld('client', {
   getAll: () => ipcRenderer.invoke('client-get-all')
   // get: () => ipcRenderer.invoke('client-get', id),
+})
+
+contextBridge.exposeInMainWorld('plan', {
+  get: (client_id) => ipcRenderer.invoke('plan-get', client_id)
 })
 
 // have to specify a clientId with getTable later

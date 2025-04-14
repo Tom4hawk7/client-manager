@@ -11,6 +11,7 @@ import useFilter from '../assets/hooks/useFilter'
 
 export default function Clients() {
   const data = useLoaderData()
+  console.log('data: ', data)
   const checked = useChecked(data)
 
   const [date, setDate] = useState(currentDate)
@@ -19,6 +20,7 @@ export default function Clients() {
   function handleInvoice() {
     console.log('Checked: ', checked.getAll())
     console.log('Date: ', date)
+    console.log('data: ', data)
   }
 
   return (
@@ -43,9 +45,9 @@ export default function Clients() {
           action={{ to: '/services', icon: <PersonIcon className="icon" /> }}
         >
           <Column field="name" header="Name" />
-          <Column field="p_name" header="Parent" />
+          <Column field="parent_name" header="Parent" />
           <Column field="address" header="Address" />
-          <Column field="p_phone" header="Contact" />
+          <Column field="parent_phone" header="Contact" />
           <Column field="school" header="School" />
         </DataTable>
       </div>

@@ -10,7 +10,7 @@ const router = createHashRouter([
   {
     path: '/',
     Component: Clients,
-    loader: () => window.client.getAll()
+    loader: () => window.view.clientTable()
   },
   {
     path: 'services/:id',
