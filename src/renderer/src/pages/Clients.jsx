@@ -11,10 +11,9 @@ import useFilter from '../assets/hooks/useFilter'
 
 export default function Clients() {
   const data = useLoaderData()
-  console.log('data: ', data)
   const checked = useChecked(data)
 
-  const [date, setDate] = useState(currentDate)
+  const [date, setDate] = useState(currentDate) // could probably just use a ref instead
   const [filter, filterData] = useFilter(data, 'name')
 
   function handleInvoice() {

@@ -1,4 +1,3 @@
-import { useLoaderData, useLocation } from 'react-router'
 import { Suspense } from 'react'
 import { Input } from '../components/form/Form'
 
@@ -20,7 +19,7 @@ export default function ClientForm({ toggleModal, id }) {
   // }
 
   function handleSubmit(formData) {
-    console.log('initial data: ', initialData)
+    // console.log('initial data: ', initialData)
 
     toggleModal()
   }

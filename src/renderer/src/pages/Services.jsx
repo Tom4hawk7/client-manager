@@ -24,36 +24,26 @@ import ClientForm from './ClientForm'
 
 export default function Services() {
   const [services, setServices] = useState(useLoaderData())
-  const [client] = useState(useLocation().state)
+  const [id] = useState(useLocation().state)
 
-  // const [formData, setFormData] = useState({})
   const [modalRef, toggleModal] = useModal()
 
   // input event handlers
   async function handleMonthChange(e) {
-    setServices(await window.service.getAll(client.id, e.target.value))
+    setServices(await window.service.getAll(id, e.target.value))
   }
 
-  async function handleEditClient() {
-    const plan = await window.plan.get(client.id)
-    // setFormData(new Map(['client', client], ['plan', plan]))
-    // const formState = { client: client, plan: plan }
-    // setFormData({ client: client, plan: plan })
+  async function handleEdit() {
+    const formData = await window.view.form(id)
+    console.log(formData)
 
     toggleModal()
   }
 
-  // async function handleEditClient() {
-  //   const plan = await window.plan.get(client.id)
-  //   setFormData({ client: client, plan: plan })
-
-  //   toggleModal()
-  // }
-
   return (
     <>
       <dialog className="modal right" ref={modalRef}>
-        <ClientForm toggleModal={toggleModal} id={client.id} />
+        <ClientForm toggleModal={toggleModal} id={id} />
       </dialog>
 
       <div className="toolbar widget">
@@ -70,7 +60,7 @@ export default function Services() {
           onChange={handleMonthChange}
         />
 
-        <button className="button" onClick={handleEditClient}>
+        <button className="button" onClick={handleEdit}>
           Edit Client
         </button>
 

@@ -6,4 +6,14 @@ export default class Parent {
     this.phone = phone
     this.client_id = client_id
   }
+
+  static create(parent) {
+    return Object.assign(new Parent(), parent)
+  }
+
+  set(name, email, phone) {
+    this.name = name
+    this.email = email
+    this.phone = phone
+  }
 }

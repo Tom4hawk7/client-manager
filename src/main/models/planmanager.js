@@ -5,4 +5,13 @@ export default class PlanManager {
     this.email = email
     this.plan_id = plan_id
   }
+
+  static create(planmanager) {
+    return Object.assign(new PlanManager(), planmanager)
+  }
+
+  set(name, email) {
+    this.name = name
+    this.email = email
+  }
 }
