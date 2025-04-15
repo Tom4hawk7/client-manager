@@ -10,13 +10,13 @@ const router = createHashRouter([
   {
     path: '/',
     Component: Clients,
-    loader: () => window.table.get()
+    loader: () => window.table.read()
   },
   {
     path: 'services/:id',
     Component: Services,
     loader: ({ params }) => {
-      return window.service.get(params.id, currentDate)
+      return window.service.read(params.id, currentDate)
     }
     // children: [
     //   {
