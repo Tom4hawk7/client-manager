@@ -76,15 +76,37 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 // Define all event handles and emitters here
-import Service from './models/service'
-import Table from './models/table'
-import Form from './models/form'
+// import ServiceHandler from './handlers/FormHandler'
+import FormManager from './managers/FormManager'
+import ServiceManager from './managers/ServiceManager'
+import TableManager from './managers/TableManager'
+
+// look into event.returnValue
+
+// When sending a message, the event name is the channel.
+// To reply to a synchronous message, you need to set event.returnValue.
+
+// import ServiceHandler from './handlers/ServiceHandler'
+// import FormHandler from './handlers/formHandler'
+// import TableHandler from './handlers/TableHandler'
 
 // service operations
-ipcMain.handle('service-get', Service.get)
-
-// table operations
-ipcMain.handle('table-get', Table.get)
+ipcMain.handle('service-read', async (e, ...args) => ServiceManager.read(...args))
 
 // form operations
-ipcMain.handle('form-get', Form.get)
+ipcMain.handle('form-read', (e, ...args) => FormManager.read(...args))
+ipcMain.on('form-update', (e, ...args) => FormManager.update(...args))
+ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
+
+// table operations
+ipcMain.handle('table-read', (e) => TableManager.read())
+
+// ipcMain.handle('form-update', (e, ...args) => FormManager.update(...args))
+
+// some functions don't need invoke since they don't have anything to return
+// these include: create, update, delete
+
+// perhaps could return a value depending on whether everything worked out or not
+
+// but for right now, just reflect the changes on the UI and expect everything to work out
+// famous last words

@@ -14,7 +14,7 @@ export default function Clients() {
   const checked = useChecked(data)
 
   const [date, setDate] = useState(currentDate) // could probably just use a ref instead
-  const [filter, filterData] = useFilter(data, 'name')
+  const [filter, filterData] = useFilter(data, 'client_name')
 
   function handleInvoice() {
     console.log('Checked: ', checked.getAll())
