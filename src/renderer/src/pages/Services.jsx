@@ -33,13 +33,6 @@ export default function Services() {
     setServices(await window.service.getAll(id, e.target.value))
   }
 
-  async function handleEdit() {
-    const formData = await window.view.form(id)
-    console.log(formData)
-
-    toggleModal()
-  }
-
   return (
     <>
       <dialog className="modal right" ref={modalRef}>
@@ -48,10 +41,10 @@ export default function Services() {
 
       <div className="toolbar widget">
         <Link to="/">
-          <button className="button">Clients</button>
+          <button className="btn">Clients</button>
         </Link>
 
-        <button className="button">Add Service</button>
+        <button className="btn">Add Service</button>
 
         <input
           className="dateinput"
@@ -60,11 +53,11 @@ export default function Services() {
           onChange={handleMonthChange}
         />
 
-        <button className="button" onClick={handleEdit}>
+        <button className="btn" onClick={toggleModal}>
           Edit Client
         </button>
 
-        <button className="button">Delete Client</button>
+        <button className="btn">Delete Client</button>
       </div>
 
       <div className="compartment">

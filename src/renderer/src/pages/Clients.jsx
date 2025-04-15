@@ -32,10 +32,10 @@ export default function Clients() {
           defaultValue={currentDate}
           onChange={(e) => setDate(e)}
         />
-        <button className="button" onClick={handleInvoice}>
+        <button className="btn" onClick={handleInvoice}>
           Generate Invoice
         </button>
-        <button className="button">Create Client</button>
+        <button className="btn">Create Client</button>
       </div>
       <div className="compartment">
         <DataTable
@@ -43,11 +43,11 @@ export default function Clients() {
           checked={checked}
           action={{ to: '/services', icon: <PersonIcon className="icon" /> }}
         >
-          <Column field="name" header="Name" />
+          <Column field="client_name" header="Name" />
           <Column field="parent_name" header="Parent" />
-          <Column field="address" header="Address" />
+          <Column field="client_address" header="Address" />
           <Column field="parent_phone" header="Contact" />
-          <Column field="school" header="School" />
+          <Column field="client_school" header="School" />
         </DataTable>
       </div>
     </>

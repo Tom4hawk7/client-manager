@@ -76,15 +76,15 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 // Define all event handles and emitters here
-import View from './models/view'
-import Client from './models/client'
 import Service from './models/service'
-
-ipcMain.handle('view-table', View.table)
-ipcMain.handle('view-form', View.form)
-
-// plan operations
-// ipcMain.handle('plan-get', plan.get)
+import Table from './models/table'
+import Form from './models/form'
 
 // service operations
-ipcMain.handle('service-get-all', Service.getAll)
+ipcMain.handle('service-get', Service.get)
+
+// table operations
+ipcMain.handle('table-get', Table.get)
+
+// form operations
+ipcMain.handle('form-get', Form.get)
