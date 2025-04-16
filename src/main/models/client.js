@@ -15,10 +15,7 @@ export default class Client {
     INSERT INTO Client (name, dob, address, school, p_number)
     VALUES (@name, @dob, @address, @school, @p_number)`
 
-    db.prepare(query).run(this)
-
-    // have it append id after creation
-    // .run().lastinsertid or something
+    this.id = db.prepare(query).run(this).lastInsertRowid
   }
 
   update() {
@@ -34,5 +31,7 @@ export default class Client {
   delete() {
     const query = `DELETE FROM Client WHERE id = ?`
     db.prepare(query).run(this.id)
+
+    // potentially: delete this
   }
 }
