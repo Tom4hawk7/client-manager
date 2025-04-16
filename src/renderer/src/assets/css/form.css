@@ -2,6 +2,10 @@ form {
   margin: 20px;
 }
 
+tr {
+  background-color: white;
+}
+
 fieldset {
   display: flex;
   flex-direction: column;
@@ -37,4 +41,10 @@ fieldset label {
   max-height: 100vh;
   left: 50%;
   width: 50%;
+}
+
+/* buttons */
+
+.big {
+  width: 100%;
 }

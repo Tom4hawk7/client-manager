@@ -15,20 +15,8 @@ export default function ClientForm({ toggleModal, id = '' }) {
     if (id) formData.set('id', id)
     const formFields = Object.fromEntries(formData)
 
-    // FormData not a supported type to send over
-
     window.form.update(formFields)
     setData(formFields)
-
-    // const output = {}
-    // if (id) output.id = id
-
-    // I reckon you could do the Object.fromEntries better -> make the keys the keys of said classes
-    // however, this code should probably be adapted for the FormManager
-    // for (const [key, value] of formData) {
-    //   const [className, propName] = key.split(/_(.*)/, 2)
-    //   test[className] = { ...test[className], [propName]: value }
-    // }
   }
 
   return (
@@ -58,12 +46,12 @@ export default function ClientForm({ toggleModal, id = '' }) {
         <Input name="planmanager_email" label="Email" />
       </Fieldset>
 
-      <div className="toolbar">
-        <button className="btn" type="submit">
+      <div className="toolbar spread max">
+        <button className="btn big" type="submit">
           Edit
         </button>
 
-        <button className="btn" type="button" onClick={toggleModal}>
+        <button className="btn " type="button" onClick={toggleModal}>
           Cancel
         </button>
       </div>

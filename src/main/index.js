@@ -76,19 +76,9 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 // Define all event handles and emitters here
-// import ServiceHandler from './handlers/FormHandler'
-import FormManager from './managers/FormManager'
-import ServiceManager from './managers/ServiceManager'
-import TableManager from './managers/TableManager'
-
-// look into event.returnValue
-
-// When sending a message, the event name is the channel.
-// To reply to a synchronous message, you need to set event.returnValue.
-
-// import ServiceHandler from './handlers/ServiceHandler'
-// import FormHandler from './handlers/formHandler'
-// import TableHandler from './handlers/TableHandler'
+import FormManager from './managers/form-manager'
+import ServiceManager from './managers/service-manager'
+import TableManager from './managers/table-manager'
 
 // service operations
 ipcMain.handle('service-read', async (e, ...args) => ServiceManager.read(...args))
@@ -100,16 +90,3 @@ ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
 
 // table operations
 ipcMain.handle('table-read', (e) => TableManager.read())
-
-// the functions for handling queries are quite similar
-// only thing different are the queries -> most of the time
-
-// ipcMain.handle('form-update', (e, ...args) => FormManager.update(...args))
-
-// some functions don't need invoke since they don't have anything to return
-// these include: create, update, delete
-
-// perhaps could return a value depending on whether everything worked out or not
-
-// but for right now, just reflect the changes on the UI and expect everything to work out
-// famous last words

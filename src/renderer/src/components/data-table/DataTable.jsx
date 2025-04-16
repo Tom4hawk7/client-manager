@@ -43,7 +43,7 @@ export function DataTable({ data, checked = '', action = '', children }) {
         ) : (
           // fallback data
           <tr>
-            <td colSpan="4">There is no data to be displayed.</td>
+            <td colSpan="15">There is no data to be displayed.</td>
           </tr>
         )}
       </tbody>
@@ -58,7 +58,7 @@ export function Column({ field, header }) {
 function CheckBox({ checked, onChange }) {
   return (
     <td>
-      <input type="checkbox" checked={checked} onChange={onChange} />
+      <input className={styles.checkbox} type="checkbox" checked={checked} onChange={onChange} />
     </td>
   )
 }
