@@ -11,18 +11,24 @@ export default function ClientForm({ toggleModal, id = '' }) {
     window.form.read(id).then(setData)
   }, [])
 
-  // function handleEdit() {} no this should be in the action
-
   function action(formData) {
-    const result = Object.fromEntries(formData)
-    // window.table.
+    if (id) formData.set('id', id)
+    const formFields = Object.fromEntries(formData)
 
-    // have the result thing be the default thing sent, but be able to use it in a specified function
+    // FormData not a supported type to send over
 
-    // have to remember to type conversion stuff into the right format
+    window.form.update(formFields)
+    setData(formFields)
 
-    console.log('Result: ', result)
-    setData(result)
+    // const output = {}
+    // if (id) output.id = id
+
+    // I reckon you could do the Object.fromEntries better -> make the keys the keys of said classes
+    // however, this code should probably be adapted for the FormManager
+    // for (const [key, value] of formData) {
+    //   const [className, propName] = key.split(/_(.*)/, 2)
+    //   test[className] = { ...test[className], [propName]: value }
+    // }
   }
 
   return (

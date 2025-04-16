@@ -1,12 +1,53 @@
-import { db } from '../database'
+import db from '../database'
+
+import Client from '../models/client'
+import Parent from '../models/parent'
+import PlanManager from '../models/plan-manager'
+import Plan from '../models/plan'
+
+const classes = [
+  [Client, 'client'],
+  [Parent, 'parent'],
+  [Plan, 'plan'],
+  [PlanManager, 'planmanager']
+]
 
 export default class FormManager {
+  constructor(data) {
+    // get client_id and delete it from the formData
+    const id = data.id
+    delete data.id
+
+    // sort formData into different objects by splitting class_prop
+    const formData = {}
+    for (const [key, value] of Object.entries(data)) {
+      const [className, propName] = key.split(/_(.*)/, 2)
+      formData[className] = { ...formData[className], [propName]: value }
+    }
+
+    // append the id to objects and use it to create the specified models
+    const models = []
+    for (const [keyClass, i] of classes) {
+      let obj = formData[i]
+      obj.id = id
+
+      let model = keyClass.construct(obj)
+      models.push(model)
+    }
+
+    this.models = models
+  }
+
   static create(data) {}
 
   static read(id) {
     return db.prepare('SELECT * FROM VForm WHERE id = ?').get(id)
   }
 
-  static update(data) {}
+  update() {
+    this.models.forEach((model) => model.update())
+    // perhaps delete the object after
+  }
+
   static delete() {}
 }

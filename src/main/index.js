@@ -95,11 +95,14 @@ ipcMain.handle('service-read', async (e, ...args) => ServiceManager.read(...args
 
 // form operations
 ipcMain.handle('form-read', (e, ...args) => FormManager.read(...args))
-ipcMain.on('form-update', (e, ...args) => FormManager.update(...args))
+ipcMain.on('form-update', (e, data) => new FormManager(data).update())
 ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
 
 // table operations
 ipcMain.handle('table-read', (e) => TableManager.read())
+
+// the functions for handling queries are quite similar
+// only thing different are the queries -> most of the time
 
 // ipcMain.handle('form-update', (e, ...args) => FormManager.update(...args))
 

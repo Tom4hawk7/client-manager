@@ -1,5 +1,7 @@
+import db from '../database'
+
 export default class Service {
-  constructor(id = '', date, description, item_number, unit_price, client_id) {
+  constructor(date, description, item_number, unit_price, client_id, id = '') {
     this.id = parseInt(id)
     this.date = date
     this.description = description
@@ -8,13 +10,16 @@ export default class Service {
     this.client_id = parseInt(client_id)
   }
 
+  static construct({ date, description, item_number, unit_price, client_id, id = '' }) {
+    return new Service(date, description, item_number, unit_price, client_id, id)
+  }
+
   create() {
     const query = `
     INSERT INTO Service (date, description, item_number, unit_price, client_id)
-    VALUES (@description, @item_number, @unit_price, @client_id)`
+    VALUES (@description, @item_number, @unit_price, @client_id);`
 
-    db.prepare(query).run(this)
-    // append id to properties after this is done
+    this.id = db.prepare(query).run({ ...this }).lastInsertRowid
   }
 
   update() {
@@ -22,13 +27,15 @@ export default class Service {
     UPDATE Service SET 
     date = @date, description = @description, 
     item_number = @item_number, unit_price = @unit_price
-    WHERE id = @id`
+    WHERE id = @id;`
 
-    db.prepare(query).run(this)
+    db.prepare(query).run({ ...this })
   }
 
   delete() {
-    const query = `DELETE FROM Service WHERE id = ?`
+    const query = `DELETE FROM Service WHERE id = ?;`
     db.prepare(query).run(this.id)
+
+    // potentially: delete this
   }
 }
