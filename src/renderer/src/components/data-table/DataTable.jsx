@@ -1,10 +1,7 @@
 import styles from './DataTable.module.css'
 import { Link } from 'react-router'
 
-// <td/> look into contentEditable property and an proppable event handler for it
-
-// the action thingo should be able to change between a button or a link
-// think about passing the prop as a function that returns as component
+// look into having the css style for a table only calculat the default or whatever it's called
 
 export function DataTable({ data, checked = '', action = '', children }) {
   return (

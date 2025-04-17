@@ -62,5 +62,3 @@ export default function Clients() {
     </>
   )
 }
-
-// action={{ to: '/services', icon: <ClipboardIcon className="icon" /> }}

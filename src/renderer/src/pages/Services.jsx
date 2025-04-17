@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { DataTable, Column } from '../components/data-table/DataTable'
 import { useState } from 'react'
 import useModal from '../assets/hooks/useModal'
-import ClientForm from './ClientForm'
+import ClientForm from '../components/form/ClientForm'
 import Button from '../components/button/Button'
 import { PersonIcon, Pencil2Icon } from '@radix-ui/react-icons'
 import Month from '../components/inputs/month/Month'
@@ -18,32 +18,37 @@ const action = (id) => {
   )
 }
 
+// const read = (id) => window.form.read(id)
+// const submit = () =>
+const submit = (data) => window.form.update(data)
+
 export default function Services() {
   const service = useLoaderData()
   const id = useLocation().state
 
+  const [monthService, setMonthService] = useState(service)
   const [services, setServices] = useState(service)
   const [search, setSearch] = useState('')
 
-  const [modalRef, toggleModal] = useModal()
+  const [modalRef, toggle] = useModal()
 
   function handleSearch(e) {
     const entry = e.target.value
     setSearch(entry)
-    setServices(filter(service, entry, 'description'))
+    setServices(filter(monthService, entry, 'description'))
   }
 
   async function handleMonth(e) {
     const res = await window.service.read(id, e.target.value)
-    const data = filter(res, search, 'description')
-
-    setServices(data)
+    setMonthService(res)
+    setServices(filter(res, search, 'description'))
   }
 
   return (
     <>
       <dialog className="modal right" ref={modalRef}>
-        <ClientForm toggleModal={toggleModal} id={id} />
+        <ClientForm id={id} toggle={toggle} submit={submit} />
+        {/* <ClientForm toggleModal={toggleModal} id={id} /> */}
       </dialog>
 
       <div className="toolbar widget">
@@ -57,7 +62,7 @@ export default function Services() {
 
         <Month onChange={handleMonth} />
         <Button>Add Service</Button>
-        <Button onClick={toggleModal}>Edit Client</Button>
+        <Button onClick={toggle}>Edit Client</Button>
       </div>
 
       <div className="compartment">

@@ -24,6 +24,7 @@
 }
 
 .action:hover {
+  color: var(--blue);
   background-color: var(--shadow-light);
   box-shadow: 0 0 0px 5px var(--shadow-light);
   border-radius: 5px;

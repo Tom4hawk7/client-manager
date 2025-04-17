@@ -16,7 +16,7 @@ export default class FormManager {
   // this kind of constructor could be in a parent component
 
   constructor(data) {
-    // get client_id and delete it from the formData
+    // might have to make this conditional later
     const id = data.id
     delete data.id
 

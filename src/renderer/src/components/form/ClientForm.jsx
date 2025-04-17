@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Form, Fieldset, Input } from '../components/form/Form'
-import Button from '../components/button/Button'
+import { Form, Fieldset, Input } from './Form'
+import Button from '../button/Button'
 import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
 
 // 1. update the form data to reflect changes
@@ -8,19 +8,28 @@ import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
 
 // commandfor "close"
 
-export default function ClientForm({ toggleModal, id = '' }) {
+export default function ClientForm({ id = '', toggle, submit, remove }) {
   const [data, setData] = useState({})
 
   useEffect(() => {
+    // window.form.read(id).then(setData)
     window.form.read(id).then(setData)
+    // read(id).then(setData)
   }, [])
 
   function action(formData) {
     if (id) formData.set('id', id)
     const formFields = Object.fromEntries(formData)
 
+    console.log(formFields)
+
+    // submit(formFields)
+    // submit(formFields)
+
     window.form.update(formFields)
+
     setData(formFields)
+    toggle()
   }
 
   return (
@@ -57,7 +66,7 @@ export default function ClientForm({ toggleModal, id = '' }) {
         <Button variant="red" size="42px">
           <TrashIcon width="20px" height="20px" />
         </Button>
-        <Button size="42px" type="close">
+        <Button size="42px" type="button" onClick={toggle}>
           <Cross1Icon width="20px" height="20px" />
         </Button>
       </div>

@@ -3,7 +3,6 @@ import currentDate from './assets/functions/currentDate'
 
 import Clients from './pages/Clients'
 import Services from './pages/Services'
-import ClientForm from './pages/ClientForm'
 
 // use hash router
 const router = createHashRouter([
