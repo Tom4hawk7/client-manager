@@ -1,0 +1,6 @@
+.monthinput {
+  border: 1px solid var(--shadow);
+  border-radius: 5px;
+  padding: 0 10px;
+  min-width: 168px;
+}

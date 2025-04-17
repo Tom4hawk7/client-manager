@@ -31,13 +31,7 @@ export function DataTable({ data, checked = '', action = '', children }) {
               ))}
 
               {/* action buttons */}
-              {action && (
-                <td className={styles.action}>
-                  <Link to={`${action.to}/${data.id}`} state={data.id}>
-                    {action.icon}
-                  </Link>
-                </td>
-              )}
+              {action && <td className={styles.action}>{action(data.id)}</td>}
             </tr>
           ))
         ) : (

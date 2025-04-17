@@ -10,19 +10,20 @@ html {
 }
 
 :root {
-  /* --other-shadow: #dcdcdc; */
-  --very-dark-blue: #0e2a47;
+  --border: 1px solid rgb(229, 231, 235);
+  --box-shadow: -1px 1px 0px 0px rgb(229, 231, 235);
+  --border-radius: 5px;
+
+  --blue: #488bd4;
+  --red: rgb(255, 48, 48);
+
+  /* --very-dark-blue: #3980cc; */
+  /* --very-dark-blue: #0e2a47; */
   --dark-blue: #1174ba;
   --light-blue: #5acbe9;
-  /* --background: #83a5bd; */
-  /* --shadow: rgba(0, 0, 0, 0.25); */
   --shadow: rgba(0, 0, 0, 0.2);
   --shadow-light: rgb(249, 250, 251);
-  /* --shadow: rgb(229, 231, 235); */
   --placeholder: rgb(100, 100, 100);
-  --border-radius: 10px;
-  --border-color: rgba(0, 0, 0, 0.5);
-  /* --border-color: rgb(230, 230, 230); */
   --hover: rgb(230, 230, 230);
 }
 

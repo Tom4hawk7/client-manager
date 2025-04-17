@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Form, Fieldset, Input } from '../components/form/Form'
+import Button from '../components/button/Button'
+import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
 
 // 1. update the form data to reflect changes
 // 2. create the update function
+
+// commandfor "close"
 
 export default function ClientForm({ toggleModal, id = '' }) {
   const [data, setData] = useState({})
@@ -46,14 +50,16 @@ export default function ClientForm({ toggleModal, id = '' }) {
         <Input name="planmanager_email" label="Email" />
       </Fieldset>
 
-      <div className="toolbar spread max">
-        <button className="btn big" type="submit">
+      <div style={{ height: '42px' }} className="button-container">
+        <Button variant="blue" type="submit">
           Edit
-        </button>
-
-        <button className="btn " type="button" onClick={toggleModal}>
-          Cancel
-        </button>
+        </Button>
+        <Button variant="red" size="42px">
+          <TrashIcon width="20px" height="20px" />
+        </Button>
+        <Button size="42px" type="close">
+          <Cross1Icon width="20px" height="20px" />
+        </Button>
       </div>
     </Form>
   )

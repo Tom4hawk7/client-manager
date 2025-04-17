@@ -48,3 +48,16 @@ fieldset label {
 .big {
   width: 100%;
 }
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* width: inherit; */
+  /* flex-grow: 3; */
+  flex-basis: 1;
+}
+
+.button-container button:first-child {
+  flex-grow: 1;
+}

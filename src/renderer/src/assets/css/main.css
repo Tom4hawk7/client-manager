@@ -1,4 +1,16 @@
-/* page components */
+button,
+input {
+  background-color: white;
+  border: 1px solid var(--shadow);
+  border-radius: var(--border-radius);
+  font-family: 'IBM Plex Sans';
+  font-weight: 500;
+  font-size: 1.4rem;
+  font-style: normal;
+  color: rgb(24, 29, 31);
+}
+
+/* you have to add inputs */
 
 .compartment {
   margin: 40px;
@@ -15,53 +27,6 @@
   flex-direction: row;
   gap: 30px;
   width: inherit;
-}
-
-.toolbar.spread {
-  justify-content: space-between;
-}
-
-/* inputs */
-
-.btn {
-  font-family: 'IBM Plex Sans';
-  font-weight: 500;
-  font-size: 1.4rem;
-  background-color: white;
-  border: 1px solid var(--shadow);
-  border-radius: 10px;
-  color: rgb(24, 29, 31);
-  cursor: pointer;
-  padding: 1rem 1.2rem;
-  min-width: 168px;
-}
-
-/* .button:hover {
-  background-color: var(--very-dark-blue);
-  transition: all 0.5s;
-} */
-
-.searchbar {
-  border: 0;
-  flex-grow: 2;
-  padding: 0 12px;
-  /* box-shadow: 0px 0px 0px 1px var(--shadow); */
-  /* box-shadow: 0px 0px 0px 1px var(--shadow); */
-  border: 1px solid var(--shadow);
-  border-radius: 20px;
-}
-
-.dateinput {
-  font-weight: 500;
-  color: rgb(24, 29, 31);
-  font-style: normal;
-  font-family: 'IBM Plex Sans';
-  font-size: 14px;
-  border: 1px solid var(--shadow);
-  border-radius: 10px;
-  padding: 0 10px;
-  min-width: 168px;
-  /* border: 0; */
 }
 
 /* Icon */

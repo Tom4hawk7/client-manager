@@ -29,7 +29,7 @@ export function Input(props) {
   return (
     <>
       {props.label && <label htmlFor={props.name}>{props.label}</label>}
-      <input id={props.name} {...props} />
+      <input style={{ color: 'var(--placeholder)', fontWeight: 400 }} id={props.name} {...props} />
     </>
   )
 }

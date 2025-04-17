@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('service', {
-  read: (id, date) => ipcRenderer.invoke('service-read', id, date)
+  read: (id, date, description = '') => ipcRenderer.invoke('service-read', id, date, description)
 })
 
 contextBridge.exposeInMainWorld('form', {

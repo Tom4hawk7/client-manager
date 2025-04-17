@@ -2,20 +2,42 @@ import { data, useLoaderData, useLocation } from 'react-router'
 import { Link } from 'react-router'
 import { DataTable, Column } from '../components/data-table/DataTable'
 import { useState } from 'react'
-import currentDate from '../assets/functions/currentDate'
 import useModal from '../assets/hooks/useModal'
-import { useRef } from 'react'
 import ClientForm from './ClientForm'
+import Button from '../components/button/Button'
+import { PersonIcon, Pencil2Icon } from '@radix-ui/react-icons'
+import Month from '../components/inputs/month/Month'
+import SearchBar from '../components/inputs/searchbar/Searchbar'
+import filter from '../assets/functions/filter'
+
+const action = (id) => {
+  return (
+    <Button variant="action" size="18px">
+      <Pencil2Icon className="icon" width="18px" height="18px" />
+    </Button>
+  )
+}
 
 export default function Services() {
-  const [services, setServices] = useState(useLoaderData())
-  const [id] = useState(useLocation().state)
+  const service = useLoaderData()
+  const id = useLocation().state
+
+  const [services, setServices] = useState(service)
+  const [search, setSearch] = useState('')
 
   const [modalRef, toggleModal] = useModal()
 
-  // input event handlers
-  async function handleMonthChange(e) {
-    setServices(await window.service.read(id, e.target.value))
+  function handleSearch(e) {
+    const entry = e.target.value
+    setSearch(entry)
+    setServices(filter(service, entry, 'description'))
+  }
+
+  async function handleMonth(e) {
+    const res = await window.service.read(id, e.target.value)
+    const data = filter(res, search, 'description')
+
+    setServices(data)
   }
 
   return (
@@ -26,27 +48,20 @@ export default function Services() {
 
       <div className="toolbar widget">
         <Link to="/">
-          <button className="btn">Clients</button>
+          <Button variant="aqua" size="42px" radius="5px">
+            <PersonIcon width="20px" height="20px" />
+          </Button>
         </Link>
 
-        <button className="btn">Add Service</button>
+        <SearchBar onChange={handleSearch} />
 
-        <input
-          className="dateinput"
-          type="month"
-          defaultValue={currentDate}
-          onChange={handleMonthChange}
-        />
-
-        <button className="btn" onClick={toggleModal}>
-          Edit Client
-        </button>
-
-        <button className="btn">Delete Client</button>
+        <Month onChange={handleMonth} />
+        <Button>Add Service</Button>
+        <Button onClick={toggleModal}>Edit Client</Button>
       </div>
 
       <div className="compartment">
-        <DataTable data={services}>
+        <DataTable data={services} action={action}>
           <Column field="description" header="Description" />
           <Column field="date" header="Date" />
           <Column field="unit_price" header="Unit Price" />
