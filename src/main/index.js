@@ -84,6 +84,10 @@ import TableManager from './managers/table-manager'
 ipcMain.handle('service-read', async (e, ...args) => ServiceManager.read(...args))
 
 // form operations
+ipcMain.handle('form-create', (e, data) => {
+  const formManager = new FormManager(data)
+  return formManager.create()
+})
 ipcMain.handle('form-read', (e, ...args) => FormManager.read(...args))
 ipcMain.on('form-update', (e, data) => new FormManager(data).update())
 ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))

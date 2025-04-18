@@ -2,14 +2,23 @@ import { useEffect, useState } from 'react'
 import { Form, Fieldset, Input } from './Form'
 import Button from '../button/Button'
 import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
+import { redirect } from 'react-router'
+import { useNavigate } from 'react-router'
 
 // 1. update the form data to reflect changes
 // 2. create the update function
 
 // commandfor "close"
+// const remove = (id) => window.form.delete(id)
 
 export default function ClientForm({ id = '', toggle, submit, remove }) {
   const [data, setData] = useState({})
+  let navigate = useNavigate()
+
+  let disable = id ? false : true
+  let text = id ? 'Edit' : 'Create'
+
+  // const trashVariant = id ? '' : 'disabled'
 
   useEffect(() => {
     // window.form.read(id).then(setData)
@@ -20,22 +29,21 @@ export default function ClientForm({ id = '', toggle, submit, remove }) {
   function action(formData) {
     if (id) formData.set('id', id)
     const formFields = Object.fromEntries(formData)
-
-    console.log(formFields)
-
-    // submit(formFields)
-    // submit(formFields)
-
-    window.form.update(formFields)
-
+    submit(formFields)
     setData(formFields)
+    toggle()
+  }
+
+  function remove() {
+    window.form.delete(id)
+    navigate('/')
     toggle()
   }
 
   return (
     <Form action={action} data={data}>
       <Fieldset legend="Client Information">
-        <Input name="client_name" label="Name" />
+        <Input name="client_name" label="Name" required={true} />
         <Input name="client_dob" label="Date of birth" type="date" />
         <Input name="client_address" label="Address" />
         <Input name="client_school" label="School" />
@@ -61,9 +69,9 @@ export default function ClientForm({ id = '', toggle, submit, remove }) {
 
       <div style={{ height: '42px' }} className="button-container">
         <Button variant="blue" type="submit">
-          Edit
+          {text}
         </Button>
-        <Button variant="red" size="42px">
+        <Button disabled={disable} variant="red" size="42px" onClick={remove}>
           <TrashIcon width="20px" height="20px" />
         </Button>
         <Button size="42px" type="button" onClick={toggle}>

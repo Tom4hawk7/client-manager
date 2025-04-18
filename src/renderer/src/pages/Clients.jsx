@@ -9,6 +9,8 @@ import Button from '../components/button/Button'
 import SearchBar from '../components/inputs/searchbar/Searchbar'
 import Month from '../components/inputs/month/Month'
 import filter from '../assets/functions/filter'
+import useModal from '../assets/hooks/useModal'
+import ClientForm from '../components/form/ClientForm'
 
 const action = (id) => {
   return (
@@ -26,6 +28,12 @@ export default function Clients() {
 
   const [clients, setClients] = useState(client)
   const [date, setDate] = useState(currentDate) // might be able to use a ref here
+  const [modalRef, toggle] = useModal()
+
+  const submit = async (data) => {
+    const res = await window.form.create(data)
+    setClients([...clients, res])
+  }
 
   function handleSearch(e) {
     setClients(filter(client, e.target.value, 'client_name'))
@@ -39,6 +47,11 @@ export default function Clients() {
 
   return (
     <>
+      <dialog className="modal right" ref={modalRef}>
+        <ClientForm toggle={toggle} submit={submit} />
+        {/* <ClientForm toggleModal={toggleModal} id={id} /> */}
+      </dialog>
+
       <div className="toolbar widget">
         <Button variant="aqua" size="42px">
           <GearIcon width="20px" height="20px" />
@@ -48,7 +61,7 @@ export default function Clients() {
         <Month onChange={setDate} />
 
         <Button onClick={handleInvoice}>Generate Invoice</Button>
-        <Button>Create Client </Button>
+        <Button onClick={toggle}>Create Client </Button>
       </div>
       <div className="compartment">
         <DataTable data={clients} checked={checked} action={action}>

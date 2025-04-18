@@ -5,6 +5,7 @@ contextBridge.exposeInMainWorld('service', {
 })
 
 contextBridge.exposeInMainWorld('form', {
+  create: (data) => ipcRenderer.invoke('form-create', data),
   read: (id) => ipcRenderer.invoke('form-read', id),
   update: (data) => ipcRenderer.send('form-update', data),
   delete: (id) => ipcRenderer.send('form-delete', id)

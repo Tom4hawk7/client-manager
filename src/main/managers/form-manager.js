@@ -40,7 +40,12 @@ export default class FormManager {
     this.models = models
   }
 
-  static create(data) {}
+  create() {
+    this.models.forEach((model) => model.create())
+    const id = this.models[0].id
+    console.log('id')
+    return db.prepare('SELECT * FROM VTable WHERE id = ?').get(id)
+  }
 
   static read(id) {
     return db.prepare('SELECT * FROM VForm WHERE id = ?').get(id)
@@ -51,5 +56,7 @@ export default class FormManager {
     // perhaps delete the object after
   }
 
-  static delete() {}
+  static delete(id) {
+    db.prepare('DELETE FROM Client WHERE id = ?').run(id)
+  }
 }
