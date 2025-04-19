@@ -42,9 +42,9 @@ export default class FormManager {
 
   create() {
     this.models.forEach((model) => model.create())
-    const id = this.models[0].id
-    console.log('id')
-    return db.prepare('SELECT * FROM VTable WHERE id = ?').get(id)
+    // const id = this.models[0].id
+    // console.log('id')
+    // return db.prepare('SELECT * FROM VTable WHERE id = ?').get(id)
   }
 
   static read(id) {

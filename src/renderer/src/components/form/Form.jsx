@@ -11,25 +11,32 @@ export function Form({ action, children, data = '' }) {
 }
 
 export function Fieldset({ children, legend = '' }) {
-  const data = use(FormContext)
+  // const data = use(FormContext)
 
-  const filledInputs = children.map((input, i) => {
-    return <Input key={i} {...input.props} defaultValue={data[input.props.name]} />
-  })
+  // const filledInputs = children.map((input, i) => {
+  //   return <Input key={i} {...input.props} defaultValue={data[input.props.name]} />
+  // })
 
   return (
     <fieldset>
       <legend>{legend}</legend>
-      {data ? filledInputs : children}
+      {children}
     </fieldset>
   )
 }
 
 export function Input(props) {
+  const data = use(FormContext)
+
   return (
     <>
       {props.label && <label htmlFor={props.name}>{props.label}</label>}
-      <input style={{ color: 'var(--placeholder)', fontWeight: 400 }} id={props.name} {...props} />
+      <input
+        defaultValue={data[props.name]}
+        style={{ color: 'var(--placeholder)', fontWeight: 400 }}
+        id={props.name}
+        {...props}
+      />
     </>
   )
 }

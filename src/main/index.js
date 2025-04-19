@@ -81,10 +81,11 @@ import ServiceManager from './managers/service-manager'
 import TableManager from './managers/table-manager'
 
 // service operations
+ipcMain.handle('service-read-all', async (e, ...args) => ServiceManager.readAll(...args))
 ipcMain.handle('service-read', async (e, ...args) => ServiceManager.read(...args))
 
 // form operations
-ipcMain.handle('form-create', (e, data) => {
+ipcMain.on('form-create', (e, data) => {
   const formManager = new FormManager(data)
   return formManager.create()
 })

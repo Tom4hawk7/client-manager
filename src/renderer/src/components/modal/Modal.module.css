@@ -1,0 +1,46 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.modal {
+  position: relative;
+  border: 0px;
+  outline: 0px;
+  max-height: 100vh;
+  background-color: white;
+}
+
+.right {
+  overflow-y: scroll;
+  max-height: 100vh;
+  left: 60%;
+  width: 40%;
+}
+
+/* .backdrop {
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.2);
+} */
+
+/* .modal {
+  color: white;
+  border: 0px;
+  outline: 0px;
+  max-height: 100vh;
+  position: relative;
+  z-index: 0;
+} */
+
+/* .right {
+  left: 50%;
+  width: 50%;
+}
+
+.center {
+  left: 25%;
+} */

@@ -3,7 +3,9 @@ import db from '../database'
 export default class ServiceManager {
   static create() {}
 
-  static read(id, date, description) {
+  static read() {}
+
+  static readAll(id, date, description) {
     const query = `
     SELECT * FROM Service
     WHERE Service.client_id = ?

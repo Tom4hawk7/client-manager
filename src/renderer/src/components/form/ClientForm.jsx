@@ -2,82 +2,72 @@ import { useEffect, useState } from 'react'
 import { Form, Fieldset, Input } from './Form'
 import Button from '../button/Button'
 import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
-import { redirect } from 'react-router'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router'
+import Modal from '../modal/Modal'
 
-// 1. update the form data to reflect changes
-// 2. create the update function
-
-// commandfor "close"
-// const remove = (id) => window.form.delete(id)
-
-export default function ClientForm({ id = '', toggle, submit, remove }) {
-  const [data, setData] = useState({})
+export default function ClientForm({ data, submit, remove }) {
   let navigate = useNavigate()
 
-  let disable = id ? false : true
-  let text = id ? 'Edit' : 'Create'
-
-  // const trashVariant = id ? '' : 'disabled'
-
-  useEffect(() => {
-    // window.form.read(id).then(setData)
-    window.form.read(id).then(setData)
-    // read(id).then(setData)
-  }, [])
+  const text = data ? 'Edit' : 'Create'
+  const disable = remove ? false : true
 
   function action(formData) {
-    if (id) formData.set('id', id)
     const formFields = Object.fromEntries(formData)
     submit(formFields)
-    setData(formFields)
-    toggle()
+    navigate(-1)
   }
 
-  function remove() {
-    window.form.delete(id)
-    navigate('/')
-    toggle()
+  function del(id) {
+    console.log('Delete id: ', id)
+    remove(id)
+    navigate(-2)
   }
 
   return (
-    <Form action={action} data={data}>
-      <Fieldset legend="Client Information">
-        <Input name="client_name" label="Name" required={true} />
-        <Input name="client_dob" label="Date of birth" type="date" />
-        <Input name="client_address" label="Address" />
-        <Input name="client_school" label="School" />
-        <Input name="client_p_number" label="Participation number" />
-      </Fieldset>
+    <Modal variant="right">
+      <Form action={action} data={data}>
+        <Input type="hidden" name="id" />
 
-      <Fieldset legend="Parent Information">
-        <Input name="parent_name" label="Name" />
-        <Input name="parent_email" label="Email" />
-        <Input name="parent_phone" label="Phone" type="tel" />
-      </Fieldset>
+        <Fieldset legend="Client Information">
+          <Input name="client_name" label="Name" required={true} autoFocus={true} />
+          <Input name="client_dob" label="Date of birth" type="date" />
+          <Input name="client_address" label="Address" />
+          <Input name="client_school" label="School" />
+          <Input name="client_p_number" label="Participation number" />
+        </Fieldset>
 
-      <Fieldset legend="Plan Information">
-        <Input name="plan_start_date" label="Start date" type="date" />
-        <Input name="plan_end_date" label="End date" type="date" />
-        <Input name="plan_budget" label="Budget" type="number" />
-      </Fieldset>
+        <Fieldset legend="Parent Information">
+          <Input name="parent_name" label="Name" />
+          <Input name="parent_email" label="Email" />
+          <Input name="parent_phone" label="Phone" type="tel" />
+        </Fieldset>
 
-      <Fieldset legend="Plan Manager Information">
-        <Input name="planmanager_name" label="Name" />
-        <Input name="planmanager_email" label="Email" />
-      </Fieldset>
+        <Fieldset legend="Plan Information">
+          <Input name="plan_start_date" label="Start date" type="date" />
+          <Input name="plan_end_date" label="End date" type="date" />
+          <Input name="plan_budget" label="Budget" type="number" />
+        </Fieldset>
 
-      <div style={{ height: '42px' }} className="button-container">
-        <Button variant="blue" type="submit">
-          {text}
-        </Button>
-        <Button disabled={disable} variant="red" size="42px" onClick={remove}>
-          <TrashIcon width="20px" height="20px" />
-        </Button>
-        <Button size="42px" type="button" onClick={toggle}>
-          <Cross1Icon width="20px" height="20px" />
-        </Button>
-      </div>
-    </Form>
+        <Fieldset legend="Plan Manager Information">
+          <Input name="planmanager_name" label="Name" />
+          <Input name="planmanager_email" label="Email" />
+        </Fieldset>
+
+        <div style={{ height: '42px' }} className="button-container">
+          <Button variant="blue" type="submit">
+            {text}
+          </Button>
+
+          <Button disabled={disable} variant="red" size="42px" onClick={() => del(data.id)}>
+            <TrashIcon width="20px" height="20px" />
+          </Button>
+
+          <Button size="42px" type="button" onClick={() => navigate(-1)}>
+            <Cross1Icon width="20px" height="20px" />
+          </Button>
+        </div>
+      </Form>
+    </Modal>
   )
 }
