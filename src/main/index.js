@@ -94,4 +94,4 @@ ipcMain.on('form-update', (e, data) => new FormManager(data).update())
 ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
 
 // table operations
-ipcMain.handle('table-read', (e) => TableManager.read())
+ipcMain.handle('table-read', (e, name) => TableManager.read(name))

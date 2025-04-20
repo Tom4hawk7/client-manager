@@ -1,11 +1,12 @@
 import { createContext, use } from 'react'
+import { Form as RouterForm } from 'react-router'
 
 const FormContext = createContext(null)
 
-export function Form({ action, children, data = '' }) {
+export function Form({ children, data = '' }) {
   return (
     <FormContext.Provider value={data}>
-      <form action={action}>{children}</form>
+      <RouterForm method="post">{children}</RouterForm>
     </FormContext.Provider>
   )
 }
@@ -27,12 +28,17 @@ export function Fieldset({ children, legend = '' }) {
 
 export function Input(props) {
   const data = use(FormContext)
+  let defaultValue = ''
+
+  if (data) {
+    defaultValue = data[props.name]
+  }
 
   return (
     <>
       {props.label && <label htmlFor={props.name}>{props.label}</label>}
       <input
-        defaultValue={data[props.name]}
+        defaultValue={defaultValue}
         style={{ color: 'var(--placeholder)', fontWeight: 400 }}
         id={props.name}
         {...props}

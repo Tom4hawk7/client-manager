@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 export default function useChecked(data) {
   const [selected, setSelected] = useState(() => {
-    return new Map(data.map((data) => [data.id, false]))
+    if (Array.isArray(data)) {
+      return new Map(data.map((data) => [data.id, false]))
+    }
   })
 
   return new Checked(selected, setSelected)

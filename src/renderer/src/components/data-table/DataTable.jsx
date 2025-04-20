@@ -14,7 +14,7 @@ export function DataTable({ data, checked = '', action = '', children }) {
         </tr>
       </thead>
       <tbody className={styles.tableBody}>
-        {data.length > 0 ? (
+        {Array.isArray(data) === true && data.length > 0 ? (
           data.map((data) => (
             <tr key={data.id}>
               {/* checkboxes */}

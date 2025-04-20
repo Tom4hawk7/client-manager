@@ -10,6 +10,13 @@ input {
   color: rgb(24, 29, 31);
 }
 
+/* a {
+  display: contents;
+  height: 500px;
+  width: inherit;
+  text-decoration: none;
+} */
+
 .green {
   color: green;
   background-color: green;

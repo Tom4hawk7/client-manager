@@ -1,13 +1,31 @@
-.button {
+.button,
+.link {
   cursor: pointer;
   line-height: 0;
-  min-width: 168px;
-  padding: 1rem 1.2rem;
+  text-decoration: none;
 }
 
-/* icon */
+.link {
+  display: inline-block;
+  border: 1px solid var(--shadow);
+  border-radius: 5px;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  min-width: 168px;
+}
 
-.icon {
+/* types */
+
+.content-text {
+  min-width: 168px;
+  padding: 1rem 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  height: auto;
+}
+
+.content-icon {
   margin: 0;
   padding: 0;
   min-width: 0;
@@ -17,13 +35,13 @@
 
 /* action */
 
-.action {
+.variant-action {
   outline: 0;
   border: 0;
   transition: all 0.1s ease-in;
 }
 
-.action:hover {
+.variant-action:hover {
   color: var(--blue);
   background-color: var(--shadow-light);
   box-shadow: 0 0 0px 5px var(--shadow-light);
@@ -32,27 +50,29 @@
 
 /* other variants */
 
-.aqua,
-.blue,
-.red,
-.placeholder {
+.variant-aqua,
+.variant-blue,
+.variant-red,
+.color-placeholder,
+.disabled {
   color: white;
   border: 0;
   box-shadow: var(--box-shadow);
 }
 
-.aqua {
+.variant-aqua {
   background-color: var(--light-blue);
 }
 
-.blue {
+.variant-blue {
   background-color: var(--blue);
 }
 
-.red {
+.variant-red {
   background-color: var(--red);
 }
 
 .disabled {
+  color: white;
   background-color: var(--placeholder);
 }

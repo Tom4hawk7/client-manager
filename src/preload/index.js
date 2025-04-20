@@ -14,5 +14,5 @@ contextBridge.exposeInMainWorld('form', {
 })
 
 contextBridge.exposeInMainWorld('table', {
-  read: () => ipcRenderer.invoke('table-read')
+  read: (name) => ipcRenderer.invoke('table-read', name)
 })

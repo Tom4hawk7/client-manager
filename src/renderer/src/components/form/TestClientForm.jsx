@@ -1,30 +1,7 @@
-import { useEffect, useState } from 'react'
 import { Form, Fieldset, Input } from './Form'
-import Button from '../button/Button'
-import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router'
 import Modal from '../modal/Modal'
 
-export default function ClientForm({ data, submit, remove }) {
-  let navigate = useNavigate()
-
-  const text = data ? 'Edit' : 'Create'
-  const disable = remove ? false : true
-
-  function action(formData) {
-    const formFields = Object.fromEntries(formData)
-    submit(formFields)
-    navigate(-1)
-    // const id = submit(formFields)
-  }
-
-  function del(id) {
-    console.log('Delete id: ', id)
-    remove(id)
-    navigate(-2)
-  }
-
+export default function TestClientForm({ data, children }) {
   return (
     <Modal variant="right">
       <Form data={data}>
@@ -56,17 +33,7 @@ export default function ClientForm({ data, submit, remove }) {
         </Fieldset>
 
         <div style={{ height: '42px' }} className="button-container">
-          <Button variant="blue" type="submit">
-            {text}
-          </Button>
-
-          <Button disabled={disable} variant="red" size="42px" onClick={() => del(data.id)}>
-            <TrashIcon width="20px" height="20px" />
-          </Button>
-
-          <Button size="42px" type="button" onClick={() => navigate(-1)}>
-            <Cross1Icon width="20px" height="20px" />
-          </Button>
+          {children}
         </div>
       </Form>
     </Modal>

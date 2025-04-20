@@ -1,11 +1,30 @@
 import ClientForm from '../components/form/ClientForm'
+import { redirect } from 'react-router'
+import Button from '../components/button/Button'
+import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
+import ButtonLink from '../components/button/ButtonLink'
+import TestClientForm from '../components/form/TestClientForm'
 
-// actions
-const submit = (formFields) => window.form.create(formFields)
-
-// need the state of Clients page to update when a new client is created
-// perhaps through the use of a fetcher
+export const createClientAction = async ({ request }) => {
+  const data = Object.fromEntries(await request.formData())
+  await window.form.create(data)
+  return redirect('..')
+}
 
 export default function CreateClient() {
-  return <ClientForm submit={submit} />
+  return (
+    <TestClientForm>
+      <Button variant="blue" type="submit">
+        Submit
+      </Button>
+
+      <Button disabled={true} size={'42px'}>
+        <TrashIcon width="20px" height="20px" />
+      </Button>
+
+      <ButtonLink content="icon" size="42px" to="..">
+        <Cross1Icon width="20px" height="20px" />
+      </ButtonLink>
+    </TestClientForm>
+  )
 }

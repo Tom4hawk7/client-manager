@@ -1,30 +1,40 @@
 import styles from './Button.module.css'
 
-// const variants = {
-//   primary: styles.primary,
-//   secondary: styles.orange
-// }
-
-export default function Button({ variant, disabled, size, type = 'button', onClick, children }) {
-  const style = {}
+export default function Button({
+  variant,
+  content,
+  size,
+  type = 'button',
+  name,
+  value,
+  onClick,
+  disabled,
+  children
+}) {
+  let style = size ? { width: size, height: size } : {}
 
   let disableClass = disabled ? styles.disabled : ''
-  let classVariant = styles[variant]
-  let classIcon = ''
+  let classContent = styles[`content-${content}`]
+  let classVariant = styles[`variant-${variant}`]
+  let className = `${styles.button} ${classContent} ${classVariant} ${disableClass}`
+  // let classVariant = styles[`variant-${variant}`]
+  // let classIcon = ''
 
-  if (size) {
-    style.width = size
-    style.height = size
-    classIcon = styles.icon
-  }
+  // if (size) {
+  //   style.width = size
+  //   style.height = size
+  //   classIcon = styles.icon
+  // }
 
   return (
     <button
       type={type}
       style={style}
-      className={`${styles.button} ${classIcon} ${classVariant} ${disableClass}`}
+      className={`${className}`}
       onClick={onClick}
       disabled={disabled}
+      value={value}
+      name={name}
     >
       {children}
     </button>

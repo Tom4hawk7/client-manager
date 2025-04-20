@@ -42,6 +42,10 @@ export default class FormManager {
 
   create() {
     this.models.forEach((model) => model.create())
+
+    // I think it should perhaps send the id back
+    // then you can append it to the formFields and send it back on navigation
+
     // const id = this.models[0].id
     // console.log('id')
     // return db.prepare('SELECT * FROM VTable WHERE id = ?').get(id)

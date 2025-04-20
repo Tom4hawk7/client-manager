@@ -7,7 +7,7 @@ export default function Modal({ variant, children }) {
 
   const escape = (e) => {
     if (e.key == 'Escape') {
-      navigate(-1)
+      navigate('..')
     }
   }
 
