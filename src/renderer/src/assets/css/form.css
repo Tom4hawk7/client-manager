@@ -54,6 +54,7 @@ fieldset label {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  height: 42px;
   /* width: inherit; */
   /* flex-grow: 3; */
   flex-basis: 1;

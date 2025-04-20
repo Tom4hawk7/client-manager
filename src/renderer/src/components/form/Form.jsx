@@ -20,21 +20,22 @@ export function Fieldset({ children, legend = '' }) {
   )
 }
 
-export function Input(props) {
+export function Input({ type = 'text', defaultValue = '', ...props }) {
   const data = use(FormContext)
-  let defaultValue = ''
+  let value = defaultValue
 
-  if (data) {
-    defaultValue = data[props.name]
+  if (data && Object.hasOwn(data, props.name)) {
+    value = data[props.name]
   }
 
   return (
     <>
       {props.label && <label htmlFor={props.name}>{props.label}</label>}
       <input
-        defaultValue={defaultValue}
+        defaultValue={value}
         style={{ color: 'var(--placeholder)', fontWeight: 400 }}
         id={props.name}
+        type={type}
         {...props}
       />
     </>

@@ -7,7 +7,8 @@ export default function EditClient() {
 }
 
 export const editClientLoader = async ({ params }) => {
-  return await window.form.read(params.id)
+  console.log(params)
+  return await window.form.read(params.client_id)
 }
 
 export const editClientAction = async ({ request }) => {

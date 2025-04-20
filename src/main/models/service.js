@@ -16,8 +16,8 @@ export default class Service {
 
   create() {
     const query = `
-    INSERT INTO Service (date, description, item_number, unit_price, client_id)
-    VALUES (@description, @item_number, @unit_price, @client_id);`
+    INSERT INTO Service (description, date, item_number, unit_price, client_id)
+    VALUES (@description, @date, @item_number, @unit_price, @client_id);`
 
     this.id = db.prepare(query).run({ ...this }).lastInsertRowid
   }

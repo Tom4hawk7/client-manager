@@ -49,11 +49,18 @@ export default function Clients() {
 
       <div className="compartment">
         <DataTable data={clients} checked={checked} action={action}>
-          <Column field="client_name" header="Name" />
-          <Column field="parent_name" header="Parent" />
-          <Column field="client_address" header="Address" />
-          <Column field="parent_phone" header="Contact" />
-          <Column field="client_school" header="School" />
+          {/* <colgroup>
+            <col style={{ width: '0px' }} />
+            <col style={{ width: '0px' }} />
+            <col style={{ width: '30px' }} />
+            <col style={{ width: '90px' }} />
+            <col style={{ width: '5%' }} />
+          </colgroup> */}
+          <Column field="client_name" header="Name" width="20%" />
+          <Column field="parent_name" header="Parent" width="20%" />
+          <Column field="client_address" header="Address" width="20%" />
+          <Column field="parent_phone" header="Contact" width="20%" />
+          <Column field="client_school" header="School" width="20%" />
         </DataTable>
       </div>
     </>

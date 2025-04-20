@@ -1,9 +1,22 @@
-.table {
+.outerWrapper {
+  overflow: hidden;
   border-radius: 10px;
+  border: 1px solid rgb(229, 231, 235);
+}
+
+.innerWrapper {
+  overflow-y: auto;
+  border-radius: 10px;
+  max-height: 500px;
+}
+
+.table {
   border-spacing: 0;
   overflow: hidden;
+  overflow-y: scroll;
   width: 100%;
-  border: 1px solid rgb(229, 231, 235);
+  table-layout: fixed;
+  /* border: 1px solid rgb(229, 231, 235); */
   box-shadow: -1px 1px 0px 0px rgb(229, 231, 235);
 }
 
@@ -18,12 +31,39 @@ tbody :last-child > td {
   border-bottom: 0;
 }
 
-.tableHead th,
-.tableHead td {
+.tableHead {
+  position: sticky;
+  top: 0;
   color: #374151;
-  background-color: rgb(249, 250, 251);
-  /* border-bottom: 1px solid rgb(229, 231, 235); */
 }
+
+.tableHead tr {
+  background-color: rgb(249, 250, 251);
+}
+
+/* .tableBody tr {
+  overflow: hidden;
+  height: 50px;
+  white-space: nowrap;
+} */
+
+.tableBody td {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* td {
+  overflow: hidden;
+  height: 55px;
+} */
+
+/* .tableBody,
+.tableHead,
+.tableBody tr {
+  overflow: hidden;
+  color: green;
+  height: 55px;
+} */
 
 /* specific content */
 

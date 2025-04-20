@@ -81,8 +81,11 @@ import ServiceManager from './managers/service-manager'
 import TableManager from './managers/table-manager'
 
 // service operations
+ipcMain.on('service-create', async (e, ...args) => ServiceManager.create(...args))
 ipcMain.handle('service-read-all', async (e, ...args) => ServiceManager.readAll(...args))
 ipcMain.handle('service-read', async (e, ...args) => ServiceManager.read(...args))
+ipcMain.on('service-update', async (e, ...args) => ServiceManager.update(...args))
+ipcMain.on('service-delete', async (e, ...args) => ServiceManager.delete(...args))
 
 // form operations
 ipcMain.on('form-create', (e, data) => {

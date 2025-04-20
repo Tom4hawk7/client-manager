@@ -10,6 +10,17 @@ input {
   color: rgb(24, 29, 31);
 }
 
+select {
+  border: 1px solid var(--shadow);
+  border-radius: 5px;
+  color: var(--placeholder);
+  /* padding: 20px; */
+  font-weight: 400;
+  height: 42px;
+  padding: 8px;
+  margin: 5px 0;
+}
+
 /* a {
   display: contents;
   height: 500px;

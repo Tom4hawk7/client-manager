@@ -35,7 +35,7 @@ export default function ClientForm({ data }) {
         <Fieldset legend="Plan Information">
           <Input name="plan_start_date" label="Start date" type="date" />
           <Input name="plan_end_date" label="End date" type="date" />
-          <Input name="plan_budget" label="Budget" type="number" />
+          <Input name="plan_budget" label="Budget" type="number" step="any" min="0" />
         </Fieldset>
 
         <Fieldset legend="Plan Manager Information">
