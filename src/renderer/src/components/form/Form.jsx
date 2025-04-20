@@ -12,12 +12,6 @@ export function Form({ children, data = '' }) {
 }
 
 export function Fieldset({ children, legend = '' }) {
-  // const data = use(FormContext)
-
-  // const filledInputs = children.map((input, i) => {
-  //   return <Input key={i} {...input.props} defaultValue={data[input.props.name]} />
-  // })
-
   return (
     <fieldset>
       <legend>{legend}</legend>

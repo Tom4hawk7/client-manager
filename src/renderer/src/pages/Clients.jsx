@@ -1,43 +1,30 @@
 // import DataTable from '../components/data-table/DataTable'
 import { DataTable, Column } from '../components/data-table/DataTable'
-import { Link, Outlet, useLoaderData, useSearchParams } from 'react-router'
+import { Outlet, useLoaderData } from 'react-router'
 import { GearIcon, ClipboardIcon } from '@radix-ui/react-icons'
-import { useEffect, useState } from 'react'
 import useChecked from '../assets/hooks/useChecked'
-import currentDate from '../assets/functions/currentDate'
 import Button from '../components/button/Button'
 import SearchBar from '../components/inputs/searchbar/Searchbar'
 import Month from '../components/inputs/month/Month'
-import filter from '../assets/functions/filter'
 import ButtonLink from '../components/button/ButtonLink'
 import useFilter from '../assets/hooks/useFilter'
-// the problem is the <Outlet/>
-// thats why it won't refresh
-
-// you need to add an action and then set the state of it being equal to that perhaps
-
-const action = (id) => {
-  return (
-    <ButtonLink content="icon" variant="action" size="18px" to={`/services/${id}`}>
-      <ClipboardIcon width="18px" height="18px" />
-    </ButtonLink>
-  )
-}
+import useMonth from '../assets/hooks/useMonth'
 
 export default function Clients() {
-  const data = useLoaderData()
-  const checked = useChecked(data)
+  const clients = useLoaderData()
+  const checked = useChecked(clients)
 
   const [filter, setFilter] = useFilter()
-  const [date, setDate] = useState(currentDate) // might be able to use a ref here
+  const [month, setMonth] = useMonth()
 
   function handleInvoice() {
     console.log('Checked: ', checked.getAll())
-    console.log('Date: ', date)
-    console.log('Clients: ', data)
+    console.log('Month: ', month)
+    console.log('Clients: ', clients)
   }
 
   const handleSearch = (e) => setFilter('name', e.target.value)
+  const handleMonth = (e) => setMonth(e.target.value)
 
   return (
     <>
@@ -49,7 +36,7 @@ export default function Clients() {
         </ButtonLink>
 
         <SearchBar onChange={handleSearch} />
-        <Month onChange={setDate} />
+        <Month onChange={handleMonth} />
 
         <Button content="text" onClick={handleInvoice}>
           Generate Invoice
@@ -61,7 +48,7 @@ export default function Clients() {
       </div>
 
       <div className="compartment">
-        <DataTable data={data} checked={checked} action={action}>
+        <DataTable data={clients} checked={checked} action={action}>
           <Column field="client_name" header="Name" />
           <Column field="parent_name" header="Parent" />
           <Column field="client_address" header="Address" />
@@ -70,5 +57,20 @@ export default function Clients() {
         </DataTable>
       </div>
     </>
+  )
+}
+
+export const clientsLoader = async ({ request }) => {
+  const searchParams = new URL(request.url).searchParams
+  const searchName = searchParams.get('name') || ''
+
+  return await window.table.read(searchName)
+}
+
+const action = (id) => {
+  return (
+    <ButtonLink content="icon" variant="action" size="18px" to={`/services/${id}`}>
+      <ClipboardIcon width="18px" height="18px" />
+    </ButtonLink>
   )
 }

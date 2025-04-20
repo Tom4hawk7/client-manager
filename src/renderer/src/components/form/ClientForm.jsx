@@ -1,28 +1,16 @@
-import { useEffect, useState } from 'react'
 import { Form, Fieldset, Input } from './Form'
+import { TrashIcon, Cross1Icon } from '@radix-ui/react-icons'
+import ButtonLink from '../button/ButtonLink'
 import Button from '../button/Button'
-import { Cross1Icon, TrashIcon } from '@radix-ui/react-icons'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router'
 import Modal from '../modal/Modal'
 
-export default function ClientForm({ data, submit, remove }) {
-  let navigate = useNavigate()
+let text = 'Create'
+let disabled = true
 
-  const text = data ? 'Edit' : 'Create'
-  const disable = remove ? false : true
-
-  function action(formData) {
-    const formFields = Object.fromEntries(formData)
-    submit(formFields)
-    navigate(-1)
-    // const id = submit(formFields)
-  }
-
-  function del(id) {
-    console.log('Delete id: ', id)
-    remove(id)
-    navigate(-2)
+export default function ClientForm({ data }) {
+  if (data) {
+    text = 'Edit'
+    disabled = false
   }
 
   return (
@@ -56,17 +44,24 @@ export default function ClientForm({ data, submit, remove }) {
         </Fieldset>
 
         <div style={{ height: '42px' }} className="button-container">
-          <Button variant="blue" type="submit">
+          <Button variant="blue" type="submit" name="intent" value="edit">
             {text}
           </Button>
 
-          <Button disabled={disable} variant="red" size="42px" onClick={() => del(data.id)}>
+          <Button
+            type="submit"
+            name="intent"
+            value="delete"
+            disabled={disabled}
+            variant="red"
+            size="42px"
+          >
             <TrashIcon width="20px" height="20px" />
           </Button>
 
-          <Button size="42px" type="button" onClick={() => navigate(-1)}>
+          <ButtonLink content="icon" size="42px" to="..">
             <Cross1Icon width="20px" height="20px" />
-          </Button>
+          </ButtonLink>
         </div>
       </Form>
     </Modal>
