@@ -2,7 +2,7 @@ import ClientForm from '../components/form/ClientForm'
 import { redirect } from 'react-router'
 
 export default function CreateClient() {
-  return <ClientForm />
+  return <ClientForm text="Create" />
 }
 
 export const createClientAction = async ({ request }) => {

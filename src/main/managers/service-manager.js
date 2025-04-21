@@ -19,7 +19,7 @@ export default class ServiceManager {
     AND SUBSTRING(Service.date, 1, 7) = ?
     AND Service.description LIKE ?;`
 
-    return db.prepare(query).all(id, date, `${description}%`)
+    return db.prepare(query).all(id, date, `%${description}%`)
   }
 
   static update(data) {

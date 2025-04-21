@@ -9,12 +9,12 @@ import { useRef } from 'react'
 // }
 
 export default function useModal() {
-  const modalRef = useRef(null)
+  const ref = useRef(null)
 
-  function toggleModal() {
-    if (modalRef.current.open) modalRef.current.close()
-    else modalRef.current.showModal()
+  function toggleRef() {
+    if (ref.current.open) ref.current.close()
+    else ref.current.showModal()
   }
 
-  return [modalRef, toggleModal]
+  return [ref, toggleRef]
 }

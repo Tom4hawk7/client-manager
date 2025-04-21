@@ -4,15 +4,7 @@ import ButtonLink from '../button/ButtonLink'
 import Button from '../button/Button'
 import Modal from '../modal/Modal'
 
-let text = 'Create'
-let disabled = true
-
-export default function ClientForm({ data }) {
-  if (data) {
-    text = 'Edit'
-    disabled = false
-  }
-
+export default function ClientForm({ data, text }) {
   return (
     <Modal variant="right">
       <Form data={data}>
@@ -44,19 +36,8 @@ export default function ClientForm({ data }) {
         </Fieldset>
 
         <div style={{ height: '42px' }} className="button-container">
-          <Button variant="blue" type="submit" name="intent" value="edit">
+          <Button variant="blue" type="submit">
             {text}
-          </Button>
-
-          <Button
-            type="submit"
-            name="intent"
-            value="delete"
-            disabled={disabled}
-            variant="red"
-            size="42px"
-          >
-            <TrashIcon width="20px" height="20px" />
           </Button>
 
           <ButtonLink content="icon" size="42px" to="..">

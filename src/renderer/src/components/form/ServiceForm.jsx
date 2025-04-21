@@ -7,7 +7,7 @@ import Modal from '../modal/Modal'
 const date = new Date().toISOString().substring(0, 10)
 const itemNumber = new Set(['15_622_0128_1_3', '15_005_0118_1_3'])
 
-export default function ServiceForm({ data, text, disable }) {
+export default function ServiceForm({ data, text }) {
   const defaultValue = itemNumber.has(data.item_number) ? data.item_number : ''
 
   return (
@@ -29,20 +29,10 @@ export default function ServiceForm({ data, text, disable }) {
         <Input type="hidden" name="client_id" />
 
         <div className="button-container">
-          <Button variant="blue" type="submit" name="intent" value="edit">
+          <Button variant="blue" type="submit">
             {text}
           </Button>
 
-          <Button
-            type="submit"
-            name="intent"
-            value="delete"
-            disabled={disable}
-            variant="red"
-            size="42px"
-          >
-            <TrashIcon width="20px" height="20px" />
-          </Button>
           <ButtonLink content="icon" size="42px" to="..">
             <Cross1Icon width="20px" height="20px" />
           </ButtonLink>

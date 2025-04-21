@@ -39,6 +39,7 @@ tbody :last-child > td {
 
 .tableHead tr {
   background-color: rgb(249, 250, 251);
+  line-height: 2rem;
 }
 
 /* .tableBody tr {
@@ -50,26 +51,16 @@ tbody :last-child > td {
 .tableBody td {
   overflow: hidden;
   white-space: nowrap;
+  line-height: 1.6rem;
 }
-
-/* td {
-  overflow: hidden;
-  height: 55px;
-} */
-
-/* .tableBody,
-.tableHead,
-.tableBody tr {
-  overflow: hidden;
-  color: green;
-  height: 55px;
-} */
 
 /* specific content */
 
 .action {
   padding: 0px;
   width: 40px;
+  justify-content: center;
+  text-align: center;
 }
 
 /* checkboxes */
@@ -78,4 +69,5 @@ tbody :last-child > td {
   width: 12px;
   height: 12px;
   font-size: 12px;
+  /* overflow: visible; */
 }

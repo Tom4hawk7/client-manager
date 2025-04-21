@@ -1,7 +1,7 @@
 // import DataTable from '../components/data-table/DataTable'
 import { DataTable, Column } from '../components/data-table/DataTable'
-import { Outlet, useLoaderData } from 'react-router'
-import { GearIcon, ClipboardIcon } from '@radix-ui/react-icons'
+import { Outlet, useLoaderData, useRevalidator } from 'react-router'
+import { GearIcon, ClipboardIcon, TrashIcon } from '@radix-ui/react-icons'
 import useChecked from '../assets/hooks/useChecked'
 import Button from '../components/button/Button'
 import SearchBar from '../components/inputs/searchbar/Searchbar'
@@ -9,6 +9,11 @@ import Month from '../components/inputs/month/Month'
 import ButtonLink from '../components/button/ButtonLink'
 import useFilter from '../assets/hooks/useFilter'
 import useMonth from '../assets/hooks/useMonth'
+import { useEffect, useRef } from 'react'
+// import Dialog from '../components/modal/Dialog'
+import Confirm from '../components/modal/Confirm'
+import useModal from '../assets/hooks/useModal'
+import { Form } from 'react-router'
 
 export default function Clients() {
   const clients = useLoaderData()
@@ -16,6 +21,8 @@ export default function Clients() {
 
   const [filter, setFilter] = useFilter()
   const [month, setMonth] = useMonth()
+
+  const [ref, toggle] = useModal()
 
   function handleInvoice() {
     console.log('Checked: ', checked.getAll())
@@ -25,15 +32,32 @@ export default function Clients() {
 
   const handleSearch = (e) => setFilter('name', e.target.value)
   const handleMonth = (e) => setMonth(e.target.value)
+  const handleDelete = () => checked.forAll(window.form.delete)
 
   return (
     <>
       <Outlet />
 
+      <Confirm ref={ref} toggle={toggle} onConfirm={handleDelete}>
+        <p>Are you sure you want to delete these clients</p>
+      </Confirm>
+
       <div className="toolbar widget">
-        <ButtonLink content="icon" variant="aqua" size="42px">
+        <ButtonLink content="icon" variant="blue" size="40px">
           <GearIcon width="20px" height="20px" />
         </ButtonLink>
+
+        <Button
+          disabled={!checked.check()}
+          onClick={toggle}
+          content="icon"
+          size="40px"
+          variant="red"
+        >
+          <TrashIcon width="20px" height="20px" />
+        </Button>
+
+        {/* <Button disabled={true} content="icon"></Button> */}
 
         <SearchBar onChange={handleSearch} />
         <Month onChange={handleMonth} />
@@ -49,13 +73,6 @@ export default function Clients() {
 
       <div className="compartment">
         <DataTable data={clients} checked={checked} action={action}>
-          {/* <colgroup>
-            <col style={{ width: '0px' }} />
-            <col style={{ width: '0px' }} />
-            <col style={{ width: '30px' }} />
-            <col style={{ width: '90px' }} />
-            <col style={{ width: '5%' }} />
-          </colgroup> */}
           <Column field="client_name" header="Name" width="20%" />
           <Column field="parent_name" header="Parent" width="20%" />
           <Column field="client_address" header="Address" width="20%" />
@@ -76,8 +93,8 @@ export const clientsLoader = async ({ request }) => {
 
 const action = (id) => {
   return (
-    <ButtonLink content="icon" variant="action" size="18px" to={`/services/${id}`}>
-      <ClipboardIcon width="18px" height="18px" />
+    <ButtonLink content="icon" variant="action" size="20px" to={`/services/${id}`}>
+      <ClipboardIcon width="16px" height="16px" />
     </ButtonLink>
   )
 }
