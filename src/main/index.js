@@ -79,6 +79,7 @@ app.on('window-all-closed', () => {
 import FormManager from './managers/form-manager'
 import ServiceManager from './managers/service-manager'
 import TableManager from './managers/table-manager'
+import InvoiceManager from './managers/invoice-manager'
 
 // service operations
 ipcMain.on('service-create', async (e, ...args) => ServiceManager.create(...args))
@@ -98,3 +99,6 @@ ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
 
 // table operations
 ipcMain.handle('table-read', (e, name) => TableManager.read(name))
+
+// invoice operations
+ipcMain.on('invoice-generate', (e, ...args) => InvoiceManager.generate(...args))

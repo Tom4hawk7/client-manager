@@ -25,9 +25,21 @@ export default function Clients() {
   const [ref, toggle] = useModal()
 
   function handleInvoice() {
-    console.log('Checked: ', checked.getAll())
-    console.log('Month: ', month)
-    console.log('Clients: ', clients)
+    const checkedBoxes = checked.getPositive()
+
+    if (checkedBoxes.length > 0) {
+      window.invoice.generate(checked.getPositive(), month)
+    } else {
+      return
+    }
+    // const date = new Date().toLocaleDateString()
+    // console.log('Date: ', date)
+    // console.log('Checked: ', checked.getAll())
+    // console.log('Month: ', month)
+    // console.log('Clients: ', clients)
+
+    // will need to send checked.getAll
+    // will need to send month
   }
 
   const handleSearch = (e) => setFilter('name', e.target.value)

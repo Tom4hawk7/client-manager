@@ -12,12 +12,15 @@ export default class ServiceManager {
     return db.prepare(query).get(id)
   }
 
-  static readAll(id, date, description) {
+  static readAll(id, date, description = '') {
     const query = `
-    SELECT * FROM Service
+    SELECT id, description, item_number, unit_price, client_id,
+    strftime('%d/%m/%Y', date) AS date 
+    FROM Service
     WHERE Service.client_id = ?
     AND SUBSTRING(Service.date, 1, 7) = ?
-    AND Service.description LIKE ?;`
+    AND Service.description LIKE ?
+    ORDER BY date`
 
     return db.prepare(query).all(id, date, `%${description}%`)
   }

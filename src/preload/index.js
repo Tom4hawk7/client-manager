@@ -19,3 +19,7 @@ contextBridge.exposeInMainWorld('form', {
 contextBridge.exposeInMainWorld('table', {
   read: (name) => ipcRenderer.invoke('table-read', name)
 })
+
+contextBridge.exposeInMainWorld('invoice', {
+  generate: (checked, month) => ipcRenderer.send('invoice-generate', checked, month)
+})

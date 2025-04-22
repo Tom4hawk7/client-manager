@@ -50,6 +50,14 @@ class Checked {
     return this.selected
   }
 
+  getPositive() {
+    const positiveIds = []
+    for (const [key, value] of this.selected) {
+      if (value === true) positiveIds.push(key)
+    }
+    return positiveIds
+  }
+
   forAll(func) {
     this.selected.forEach((value, key) => {
       if (value === true) {
