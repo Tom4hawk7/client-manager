@@ -2,22 +2,13 @@ const { FusesPlugin } = require('@electron-forge/plugin-fuses')
 const { FuseV1Options, FuseVersion } = require('@electron/fuses')
 
 module.exports = {
+  permissions: {
+    contents: 'write'
+  },
   packagerConfig: {
     asar: true,
     extraResource: ['./resources/Template.docx'],
-    name: 'Client-Manager',
-    publishers: [
-      {
-        name: '@electron-forge/publisher-github',
-        config: {
-          repository: {
-            owner: 'Tom4hawk7',
-            name: 'release'
-          },
-          prerelease: true
-        }
-      }
-    ]
+    name: 'Client-Manager'
   },
   rebuildConfig: {},
   makers: [
@@ -36,6 +27,18 @@ module.exports = {
     {
       name: '@electron-forge/maker-rpm',
       config: {}
+    }
+  ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'Tom4hawk7',
+          name: 'release'
+        },
+        prerelease: true
+      }
     }
   ],
   plugins: [
