@@ -2,6 +2,9 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { updateElectronApp } from 'update-electron-app'
+
+updateElectronApp()
 
 function createWindow() {
   // Create the browser window.
@@ -106,5 +109,5 @@ ipcMain.handle('invoice-get-id', (e, ...args) => InvoiceManager.getId(...args))
 ipcMain.on('invoice-set-id', (e, ...args) => InvoiceManager.setId(...args))
 
 ipcMain.on('template-open', (e, ...args) =>
-  shell.openPath(path.resolve(process.cwd(), 'resources', 'Template.docx'))
+  shell.openPath(path.resolve(process.resourcesPath, 'Template.docx'))
 )

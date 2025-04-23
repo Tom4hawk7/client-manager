@@ -43,10 +43,7 @@ import path from 'path'
 
 export function createDoc(outputDir, outputName, data) {
   // Load the docx file as binary content and unzip it
-  const content = fs.readFileSync(
-    path.resolve(process.cwd(), 'resources', 'Template.docx'),
-    'binary'
-  )
+  const content = fs.readFileSync(path.resolve(process.resourcesPath(), 'Template.docx'), 'binary')
 
   const zip = new PizZip(content)
 

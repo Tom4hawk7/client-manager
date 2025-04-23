@@ -2,7 +2,7 @@ import Database from 'better-sqlite3'
 import path from 'path'
 
 // create the database at the specified path
-const basePath = path.resolve(process.cwd(), 'resources', 'client-manager.db')
+const basePath = path.resolve(process.resourcesPath, 'client-manager.db')
 const db = new Database(basePath)
 
 const createClient = `
