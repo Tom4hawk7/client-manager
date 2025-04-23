@@ -47,7 +47,8 @@ export default class InvoiceManager {
 
       // insert entry into the invoice
       const clientName = invoiceData.client_name.replace(' ', '-')
-      const invoiceNum = db.prepare('INSERT INTO Invoice DEFAULT VALUES').run().lastInsertRowid
+      const invoiceNum = InvoiceManager.increment()
+      // const invoiceNum = db.prepare('INSERT INTO Invoice DEFAULT VALUES').run().lastInsertRowid
 
       // add entries into invoice data
       invoiceData.services = services
@@ -62,6 +63,21 @@ export default class InvoiceManager {
 
       createDoc(outputDir, outputName, invoiceData)
     }
+  }
+
+  static getId() {
+    const query = `SELECT MAX(id) AS id FROM Invoice`
+    return db.prepare(query).get()
+  }
+
+  static setId(id) {
+    const query = `INSERT INTO Invoice (id) VALUES (?)`
+    return db.prepare(query).run(id)
+  }
+
+  static increment() {
+    const query = `INSERT INTO Invoice DEFAULT VALUES`
+    return db.prepare(query).run().lastInsertRowid
   }
 }
 

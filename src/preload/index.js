@@ -21,5 +21,11 @@ contextBridge.exposeInMainWorld('table', {
 })
 
 contextBridge.exposeInMainWorld('invoice', {
-  generate: (checked, month) => ipcRenderer.send('invoice-generate', checked, month)
+  generate: (checked, month) => ipcRenderer.send('invoice-generate', checked, month),
+  getId: () => ipcRenderer.invoke('invoice-get-id'),
+  setId: (id) => ipcRenderer.send('invoice-set-id', id)
+})
+
+contextBridge.exposeInMainWorld('template', {
+  open: () => ipcRenderer.send('template-open')
 })

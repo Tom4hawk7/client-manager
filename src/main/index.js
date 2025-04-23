@@ -1,5 +1,5 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
+import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
@@ -102,3 +102,9 @@ ipcMain.handle('table-read', (e, name) => TableManager.read(name))
 
 // invoice operations
 ipcMain.on('invoice-generate', (e, ...args) => InvoiceManager.generate(...args))
+ipcMain.handle('invoice-get-id', (e, ...args) => InvoiceManager.getId(...args))
+ipcMain.on('invoice-set-id', (e, ...args) => InvoiceManager.setId(...args))
+
+ipcMain.on('template-open', (e, ...args) =>
+  shell.openPath(path.resolve(process.cwd(), 'resources', 'Template.docx'))
+)

@@ -47,6 +47,7 @@ export function createDoc(outputDir, outputName, data) {
     path.resolve(process.cwd(), 'resources', 'Template.docx'),
     'binary'
   )
+
   const zip = new PizZip(content)
 
   // Parse the template

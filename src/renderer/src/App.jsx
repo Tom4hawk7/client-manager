@@ -7,6 +7,7 @@ import CreateClient, { createClientAction } from './pages/CreateClient'
 import EditClient, { editClientLoader, editClientAction } from './pages/EditClient'
 import CreateService, { createServiceAction } from './pages/CreateService'
 import EditService, { editServiceAction, editServiceLoader } from './pages/EditService'
+import Settings, { settingsAction, settingsLoader } from './pages/Settings'
 
 const router = createHashRouter([
   {
@@ -18,6 +19,12 @@ const router = createHashRouter([
         path: 'create-client',
         Component: CreateClient,
         action: createClientAction
+      },
+      {
+        path: 'settings',
+        Component: Settings,
+        loader: settingsLoader,
+        action: settingsAction
       }
     ]
   },

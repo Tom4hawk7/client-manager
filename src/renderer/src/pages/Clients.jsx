@@ -55,7 +55,7 @@ export default function Clients() {
       </Confirm>
 
       <div className="toolbar widget">
-        <ButtonLink content="icon" variant="blue" size="40px">
+        <ButtonLink content="icon" variant="blue" size="40px" to="settings">
           <GearIcon width="20px" height="20px" />
         </ButtonLink>
 
