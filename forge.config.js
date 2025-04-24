@@ -35,7 +35,7 @@ module.exports = {
       config: {
         repository: {
           owner: 'Tom4hawk7',
-          name: 'release'
+          name: 'client-manager'
         },
         prerelease: true
       }

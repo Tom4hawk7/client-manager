@@ -38,7 +38,6 @@ select {
 .compartment {
   margin: 40px;
   min-width: 800px;
-  max-width: 1200px;
 }
 
 .widget {

@@ -2,12 +2,14 @@
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid rgb(229, 231, 235);
+  width: 100%;
 }
 
 .innerWrapper {
   overflow-y: auto;
   border-radius: 10px;
   max-height: 500px;
+  width: 100%;
 }
 
 .table {
