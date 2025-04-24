@@ -1,8 +1,9 @@
 import Database from 'better-sqlite3'
+import { app } from 'electron'
 import path from 'path'
 
 // create the database at the specified path
-const basePath = path.resolve(process.resourcesPath, 'client-manager.db')
+const basePath = path.resolve(app.getPath('userData'), 'client-manager.db')
 const db = new Database(basePath)
 
 const createClient = `

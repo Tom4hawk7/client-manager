@@ -3,8 +3,17 @@ import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { updateElectronApp, UpdateSourceType } from 'update-electron-app'
+import { copyFileSync, constants } from 'fs'
 
 updateElectronApp()
+
+const template = path.resolve(process.resourcesPath, 'Template.docx')
+const userTemplate = path.resolve(app.getPath('userData'), 'Template.docx')
+
+// create the template docx if it doesn't exist
+try {
+  copyFileSync(template, userTemplate, constants.COPYFILE_EXCL)
+} catch (error) {}
 
 function createWindow() {
   // Create the browser window.
@@ -109,5 +118,5 @@ ipcMain.handle('invoice-get-id', (e, ...args) => InvoiceManager.getId(...args))
 ipcMain.on('invoice-set-id', (e, ...args) => InvoiceManager.setId(...args))
 
 ipcMain.on('template-open', (e, ...args) =>
-  shell.openPath(path.resolve(process.resourcesPath, 'Template.docx'))
+  shell.openPath(path.resolve(app.getPath('userData'), 'Template.docx'))
 )
