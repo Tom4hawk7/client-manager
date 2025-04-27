@@ -2,7 +2,6 @@ import ServiceManager from './service-manager'
 import { dialog } from 'electron/main'
 import db from '../database'
 import { createDoc } from '../invoicer/invoice'
-import { data } from 'react-router'
 
 const currentDate = new Date()
 

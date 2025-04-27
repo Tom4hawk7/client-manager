@@ -1,10 +1,14 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import path, { join } from 'path'
+import path, { dirname, join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { updateElectronApp } from 'update-electron-app'
 import { copyFileSync, constants } from 'fs'
 import { store } from './store'
+import { fileURLToPath } from 'url'
+
+const es_filename = fileURLToPath(import.meta.url)
+const es_dirname = dirname(es_filename)
 
 updateElectronApp()
 
@@ -25,7 +29,7 @@ function createWindow() {
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.mjs'),
+      preload: join(es_dirname, '../preload/index.mjs'),
       sandbox: false
     }
   })
@@ -46,7 +50,7 @@ function createWindow() {
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadFile(join(es_dirname, '../renderer/index.html'))
   }
 }
 

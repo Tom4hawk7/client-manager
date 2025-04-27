@@ -4,6 +4,11 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   envDir: './.env',
+  build: {
+    lib: {
+      formats: ['es']
+    }
+  },
   main: {
     plugins: [externalizeDepsPlugin()]
   },
