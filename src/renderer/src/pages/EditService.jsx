@@ -12,7 +12,7 @@ export const editServiceLoader = async ({ params }) => {
   const service = await window.service.read(params.service_id)
 
   const client_dob = await window.client.getDob(service.client_id)
-  const billable_mins = Number((service.unit_price / hourly_rate) * 60)
+  const billable_mins = Number((service.unit_price / hourly_rate) * 60).toFixed(0)
 
   return { ...service, client_dob, billable_mins }
 }

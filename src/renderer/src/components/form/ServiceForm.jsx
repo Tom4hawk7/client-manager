@@ -31,7 +31,7 @@ export default function ServiceForm({ data, text }) {
           </select>
 
           {/* <Input type="number" step="any" min="0" name="unit_price" label="Price" /> */}
-          <Input type="number" step="any" min="0" name="billable_mins" label="Billable Minutes" />
+          <Input type="number" min="0" name="billable_mins" label="Billable Minutes" />
         </Fieldset>
         <Input type="hidden" name="id" />
         <Input type="hidden" name="client_id" />
