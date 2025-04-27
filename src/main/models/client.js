@@ -22,6 +22,11 @@ export default class Client {
     this.id = db.prepare(query).run({ ...this }).lastInsertRowid
   }
 
+  static getDob(id) {
+    const query = `SELECT dob FROM Client WHERE id = ?`
+    return new Date(db.prepare(query).get(id).dob)
+  }
+
   update() {
     const query = `
     UPDATE Client SET name = @name, 

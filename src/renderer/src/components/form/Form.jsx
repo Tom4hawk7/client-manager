@@ -14,7 +14,7 @@ export function Form({ children, data = '' }) {
 export function Fieldset({ children, legend = '' }) {
   return (
     <fieldset>
-      <legend>{legend}</legend>
+      {legend && <legend>{legend}</legend>}
       {children}
     </fieldset>
   )

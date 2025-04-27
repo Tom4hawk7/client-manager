@@ -16,6 +16,10 @@ contextBridge.exposeInMainWorld('form', {
   delete: (id) => ipcRenderer.send('form-delete', id)
 })
 
+contextBridge.exposeInMainWorld('client', {
+  getDob: (id) => ipcRenderer.invoke('client-get-dob', id)
+})
+
 contextBridge.exposeInMainWorld('table', {
   read: (name) => ipcRenderer.invoke('table-read', name)
 })
@@ -28,4 +32,14 @@ contextBridge.exposeInMainWorld('invoice', {
 
 contextBridge.exposeInMainWorld('template', {
   open: () => ipcRenderer.send('template-open')
+})
+
+contextBridge.exposeInMainWorld('settings', {
+  getAll: () => ipcRenderer.invoke('settings-get-all'),
+  setAll: (data) => ipcRenderer.send('settings-set-all', data),
+  openTemplate: () => ipcRenderer.send('settings-open-template')
+})
+
+contextBridge.exposeInMainWorld('store', {
+  get: (key) => ipcRenderer.invoke('store-get', key)
 })

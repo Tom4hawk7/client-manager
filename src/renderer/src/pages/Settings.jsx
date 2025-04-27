@@ -1,70 +1,49 @@
-import { useLoaderData, useNavigate } from 'react-router'
+import { useLoaderData, redirect } from 'react-router'
 import Button from '../components/button/Button'
 import ButtonLink from '../components/button/ButtonLink'
-import { Fieldset, Input } from '../components/form/Form'
+import { Form, Fieldset, Input } from '../components/form/Form'
 import Modal from '../components/modal/Modal'
-import { useState } from 'react'
 
 export default function Settings() {
-  let navigate = useNavigate()
-
-  const id = useLoaderData().id
-  const [invoice, setInvoice] = useState(id)
-
-  const handleSubmit = () => {
-    window.invoice.setId(invoice)
-    navigate(-1)
-  }
+  const data = useLoaderData()
 
   return (
     <Modal variant="center">
-      <section style={{ padding: '20px' }}>
+      <Form data={data}>
         <div style={{ marginBottom: '20px' }}>
           <h2>Settings</h2>
         </div>
 
         <Fieldset>
-          <label style={{ marginBottom: '10px' }} htmlFor="invoice">
-            Invoice number
-          </label>
-          <input
-            id="invoice"
-            style={{ color: 'var(--placeholder)', fontWeight: 400 }}
-            type="number"
-            value={invoice}
-            onChange={(e) => setInvoice(e.target.value)}
-            autoFocus
-          />
+          <Input type="number" name="invoice_id" label="Invoice" min="0" />
+          <Input type="number" name="hourly_rate" label="Hourly Rate" min="0" step="any" />
 
-          <div style={{ marginTop: '10px' }} className="button-container">
-            <Button content="text" onClick={() => window.template.open()}>
+          <div style={{ marginTop: '20px' }} className="button-container">
+            <Button content="text" onClick={window.settings.openTemplate}>
               Open Template
             </Button>
           </div>
         </Fieldset>
-        {/* <div style={{ marginBottom: '20px' }}>
-        </div> */}
 
         <div className="button-container">
-          <Button variant="blue" content="text" onClick={handleSubmit}>
+          <Button variant="blue" content="text" type="submit">
             Save Changes
           </Button>
           <ButtonLink content="text" to="..">
             Cancel
           </ButtonLink>
         </div>
-      </section>
+      </Form>
     </Modal>
   )
 }
 
 export const settingsLoader = async () => {
-  return await window.invoice.getId()
+  return await window.settings.getAll()
 }
 
 export const settingsAction = async ({ request }) => {
-  console.log('Request', request)
-  for (const [key, value] of request) {
-    console.log(`${key}: ${value}`)
-  }
+  const formData = Object.fromEntries(await request.formData())
+  window.settings.setAll(formData)
+  return redirect('..')
 }

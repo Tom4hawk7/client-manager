@@ -109,6 +109,7 @@ CREATE VIEW IF NOT EXISTS
 SELECT
   Client.id,
   Client.name AS client_name,
+  Client.dob AS client_dob,
   Client.address AS client_address,
   Client.school AS client_school,
   Client.p_number AS client_p_number,

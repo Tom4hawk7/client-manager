@@ -20,20 +20,6 @@ FROM Client
   LEFT JOIN PlanManager ON Client.id = PlanManager.id
 WHERE Client.id = ?`
 
-// const data = {
-//   invoice: '',
-//   current_date: '',
-//   parent_name: '',
-//   parent_address: '',
-//   client_name: '',
-//   client_dob: '',
-//   client_p_number: '',
-//   plan_manager_name: '',
-//   plan_manager_email: '',
-//   services: [{ date: '2025', description: '', item_number: '', unit_price: '' }],
-//   total: ''
-// }
-
 export default class InvoiceManager {
   static async generate(checked, month) {
     // open dialog and check if it was cancelled
@@ -71,7 +57,9 @@ export default class InvoiceManager {
   }
 
   static setId(id) {
-    const query = `INSERT INTO Invoice (id) VALUES (?)`
+    const query = `INSERT INTO Invoice (id) VALUES (?)
+    ON CONFLICT (id) DO NOTHING`
+
     return db.prepare(query).run(id)
   }
 

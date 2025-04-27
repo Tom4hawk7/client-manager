@@ -35,19 +35,21 @@ export default function Services() {
       </Confirm>
 
       <div className="toolbar widget">
-        <ButtonLink content="icon" variant="blue" size="40px" to="/">
-          <PersonIcon width="20px" height="20px" />
-        </ButtonLink>
+        <div style={{ gap: '24px', display: 'flex' }}>
+          <ButtonLink content="icon" variant="blue" size="40px" to="/">
+            <PersonIcon width="20px" height="20px" />
+          </ButtonLink>
 
-        <Button
-          disabled={!checked.check()}
-          onClick={toggle}
-          content="icon"
-          size="40px"
-          variant="red"
-        >
-          <TrashIcon width="20px" height="20px" />
-        </Button>
+          <Button
+            disabled={!checked.check()}
+            onClick={toggle}
+            content="icon"
+            size="40px"
+            variant="red"
+          >
+            <TrashIcon width="20px" height="20px" />
+          </Button>
+        </div>
 
         <SearchBar onChange={handleSearch} />
         <Month onChange={handleMonth} />

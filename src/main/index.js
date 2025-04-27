@@ -2,8 +2,9 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { updateElectronApp, UpdateSourceType } from 'update-electron-app'
+import { updateElectronApp } from 'update-electron-app'
 import { copyFileSync, constants } from 'fs'
+import { store } from './store'
 
 updateElectronApp()
 
@@ -24,7 +25,7 @@ function createWindow() {
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
+      preload: join(__dirname, '../preload/index.mjs'),
       sandbox: false
     }
   })
@@ -92,6 +93,8 @@ import FormManager from './managers/form-manager'
 import ServiceManager from './managers/service-manager'
 import TableManager from './managers/table-manager'
 import InvoiceManager from './managers/invoice-manager'
+import SettingsManager from './managers/settings-manager'
+import Client from './models/client'
 
 // service operations
 ipcMain.on('service-create', async (e, ...args) => ServiceManager.create(...args))
@@ -109,6 +112,9 @@ ipcMain.handle('form-read', (e, ...args) => FormManager.read(...args))
 ipcMain.on('form-update', (e, data) => new FormManager(data).update())
 ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
 
+// client operations
+ipcMain.handle('client-get-dob', (e, ...args) => Client.getDob(...args))
+
 // table operations
 ipcMain.handle('table-read', (e, name) => TableManager.read(name))
 
@@ -117,6 +123,15 @@ ipcMain.on('invoice-generate', (e, ...args) => InvoiceManager.generate(...args))
 ipcMain.handle('invoice-get-id', (e, ...args) => InvoiceManager.getId(...args))
 ipcMain.on('invoice-set-id', (e, ...args) => InvoiceManager.setId(...args))
 
+// get rid of this method later
 ipcMain.on('template-open', (e, ...args) =>
   shell.openPath(path.resolve(app.getPath('userData'), 'Template.docx'))
 )
+
+// settings operations
+ipcMain.handle('settings-get-all', (e) => SettingsManager.getAll())
+ipcMain.on('settings-set-all', (e, ...args) => SettingsManager.setAll(...args))
+ipcMain.on('settings-open-template', (e) => SettingsManager.openTemplate())
+
+// store operations
+ipcMain.handle('store-get', (e, ...args) => store.get(...args))

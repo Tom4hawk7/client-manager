@@ -45,7 +45,29 @@ export default class FormManager {
   }
 
   static read(id) {
-    return db.prepare('SELECT * FROM VForm WHERE id = ?').get(id)
+    const query = `SELECT
+    Client.id,
+    Client.name AS client_name,
+    Client.dob AS client_dob,
+    Client.address AS client_address,
+    Client.school AS client_school,
+    Client.p_number AS client_p_number,
+    Parent.name AS parent_name,
+    Parent.email AS parent_email,
+    Parent.phone AS parent_phone,
+    Plan.start_date AS plan_start_date,
+    Plan.end_date AS plan_end_date,
+    Plan.budget AS plan_budget,
+    PlanManager.name AS planmanager_name,
+    PlanManager.email AS planmanager_email
+      FROM Client
+    INNER JOIN Parent ON Client.id = Parent.id
+    INNER JOIN Plan ON Client.id = Plan.id
+    INNER JOIN PlanManager ON Client.id = PlanManager.id
+      WHERE Client.id = ?
+    `
+
+    return db.prepare(query).get(id)
   }
 
   update() {
