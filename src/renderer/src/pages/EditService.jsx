@@ -19,6 +19,8 @@ export const editServiceLoader = async ({ params }) => {
 
 export const editServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
+  const hourly_rate = await window.store.get('hourly_rate')
+  console.log(hourly_rate)
 
   // could have this dealt with in the service class
   const hours_worked = Number(service.billable_mins) / 60

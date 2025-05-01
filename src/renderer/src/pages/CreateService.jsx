@@ -2,8 +2,6 @@ import { useLoaderData } from 'react-router'
 import { redirect } from 'react-router'
 import ServiceForm from '../components/form/ServiceForm'
 
-const hourly_rate = await window.store.get('hourly_rate')
-
 export default function CreateService() {
   const data = useLoaderData()
   return <ServiceForm data={data} text="Create" disable={true} />
@@ -20,6 +18,7 @@ export const createServiceLoader = async ({ params }) => {
 
 export const createServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
+  const hourly_rate = await window.store.get('hourly_rate')
 
   // could have the dealt with in the service class
   const hours_worked = Number(service.billable_mins) / 60
