@@ -41,7 +41,8 @@ select {
 }
 
 .widget {
-  margin: 40px;
+  /* margin: 40px; */
+  margin: 0 40px 40px 40px;
 }
 
 .toolbar {
@@ -65,4 +66,27 @@ select {
   background-color: var(--shadow-light);
   box-shadow: 0 0 0px 5px var(--shadow-light);
   border-radius: 5px;
+}
+
+.heading {
+  color: black;
+  font-size: 4rem;
+  line-height: 2.4em;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin: 0 40px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
 }

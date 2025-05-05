@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData, useParams } from 'react-router'
+import { Outlet, useLoaderData, useLocation, useParams } from 'react-router'
 import { DataTable, Column } from '../components/data-table/DataTable'
 import useFilter from '../assets/hooks/useFilter'
 import Button from '../components/button/Button'
@@ -10,11 +10,11 @@ import currentDate from '../assets/functions/currentDate'
 import useChecked from '../assets/hooks/useChecked'
 import useModal from '../assets/hooks/useModal'
 import Confirm from '../components/modal/Confirm'
-import { useEffect } from 'react'
 
 export default function Services() {
   const services = useLoaderData()
   const id = useParams().client_id
+  const name = useLocation().state
 
   const [filter, setFilter] = useFilter()
   const checked = useChecked(services)
@@ -28,14 +28,12 @@ export default function Services() {
 
   return (
     <>
-      <Outlet />
+      <header className="header">
+        <span>
+          <h1 className="heading">Services - {name}</h1>
+        </span>
 
-      <Confirm ref={ref} toggle={toggle} onConfirm={handleDelete}>
-        <p>Are you sure you want to delete these clients</p>
-      </Confirm>
-
-      <div className="toolbar widget">
-        <div style={{ gap: '24px', display: 'flex' }}>
+        <span className="flex">
           <ButtonLink content="icon" variant="blue" size="40px" to="/">
             <PersonIcon width="20px" height="20px" />
           </ButtonLink>
@@ -49,8 +47,10 @@ export default function Services() {
           >
             <TrashIcon width="20px" height="20px" />
           </Button>
-        </div>
+        </span>
+      </header>
 
+      <div style={{ height: '40px' }} className="toolbar widget">
         <SearchBar onChange={handleSearch} />
         <Month onChange={handleMonth} />
 
@@ -71,6 +71,12 @@ export default function Services() {
           <Column field="item_number" header="Item Number" width="25%" />
         </DataTable>
       </div>
+
+      <Outlet />
+
+      <Confirm ref={ref} toggle={toggle} onConfirm={handleDelete}>
+        <p>Are you sure you want to delete these clients</p>
+      </Confirm>
     </>
   )
 }
@@ -84,7 +90,7 @@ export const servicesLoader = async ({ params, request }) => {
   return window.service.readAll(params.client_id, month, description)
 }
 
-const action = (id) => {
+const action = (id, name) => {
   return (
     <ButtonLink content="icon" variant="action" size="18px" to={`edit-service/${id}`}>
       <Pencil2Icon width="18px" height="18px" />

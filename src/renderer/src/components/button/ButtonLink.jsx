@@ -1,13 +1,18 @@
 import { Link } from 'react-router'
 import styles from './Button.module.css'
 
-export default function ButtonLink({ to, content, variant, size, children }) {
+export default function ButtonLink({ to, content, variant, size, state = '', children }) {
   let classContent = styles[`content-${content}`]
   let classVariant = styles[`variant-${variant}`]
   let style = size ? { width: size, height: size } : {}
 
   return (
-    <Link style={style} className={`${styles.link} ${classContent} ${classVariant}`} to={to}>
+    <Link
+      style={style}
+      className={`${styles.link} ${classContent} ${classVariant}`}
+      to={to}
+      state={state}
+    >
       {children}
     </Link>
   )

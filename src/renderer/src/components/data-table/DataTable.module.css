@@ -8,7 +8,8 @@
 .innerWrapper {
   overflow-y: auto;
   border-radius: 10px;
-  max-height: 500px;
+  min-height: 400px;
+  height: calc(100vh - 220px);
   width: 100%;
 }
 

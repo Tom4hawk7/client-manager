@@ -33,7 +33,8 @@ export function DataTable({ data, checked = '', action = '', children }) {
                   ))}
 
                   {/* action buttons */}
-                  {action && <td className={styles.action}>{action(data.id)}</td>}
+                  {/* {console.log('name_test: ', data.client)} */}
+                  {action && <td className={styles.action}>{action(data.id, data.client_name)}</td>}
                 </tr>
               ))
             ) : (

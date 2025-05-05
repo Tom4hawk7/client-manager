@@ -29,17 +29,7 @@ export default function Clients() {
 
     if (checkedBoxes.length > 0) {
       window.invoice.generate(checked.getPositive(), month)
-    } else {
-      return
     }
-    // const date = new Date().toLocaleDateString()
-    // console.log('Date: ', date)
-    // console.log('Checked: ', checked.getAll())
-    // console.log('Month: ', month)
-    // console.log('Clients: ', clients)
-
-    // will need to send checked.getAll
-    // will need to send month
   }
 
   const handleSearch = (e) => setFilter('name', e.target.value)
@@ -48,14 +38,11 @@ export default function Clients() {
 
   return (
     <>
-      <Outlet />
-
-      <Confirm ref={ref} toggle={toggle} onConfirm={handleDelete}>
-        <p>Are you sure you want to delete these clients</p>
-      </Confirm>
-
-      <div className="toolbar widget">
-        <div style={{ gap: '24px', display: 'flex' }}>
+      <header className="header">
+        <span>
+          <h1 className="heading">Clients</h1>
+        </span>
+        <span className="flex">
           <ButtonLink content="icon" variant="blue" size="40px" to="settings">
             <GearIcon width="20px" height="20px" />
           </ButtonLink>
@@ -69,10 +56,10 @@ export default function Clients() {
           >
             <TrashIcon width="20px" height="20px" />
           </Button>
-        </div>
+        </span>
+      </header>
 
-        {/* <Button disabled={true} content="icon"></Button> */}
-
+      <div style={{ height: '40px' }} className="toolbar widget">
         <SearchBar onChange={handleSearch} />
         <Month onChange={handleMonth} />
 
@@ -94,6 +81,12 @@ export default function Clients() {
           <Column field="client_school" header="School" width="20%" />
         </DataTable>
       </div>
+
+      <Outlet />
+
+      <Confirm ref={ref} toggle={toggle} onConfirm={handleDelete}>
+        <p>Are you sure you want to delete these clients</p>
+      </Confirm>
     </>
   )
 }
@@ -105,9 +98,9 @@ export const clientsLoader = async ({ request }) => {
   return await window.table.read(searchName)
 }
 
-const action = (id) => {
+const action = (id, name) => {
   return (
-    <ButtonLink content="icon" variant="action" size="20px" to={`/services/${id}`}>
+    <ButtonLink content="icon" variant="action" size="20px" to={`/services/${id}`} state={name}>
       <ClipboardIcon width="16px" height="16px" />
     </ButtonLink>
   )
