@@ -50,6 +50,7 @@ select {
   flex-direction: row;
   gap: 30px;
   width: inherit;
+  min-width: 798.67px;
 }
 
 /* Icon */
@@ -81,6 +82,7 @@ select {
   align-items: center;
   gap: 24px;
   margin: 0 40px;
+  min-width: 798.67px;
 }
 
 .flex {
