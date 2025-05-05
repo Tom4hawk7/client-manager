@@ -17,6 +17,7 @@ contextBridge.exposeInMainWorld('form', {
 })
 
 contextBridge.exposeInMainWorld('client', {
+  getName: (id) => ipcRenderer.invoke('client-get-name', id),
   getDob: (id) => ipcRenderer.invoke('client-get-dob', id)
 })
 

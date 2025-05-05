@@ -27,6 +27,11 @@ export default class Client {
     return new Date(db.prepare(query).get(id).dob)
   }
 
+  static getName(id) {
+    const query = `SELECT name FROM Client WHERE id = ?`
+    return db.prepare(query).get(id).name
+  }
+
   update() {
     const query = `
     UPDATE Client SET name = @name, 

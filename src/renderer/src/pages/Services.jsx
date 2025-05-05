@@ -12,9 +12,8 @@ import useModal from '../assets/hooks/useModal'
 import Confirm from '../components/modal/Confirm'
 
 export default function Services() {
-  const services = useLoaderData()
-  const id = useParams().client_id
-  const name = useLocation().state
+  const { services, client } = useLoaderData()
+  // const id = useParams().client_id
 
   const [filter, setFilter] = useFilter()
   const checked = useChecked(services)
@@ -30,7 +29,7 @@ export default function Services() {
     <>
       <header className="header">
         <span>
-          <h1 className="heading">Services - {name}</h1>
+          <h1 className="heading">Services - {client.name}</h1>
         </span>
 
         <span className="flex">
@@ -58,7 +57,7 @@ export default function Services() {
           Add Service
         </ButtonLink>
 
-        <ButtonLink content="text" to={`edit-client/${id}`}>
+        <ButtonLink content="text" to={`edit-client/${client.id}`}>
           Edit Client
         </ButtonLink>
       </div>
@@ -87,10 +86,14 @@ export const servicesLoader = async ({ params, request }) => {
   const description = searchParams.get('description') || ''
   const month = searchParams.get('month') || currentDate
 
-  return window.service.readAll(params.client_id, month, description)
+  const client_name = await window.client.getName(params.client_id)
+  const services = await window.service.readAll(params.client_id, month, description)
+
+  const client = { id: params.client_id, name: client_name }
+  return { client: client, services: services }
 }
 
-const action = (id, name) => {
+const action = (id) => {
   return (
     <ButtonLink content="icon" variant="action" size="18px" to={`edit-service/${id}`}>
       <Pencil2Icon width="18px" height="18px" />

@@ -118,6 +118,7 @@ ipcMain.on('form-delete', (e, ...args) => FormManager.delete(...args))
 
 // client operations
 ipcMain.handle('client-get-dob', (e, ...args) => Client.getDob(...args))
+ipcMain.handle('client-get-name', (e, ...args) => Client.getName(...args))
 
 // table operations
 ipcMain.handle('table-read', (e, name) => TableManager.read(name))

@@ -9,7 +9,6 @@ import Month from '../components/inputs/month/Month'
 import ButtonLink from '../components/button/ButtonLink'
 import useFilter from '../assets/hooks/useFilter'
 import useMonth from '../assets/hooks/useMonth'
-import { useEffect, useRef } from 'react'
 // import Dialog from '../components/modal/Dialog'
 import Confirm from '../components/modal/Confirm'
 import useModal from '../assets/hooks/useModal'
@@ -98,9 +97,9 @@ export const clientsLoader = async ({ request }) => {
   return await window.table.read(searchName)
 }
 
-const action = (id, name) => {
+const action = (id) => {
   return (
-    <ButtonLink content="icon" variant="action" size="20px" to={`/services/${id}`} state={name}>
+    <ButtonLink content="icon" variant="action" size="20px" to={`/services/${id}`}>
       <ClipboardIcon width="16px" height="16px" />
     </ButtonLink>
   )
