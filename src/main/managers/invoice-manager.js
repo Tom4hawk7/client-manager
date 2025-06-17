@@ -88,5 +88,5 @@ function getServices(id, month) {
     total += Number(service.unit_price)
   }
 
-  return [services, total]
+  return [services, total.toFixed(2)]
 }
