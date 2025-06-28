@@ -15,7 +15,7 @@ export default class ServiceManager {
   static readAll(id, date, description = '') {
     const query = `
     SELECT id, description, item_number, unit_price, client_id,
-    strftime('%d/%m/%Y', date) AS date 
+    strftime('%d/%m/%Y', date) AS date, minutes
     FROM Service
     WHERE Service.client_id = ?
     AND SUBSTRING(Service.date, 1, 7) = ?

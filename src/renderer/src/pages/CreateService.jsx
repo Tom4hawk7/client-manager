@@ -21,7 +21,7 @@ export const createServiceAction = async ({ request }) => {
   const hourly_rate = await window.store.get('hourly_rate')
 
   // could have the dealt with in the service class
-  const hours_worked = Number(service.billable_mins) / 60
+  const hours_worked = Number(service.minutes) / 60
   service.unit_price = (hourly_rate * hours_worked).toFixed(2)
 
   await window.service.create(service)

@@ -64,10 +64,11 @@ export default function Services() {
 
       <div className="compartment">
         <DataTable data={services} checked={checked} action={action}>
-          <Column field="description" header="Description" width="25%" />
-          <Column field="date" header="Date" width="25%" />
-          <Column field="unit_price" header="Unit Price" width="25%" />
-          <Column field="item_number" header="Item Number" width="25%" />
+          <Column field="date" header="Date" width="20%" />
+          <Column field="description" header="Description" width="20%" />
+          <Column field="item_number" header="Item Number" width="20%" />
+          <Column field="minutes" header="Minutes" width="20%" />
+          <Column field="unit_price" header="Unit Price" width="20%" />
         </DataTable>
       </div>
 

@@ -31,8 +31,6 @@ export function createDoc(outputDir, outputName, data) {
     compression: 'DEFLATE'
   })
 
-  const test = path.resolve(outputDir, `${outputName}.docx`)
-
   // write the node.js buffer to a file
   fs.writeFileSync(path.resolve(outputDir, `${outputName}.docx`), buf)
 }

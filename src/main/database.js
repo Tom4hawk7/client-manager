@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS
     "date" TEXT,
     "description" TEXT,
     "item_number" TEXT,
+    "minutes" INT,
     "unit_price" REAL,
     "client_id" INT NOT NULL,
     FOREIGN KEY ("client_id") REFERENCES "Client" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
