@@ -1,8 +1,6 @@
 import { useLoaderData, redirect } from 'react-router'
 import ServiceForm from '../components/form/ServiceForm'
 
-const hourly_rate = await window.store.get('hourly_rate')
-
 export default function EditService() {
   const data = useLoaderData()
   return <ServiceForm data={data} text="Edit" disable={false} />
@@ -10,17 +8,18 @@ export default function EditService() {
 
 export const editServiceLoader = async ({ params }) => {
   const service = await window.service.read(params.service_id)
-
   const client_dob = await window.client.getDob(service.client_id)
-  // const minutes = Number((service.unit_price / hourly_rate) * 60).toFixed(0)
 
   return { ...service, client_dob }
-  // return { ...service, client_dob, billable_mins }
 }
 
 export const editServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
-  const hourly_rate = await window.store.get('hourly_rate')
+
+  const hourly_rate =
+    service.service_type === 'session'
+      ? await window.store.get('session_rate')
+      : await window.store.get('travel_rate')
 
   // could have this dealt with in the service class
   const hours_worked = Number(service.minutes) / 60

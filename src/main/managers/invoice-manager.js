@@ -2,8 +2,16 @@ import ServiceManager from './service-manager'
 import { dialog } from 'electron/main'
 import db from '../database'
 import { createDoc } from '../invoicer/invoice'
+import path from 'path'
+import { app } from 'electron'
+import { mkdir, mkdirSync } from 'fs'
 
 const currentDate = new Date()
+const formattedDate = currentDate.toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+})
 
 const query = `
 SELECT 
@@ -44,7 +52,7 @@ export default class InvoiceManager {
       // set the outputDir and outputName
 
       const outputName = `${clientName}_${invoiceNum}`
-      const outputDir = res.filePaths[0]
+      const outputDir = res
 
       createDoc(outputDir, outputName, invoiceData)
     }
@@ -68,13 +76,38 @@ export default class InvoiceManager {
   }
 }
 
+// async function handleDialog() {
+//   const res = await dialog.showOpenDialog({
+//     title: 'Save invoices',
+//     buttonLabel: 'Save',
+//     message: 'message',
+//     properties: ['openDirectory', 'createDirectory', 'promptToCreate']
+//   })
+
+//   return res
+// }
+
+// const options = {
+//   year: 'numeric',
+//   month: 'short',
+//   day: 'numeric'
+// }
+
 async function handleDialog() {
-  const res = await dialog.showOpenDialog({
+  const res = dialog.showSaveDialogSync({
     title: 'Save invoices',
-    buttonLabel: 'Save',
-    message: 'message',
-    properties: ['openDirectory', 'createDirectory', 'promptToCreate']
+    buttonLabel: 'Save invoices',
+    defaultPath: path.join(app.getPath('downloads'), `Invoices - ${formattedDate}`),
+    properties: ['createDirectory']
   })
+
+  if (res) {
+    mkdir(res, { recursive: true }, (err) => {
+      if (err) {
+        dialog.showErrorBox('Generation Failed. ', err.message)
+      }
+    })
+  }
 
   return res
 }

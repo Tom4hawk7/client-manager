@@ -10,24 +10,34 @@ import Modal from '../modal/Modal'
 // wait a minute, if its only initially, then you could probably just get that data straight up
 
 const defaultDate = new Date().toISOString().substring(0, 10)
-const itemNumber = new Set(['15_622_0128_1_3', '15_005_0118_1_3'])
+const itemNumbers = new Set(['15_622_0128_1_3', '15_622_0118_1_3'])
+const serviceTypes = new Set(['session', 'travel'])
 
 export default function ServiceForm({ data, text }) {
-  const defaultValue = itemNumber.has(data.item_number)
+  const defaultItemNumber = itemNumbers.has(data.item_number)
     ? data.item_number
     : data.default_item_number
+
+  // this will throw an error untill the loader has a property of type
+  const defaultServiceType = serviceTypes.has(data.service_type) ? data.service_type : 'session'
 
   return (
     <Modal variant="center">
       <Form data={data}>
         <Fieldset legend="Service Information">
+          <label htmlFor="service_type">Service Type</label>
+          <select name="service_type" id="service_type" defaultValue={defaultServiceType}>
+            <option value="session">Session</option>
+            <option value="travel">Travel</option>
+          </select>
+
           <Input name="description" label="Description" required autoFocus />
           <Input type="date" name="date" label="Date" defaultValue={defaultDate} />
 
           <label htmlFor="item_number">Item Number</label>
-          <select id="item_number" defaultValue={defaultValue} name="item_number">
+          <select id="item_number" name="item_number" defaultValue={defaultItemNumber}>
             <option value="15_622_0128_1_3">15_622_0128_1_3</option> {/* older */}
-            <option value="15_005_0118_1_3">15_005_0118_1_3</option> {/* younger */}
+            <option value="15_622_0118_1_3">15_622_0118_1_3</option> {/* younger */}
           </select>
 
           {/* <Input type="number" step="any" min="0" name="unit_price" label="Price" /> */}

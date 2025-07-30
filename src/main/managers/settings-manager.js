@@ -6,28 +6,23 @@ import path from 'path'
 
 export default class SettingsManager {
   static getAll() {
-    const hourly_rate = SettingsManager.getHourlyRate()
+    const session_rate = store.get('session_rate', 193.99)
+    const travel_rate = store.get('travel_rate', 97)
     const invoice_id = InvoiceManager.getId().id
-    return { invoice_id: invoice_id, hourly_rate: hourly_rate }
+
+    return { invoice_id: invoice_id, session_rate: session_rate, travel_rate: travel_rate }
   }
 
-  //   static setAll()
+  // static setAll()
   static setAll(data) {
-    const { hourly_rate, invoice_id } = data
+    const { session_rate, travel_rate, invoice_id } = data
 
     InvoiceManager.setId(invoice_id)
-    SettingsManager.setHourlyRate(Number(hourly_rate))
+    store.set('session_rate', Number(session_rate))
+    store.set('travel_rate', Number(travel_rate))
   }
 
   static openTemplate() {
     shell.openPath(path.resolve(app.getPath('userData'), 'Template.docx'))
-  }
-
-  static getHourlyRate() {
-    return store.get('hourly_rate', 0)
-  }
-
-  static setHourlyRate(rate) {
-    store.set('hourly_rate', rate)
   }
 }

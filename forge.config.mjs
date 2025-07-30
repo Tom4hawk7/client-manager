@@ -7,7 +7,7 @@ export default {
   },
   packagerConfig: {
     asar: true,
-    extraResource: ['./resources/Template.docx'],
+    extraResource: ['./resources/Template.docx', './resources/scripts'],
     name: 'Client-Manager'
   },
   rebuildConfig: {},

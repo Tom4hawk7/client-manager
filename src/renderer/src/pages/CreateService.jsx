@@ -18,7 +18,13 @@ export const createServiceLoader = async ({ params }) => {
 
 export const createServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
-  const hourly_rate = await window.store.get('hourly_rate')
+
+  console.log(service.service_type)
+
+  const hourly_rate =
+    service.service_type === 'session'
+      ? await window.store.get('session_rate')
+      : await window.store.get('travel_rate')
 
   // could have the dealt with in the service class
   const hours_worked = Number(service.minutes) / 60

@@ -2,9 +2,6 @@
 import Docxtemplater from 'docxtemplater'
 import PizZip from 'pizzip'
 
-// const Docxtemplater = require('docxtemplater')
-// const PizZip = require('pizzip')
-
 // Builtin file system utilities
 import fs from 'fs'
 import path from 'path'
