@@ -15,19 +15,6 @@ export const editServiceLoader = async ({ params }) => {
 
 export const editServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
-
-  const hourly_rate =
-    service.service_type === 'session'
-      ? await window.store.get('session_rate')
-      : await window.store.get('travel_rate')
-
-  console.log('Service: ', service)
-  console.log('Hourly Rate: ', hourly_rate)
-
-  // could have this dealt with in the service class
-  const hours_worked = Number(service.minutes) / 60
-  service.unit_price = (hourly_rate * hours_worked).toFixed(2)
-
   window.service.update(service)
   return redirect('..')
 }

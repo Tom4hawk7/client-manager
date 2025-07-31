@@ -1,17 +1,12 @@
 import { Form, Fieldset, Input } from './Form'
-import { TrashIcon, Cross1Icon } from '@radix-ui/react-icons'
+import { Cross1Icon } from '@radix-ui/react-icons'
 import ButtonLink from '../button/ButtonLink'
 import Button from '../button/Button'
 import Modal from '../modal/Modal'
 
-// things todo here
-
-// make the item_number dependent on date only initially - Use current date for comparison
-// wait a minute, if its only initially, then you could probably just get that data straight up
-
 const defaultDate = new Date().toISOString().substring(0, 10)
 const itemNumbers = new Set(['15_622_0128_1_3', '15_622_0118_1_3'])
-const serviceTypes = new Set(['session', 'travel'])
+// const serviceTypes = new Set(['session', 'travel'])
 
 export default function ServiceForm({ data, text }) {
   const defaultItemNumber = itemNumbers.has(data.item_number)
@@ -19,7 +14,7 @@ export default function ServiceForm({ data, text }) {
     : data.default_item_number
 
   // this will throw an error untill the loader has a property of type
-  const defaultServiceType = serviceTypes.has(data.service_type) ? data.service_type : 'session'
+  const defaultServiceType = data.service_type || 'session'
 
   return (
     <Modal variant="center">
@@ -40,7 +35,6 @@ export default function ServiceForm({ data, text }) {
             <option value="15_622_0118_1_3">15_622_0118_1_3</option> {/* younger */}
           </select>
 
-          {/* <Input type="number" step="any" min="0" name="unit_price" label="Price" /> */}
           <Input type="number" min="0" name="minutes" label="Billable Minutes" />
         </Fieldset>
         <Input type="hidden" name="id" />

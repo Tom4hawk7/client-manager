@@ -7,7 +7,6 @@ export default function CreateService() {
   return <ServiceForm data={data} text="Create" disable={true} />
 }
 
-// export const
 export const createServiceLoader = async ({ params }) => {
   const client_id = params.client_id
   const client_dob = await window.client.getDob(client_id)
@@ -18,29 +17,16 @@ export const createServiceLoader = async ({ params }) => {
 
 export const createServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
-
-  console.log('Service: ', service)
-
-  const hourly_rate =
-    service.service_type === 'session'
-      ? await window.store.get('session_rate')
-      : await window.store.get('travel_rate')
-
-  // could have the dealt with in the service class
-  const hours_worked = Number(service.minutes) / 60
-  service.unit_price = (Number(hourly_rate) * hours_worked).toFixed(2)
-
   await window.service.create(service)
   return redirect('..')
 }
 
 function checkItemDate(client_dob) {
   const date = new Date()
-  console.log(client_dob)
   const yearDiff = date.getFullYear() - client_dob.getFullYear()
 
   let itemNumber = '15_622_0128_1_3'
-  if (yearDiff < 7) itemNumber = '15_005_0118_1_3'
+  if (yearDiff < 7) itemNumber = '15_622_0118_1_3'
 
   return itemNumber
 }
