@@ -21,6 +21,9 @@ export const editServiceAction = async ({ request }) => {
       ? await window.store.get('session_rate')
       : await window.store.get('travel_rate')
 
+  console.log('Service: ', service)
+  console.log('Hourly Rate: ', hourly_rate)
+
   // could have this dealt with in the service class
   const hours_worked = Number(service.minutes) / 60
   service.unit_price = (hourly_rate * hours_worked).toFixed(2)
