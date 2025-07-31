@@ -4,6 +4,8 @@ import Service from '../models/service'
 export default class ServiceManager {
   static create(data) {
     const service = Service.construct(data)
+    console.log('Data: ', data)
+    console.log('Service: ', service)
     service.create()
   }
 

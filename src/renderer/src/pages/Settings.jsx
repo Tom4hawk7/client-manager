@@ -16,8 +16,8 @@ export default function Settings() {
 
         <Fieldset>
           <Input type="number" name="invoice_id" label="Invoice" min="0" />
-          <Input type="number" name="session_rate" label="Session Rate" min="0" step="any" />
-          <Input type="number" name="travel_rate" label="Travel Rate" min="0" step="any" />
+          {/* <Input type="number" name="session_rate" label="Session Rate" min="0" step="any" /> */}
+          {/* <Input type="number" name="travel_rate" label="Travel Rate" min="0" step="any" /> */}
 
           <div style={{ marginTop: '20px' }} className="button-container">
             <Button content="text" onClick={window.settings.openTemplate}>
