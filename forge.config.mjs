@@ -38,7 +38,7 @@ export default {
           name: 'client-manager'
         },
         prerelease: true,
-        authToken: import.meta.env.VITE_GITHUB_TOKEN
+        authToken: process.env.GITHUB_TOKEN
       }
     }
   ],
