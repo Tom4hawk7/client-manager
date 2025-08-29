@@ -2,7 +2,7 @@ import db from '../database'
 
 const MINUTES_IN_HOUR = 60
 const SESSION_RATE = 193.99
-const TRAVEL_RATE = 97
+const TRAVEL_RATE = 97.0
 
 export default class Service {
   constructor(id = '', date, description, item_number, minutes, service_type, client_id) {
@@ -15,7 +15,7 @@ export default class Service {
     // Calculating unit price
     this.minutes = Number(minutes)
     this.service_type = service_type
-    this.hourly_rate = service_type === 'session' ? SESSION_RATE : TRAVEL_RATE
+    this.hourly_rate = service_type === 'session' ? SESSION_RATE.toFixed(2) : TRAVEL_RATE.toFixed(2)
 
     const hours_worked = this.minutes / MINUTES_IN_HOUR
     this.unit_price = (this.hourly_rate * hours_worked).toFixed(2)
