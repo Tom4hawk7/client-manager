@@ -19,7 +19,7 @@
     "dev": "electron-vite dev --outDir=dist",
     "package": "electron-vite build --outDir=dist && electron-forge package",
     "make": "electron-vite build --outDir=dist && electron-forge make",
-    "publish": "npx electron-forge publish -- --from-dry-run",
+    "publish": "dotenvx run -- npx electron-forge publish -- --from-dry-run",
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "build": "electron-vite build"
