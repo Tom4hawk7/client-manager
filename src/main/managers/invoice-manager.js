@@ -6,6 +6,9 @@ import path from 'path'
 import { app } from 'electron'
 import { mkdir, mkdirSync } from 'fs'
 
+const SESSION_COST = 193.99
+const TRAVEL_COST = 97
+
 const currentDate = new Date()
 const formattedDate = currentDate.toLocaleDateString('en-GB', {
   year: 'numeric',
@@ -13,10 +16,12 @@ const formattedDate = currentDate.toLocaleDateString('en-GB', {
   day: 'numeric'
 })
 
+// Client.dob AS client_dob,
+
 const query = `
 SELECT 
   Client.name AS client_name,
-  Client.dob AS client_dob,
+  strftime('%d/%m/%Y', Client.dob) AS client_dob,
   Client.p_number AS client_p_number,
   Client.address AS client_address,
   Parent.name AS parent_name,
@@ -35,7 +40,9 @@ export default class InvoiceManager {
 
     for (const id of checked) {
       // get data from database
-      const [services, total] = getServices(id, month)
+      const services = ServiceManager.readAll(id, month)
+      const total = getTotal(services)
+
       const invoiceData = db.prepare(query).get(id)
 
       // insert entry into the invoice
@@ -76,23 +83,6 @@ export default class InvoiceManager {
   }
 }
 
-// async function handleDialog() {
-//   const res = await dialog.showOpenDialog({
-//     title: 'Save invoices',
-//     buttonLabel: 'Save',
-//     message: 'message',
-//     properties: ['openDirectory', 'createDirectory', 'promptToCreate']
-//   })
-
-//   return res
-// }
-
-// const options = {
-//   year: 'numeric',
-//   month: 'short',
-//   day: 'numeric'
-// }
-
 async function handleDialog() {
   const res = dialog.showSaveDialogSync({
     title: 'Save invoices',
@@ -112,14 +102,10 @@ async function handleDialog() {
   return res
 }
 
-function getServices(id, month) {
-  const services = ServiceManager.readAll(id, month)
+function getTotal(services) {
   let total = 0
-
-  // calculate the total price
   for (const service of services) {
     total += Number(service.unit_price)
   }
-
-  return [services, total.toFixed(2)]
+  return total.toFixed(2)
 }

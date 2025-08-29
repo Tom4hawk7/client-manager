@@ -15,16 +15,10 @@ export default class Service {
     // Calculating unit price
     this.minutes = Number(minutes)
     this.service_type = service_type
-
-    // const hourly_rate =
-    //   service_type === 'session' ? store.get('session_rate') : store.get('travel_rate')
-
-    let hourly_rate = 0
-    if (service_type === 'session') hourly_rate = SESSION_RATE
-    else if (service_type === 'travel') hourly_rate = TRAVEL_RATE
+    this.hourly_rate = service_type === 'session' ? SESSION_RATE : TRAVEL_RATE
 
     const hours_worked = this.minutes / MINUTES_IN_HOUR
-    this.unit_price = (hourly_rate * hours_worked).toFixed(2)
+    this.unit_price = (this.hourly_rate * hours_worked).toFixed(2)
   }
 
   static construct({ id = '', date, description, item_number, minutes, service_type, client_id }) {

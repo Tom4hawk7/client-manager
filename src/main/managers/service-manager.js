@@ -4,8 +4,8 @@ import Service from '../models/service'
 export default class ServiceManager {
   static create(data) {
     const service = Service.construct(data)
-    console.log('Data: ', data)
-    console.log('Service: ', service)
+    // console.log('Data: ', data)
+    // console.log('Service: ', service)
     service.create()
   }
 
@@ -16,15 +16,22 @@ export default class ServiceManager {
 
   static readAll(id, date, description = '') {
     const query = `
-    SELECT id, description, item_number, unit_price, client_id,
-    strftime('%d/%m/%Y', date) AS date, minutes
+    SELECT id, description, item_number, client_id,
+    strftime('%d/%m/%Y', date) AS date, minutes, service_type
     FROM Service
     WHERE Service.client_id = ?
     AND SUBSTRING(Service.date, 1, 7) = ?
     AND Service.description LIKE ?
     ORDER BY date`
 
-    return db.prepare(query).all(id, date, `%${description}%`)
+    const stmt = db.prepare(query).all(id, date, `%${description}%`)
+    const services = []
+
+    for (const service of stmt) {
+      services.push(Service.construct(service))
+    }
+
+    return services
   }
 
   static update(data) {
