@@ -37,7 +37,8 @@ export default {
           owner: 'Tom4hawk7',
           name: 'client-manager'
         },
-        prerelease: true
+        prerelease: true,
+        authToken: import.meta.env.VITE_GITHUB_TOKEN
       }
     }
   ],

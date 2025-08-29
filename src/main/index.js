@@ -7,6 +7,7 @@ import { copyFileSync, constants } from 'fs'
 import { store } from './store'
 import { fileURLToPath } from 'url'
 
+// es stuff might be outdated
 const es_filename = fileURLToPath(import.meta.url)
 const es_dirname = dirname(es_filename)
 
