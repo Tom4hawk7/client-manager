@@ -6,7 +6,6 @@ import Modal from '../modal/Modal'
 
 const defaultDate = new Date().toISOString().substring(0, 10)
 const itemNumbers = new Set(['15_622_0128_1_3', '15_622_0118_1_3'])
-// const serviceTypes = new Set(['session', 'travel'])
 
 export default function ServiceForm({ data, text }) {
   const defaultItemNumber = itemNumbers.has(data.item_number)
@@ -14,7 +13,7 @@ export default function ServiceForm({ data, text }) {
     : data.default_item_number
 
   // this will throw an error untill the loader has a property of type
-  const defaultServiceType = data.service_type || 'session'
+  const defaultServiceType = data.service_type || 'DS'
 
   return (
     <Modal variant="center">
@@ -22,21 +21,28 @@ export default function ServiceForm({ data, text }) {
         <Fieldset legend="Service Information">
           <label htmlFor="service_type">Service Type</label>
           <select name="service_type" id="service_type" defaultValue={defaultServiceType}>
-            <option value="session">Session</option>
-            <option value="travel">Travel</option>
+              <option value="DS">Direct Service</option>
+              <option value="PT">Provider Travel</option>
+              <option value="TH">Telehealth</option>
+              <option value="CA">Cancellation</option>
+              <option value="NF">Non-Face-To-Face</option>
+              <option value="RR">NDIA Requested Report</option>
           </select>
 
-          <Input name="description" label="Description" required autoFocus />
+
+          <Input name="description" label="Description" autoFocus />
           <Input type="date" name="date" label="Date" defaultValue={defaultDate} />
 
           <label htmlFor="item_number">Item Number</label>
           <select id="item_number" name="item_number" defaultValue={defaultItemNumber}>
+            {/* maybe just do an older and younger selector here */}
             <option value="15_622_0128_1_3">15_622_0128_1_3</option> {/* older */}
             <option value="15_622_0118_1_3">15_622_0118_1_3</option> {/* younger */}
           </select>
 
           <Input type="number" min="0" name="minutes" label="Billable Minutes" />
         </Fieldset>
+
         <Input type="hidden" name="id" />
         <Input type="hidden" name="client_id" />
 

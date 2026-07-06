@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router'
 import { redirect } from 'react-router'
 import ServiceForm from '../components/form/ServiceForm'
+import { serviceName } from '../types/service'
 
 export default function CreateService() {
   const data = useLoaderData()
@@ -17,6 +18,15 @@ export const createServiceLoader = async ({ params }) => {
 
 export const createServiceAction = async ({ request }) => {
   const service = Object.fromEntries(await request.formData())
+
+  service.description = service.description.trim() === ""
+    ? `${serviceName[service.service_type]}` 
+    :`${serviceName[service.service_type]} - ${service.description}`;
+
+  service.item_number = service.service_type === "DS"
+    ? `${service.item_number}`
+    : `${service.item_number}_${service.service_type}`
+
   await window.service.create(service)
   return redirect('..')
 }
@@ -26,7 +36,7 @@ function checkItemDate(client_dob) {
   const yearDiff = date.getFullYear() - client_dob.getFullYear()
 
   let itemNumber = '15_622_0128_1_3'
-  if (yearDiff < 7) itemNumber = '15_622_0118_1_3'
+  if (yearDiff < 9) itemNumber = '15_622_0118_1_3'
 
   return itemNumber
 }

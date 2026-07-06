@@ -20,7 +20,7 @@ export function Fieldset({ children, legend = '' }) {
   )
 }
 
-export function Input({ type = 'text', defaultValue = '', ...props }) {
+export function Input({ type = 'text', defaultValue = '', prefix = '', ...props }) {
   const data = use(FormContext)
   let value = defaultValue
 

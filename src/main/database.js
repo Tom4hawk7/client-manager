@@ -4,7 +4,7 @@ import { store } from './store'
 import { readFile } from 'fs'
 import path from 'path'
 
-const LATEST_USER_VERSION = 2
+const LATEST_USER_VERSION = 3
 
 // create database at specified path
 const basePath = path.resolve(app.getPath('userData'), 'client-manager.db')
