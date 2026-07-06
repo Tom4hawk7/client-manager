@@ -17,14 +17,15 @@
   "scripts": {
     "start": "electron-vite preview --outDir=dist",
     "dev": "electron-vite dev --outDir=dist",
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "build": "electron-vite build",
+    "format": "prettier --write .",
     "package": "electron-vite build --outDir=dist && electron-forge package",
     "make": "electron-vite build --outDir=dist && electron-forge make",
-    "publish": "dotenvx run -- npx electron-forge publish -- --from-dry-run",
-    "format": "prettier --write .",
-    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "build": "electron-vite build"
+    "publish": "dotenvx run -- npx electron-forge publish -- --from-dry-run"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^2.1.4",
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "@radix-ui/react-icons": "^1.3.2",
